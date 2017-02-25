@@ -10,6 +10,8 @@ Wedding Planner Finder is a simplistic website used to match engaged couples wit
 
 ## Getting Started
 
+- Will contain install instructions 
+
 ### Prerequisites
 
 - [Git](https://git-scm.com/)
@@ -22,7 +24,3 @@ Wedding Planner Finder is a simplistic website used to match engaged couples wit
 1. Run `npm install` to install server dependencies.
 
 3. Run `npm start`
-
-## Testing
-
-Running `npm test` will run the unit tests with karma.
