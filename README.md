@@ -21,7 +21,7 @@ Wedding Planner Finder is a simplistic website used to match engaged couples wit
 ### Prerequisites
 
 - [Git](https://git-scm.com/)
-- [Node.js and npm](nodejs.org) Node >= 4.x.x, npm >= 2.x.x
+- [Node.js and npm](https://nodejs.org/en/) Node >= 4.x.x, npm >= 2.x.x
 - [Webpack](https://webpack.github.io/) Frontend package manager
 - [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) A workflow for use with Git - we will be using this. Read about how to use it. Basically, you have a master and develop branch. Master is for releases. Develop is where you merge code into. All code is written in a feature branch, then a pull request is created to merge into develop when done. When PR is approved, it is merged. Releases will be pulled off of develop into release branches and then merged into master when code verified to be good. Hotfixes are made off of master.
 
