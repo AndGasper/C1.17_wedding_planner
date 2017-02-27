@@ -10,7 +10,13 @@ Wedding Planner Finder is a simplistic website used to match engaged couples wit
 
 ## Getting Started
 
-- Will contain install instructions 
+- Will contain install instructions
+
+## Branches
+
+- Master is for deployment
+- Dev is all current, completed, and tested features
+- Create feature branches, and make a pull request into dev for review and merge
 
 ### Prerequisites
 
