@@ -41,6 +41,7 @@ Wedding Planner Finder is a simplistic website used to match engaged couples wit
   - Daniel
   - John
   - Derrick
+  
 ###Jr Members
   - Sean
   - Kevin
