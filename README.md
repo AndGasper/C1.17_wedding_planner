@@ -36,11 +36,12 @@ Wedding Planner Finder is a simplistic website used to match engaged couples wit
 - [NinjaMock](https://ninjamock.com/s/351CJ/)
 
 ##Members
-- ###Sr Members
+###Sr Members
   - Darin
   - Daniel
   - John
-- ###Jr Members
+  - Derrick
+###Jr Members
   - Sean
   - Kevin
   - Andres
