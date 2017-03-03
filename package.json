@@ -1,0 +1,26 @@
+{
+  "name": "wedding_planner",
+  "version": "0.0.1",
+  "description": "Simple app to recommend wedding planners to couples",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Learning-Fuze/C1.17_wedding_planner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Learning-Fuze/C1.17_wedding_planner/issues"
+  },
+  "homepage": "https://github.com/Learning-Fuze/C1.17_wedding_planner#readme",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "express": "^4.15.0",
+    "react": "^15.4.2",
+    "sass": "^0.5.0",
+    "webpack": "^2.2.1"
+  }
+}
