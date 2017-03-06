@@ -17,11 +17,16 @@
   },
   "homepage": "https://github.com/Learning-Fuze/C1.17_wedding_planner#readme",
   "dependencies": {
-    "babel": "^6.23.0",
     "express": "^4.15.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-router": "^3.0.2",
+    "webpack": "^2.2.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.4.0",
+    "babel-preset-env": "^1.2.0",
     "webpack": "^2.2.1"
   }
 }
