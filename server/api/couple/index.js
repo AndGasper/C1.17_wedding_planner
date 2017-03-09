@@ -1,12 +1,12 @@
 'use strict';
 
 import express from 'express';
-import controller from './couple.controller';
+let controller = require('./couple.controller');
 
 let router = express.Router();
 
 router.get('/', controller.index);
-router.get('/results/:id', controller.results);
+router.get('/:id', controller.user);
 router.post('/', controller.create);
 
-export default router;
+module.exports = router;
