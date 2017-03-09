@@ -1,4 +1,4 @@
-/node_modules
-/server/config/local.env.js
+node_modules
 npm-debug.log
-/app
+app/
+dist
