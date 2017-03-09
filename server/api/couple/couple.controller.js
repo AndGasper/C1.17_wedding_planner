@@ -11,3 +11,7 @@ export function user(req, res) {
 export function create(req, res) {
   res.send('\nrecieved post request on "/api/couple/" to create a new couple\n\n');
 }
+
+export function updateUser(req, res) {
+  res.send('\nWe recieved your request to update user ' + req.params.id);
+}
