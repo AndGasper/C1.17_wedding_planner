@@ -5,7 +5,7 @@ Wedding Planner Finder is a simplistic website used to match engaged couples wit
 ## Technologies
 - HTML/CSS
 - Node.js/Express.js
-- Angular 1.5
+- React
 
 
 ## Getting Started

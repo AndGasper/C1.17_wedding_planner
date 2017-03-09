@@ -2,10 +2,10 @@
   "name": "wedding_planner",
   "version": "0.0.1",
   "description": "Simple app to recommend wedding planners to couples",
-  "main": "index.js",
+  "main": "/server/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./app/index.js"
+    "start": "nodemon ./server/app.js --exec babel-node --presets es2015,stage-2"
   },
   "repository": {
     "type": "git",
@@ -28,17 +28,14 @@
     "webpack": "^2.2.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.23.0",
     "babel-core": "^6.23.1",
     "babel-loader": "^6.4.0",
     "babel-preset-env": "^1.2.0",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.23.0",
-    "gulp": "^3.9.1",
-    "gulp-live-server": "0.0.30",
-    "gulp-shell": "^0.6.3",
-    "gulp-watch": "^4.3.11",
-    "rimraf": "^2.6.1",
-    "run-sequence": "^1.2.2",
+    "babel-preset-stage-2": "^6.22.0",
+    "nodemon": "^1.11.0",
     "webpack": "^2.2.1"
   }
 }
