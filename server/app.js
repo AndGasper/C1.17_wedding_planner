@@ -5,6 +5,7 @@ let app = express();
 
 mongoose.connect('localhost:27017/wedding-planner');
 
+app.use(express.static('public'));
 require('./routes').default(app);
 
 app.listen(3000, function() {
