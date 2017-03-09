@@ -1,9 +1,9 @@
 'use strict';
 
-var express = require('express');
-var controller = require('./preferences.controller');
+import express from 'express';
+import controller from './preferences.controller';
 
-var router = express.Router();
+let router = express.Router();
 
 router.get('/', controller.index);
 router.get('/results/:id', controller.results);

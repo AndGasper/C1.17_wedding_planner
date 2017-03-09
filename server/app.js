@@ -1,8 +1,9 @@
-var express = require('express');
-var app = express();
-var mongoose = require('mongoose');
+import express from 'express';
+import mongoose from 'mongoose';
 
-var routes = require('./routes');
+let app = express();
+
+import routes from './routes';
 
 mongoose.connect('localhost:27017/wedding-planner');
 

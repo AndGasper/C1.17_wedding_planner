@@ -1,6 +1,6 @@
 'use strict';
 
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 var weddingPlannerSchema = new mongoose.Schema({
   name: String,
@@ -12,4 +12,4 @@ var weddingPlannerSchema = new mongoose.Schema({
   role: String
 });
 
-module.exports = mongoose.model('WeddingPlanner', weddingPlannerSchema);
+export default mongoose.model('WeddingPlanner', weddingPlannerSchema);
