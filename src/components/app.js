@@ -1,9 +1,17 @@
 import React from 'react';
 import styles from './app.css';
+import NavLink from './nav_link';
 
-const App = () => (
-    <div className={styles.app}>
-        <h1>Welcome to React!</h1>
+const container = ' container';
+
+this.state = {
+    name: '',
+    age: ''
+};
+
+const App = (props) => (
+    <div className={styles.app + container}>
+        { props.children }
     </div>
 );
 
