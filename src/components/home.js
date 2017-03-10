@@ -10,6 +10,7 @@ const Home = () => (
             <br/>
             <br/>
             <button className='btn btn-info'><NavLink to="/Contact">Get Started</NavLink></button>
+            <NavLink className=' planner_login' to="/plannerPage">Wedding Planner? Log in Here</NavLink>
         </div>
     </div>
 );

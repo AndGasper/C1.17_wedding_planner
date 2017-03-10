@@ -17,14 +17,13 @@ const About = () => (
                 <br/>
                 <br/>
             </form>
-            <button className="btn btn-primary"><NavLink to="/contact">Log in</NavLink></button>
+            <button className="btn btn-info"><NavLink to="/contact">Log in</NavLink></button>
             <br/>
             <br/>
+            <button className="btn btn-danger">Log in With Facebook</button>
             <br/>
-            <button className="btn btn-info">Log in With Facebook</button>
             <br/>
-            <br/>
-            <button className="btn btn-info">Log in With Google</button>
+            <button className="btn btn-danger">Log in With Google</button>
             <NavLink to="/" >Back to Home</NavLink>
         </div>
     </div>
