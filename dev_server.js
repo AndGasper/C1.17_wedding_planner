@@ -4,7 +4,7 @@ const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config');
 
 new WebpackDevServer(webpack(config), {
-    contentBase: resolve(__dirname, 'pubic'),
+    contentBase: resolve(__dirname, 'public'),
     publicPath: '/',
     hot: false,
     historyApiFallback: true,
@@ -19,10 +19,10 @@ new WebpackDevServer(webpack(config), {
         chunks: false,
         chunkModules: false
     }
-}).listen(3000, 'localhost', function(err){
+}).listen(8000, 'localhost', function(err){
     if(err){
         console.log(err);
     }
 
-    console.log('Listening at localhost:3000');
+    console.log('Listening at localhost:8000');
 });

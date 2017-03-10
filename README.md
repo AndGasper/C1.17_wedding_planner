@@ -29,7 +29,9 @@ Wedding Planner Finder is a simplistic website used to match engaged couples wit
 
 1. Run `npm install` to install server dependencies.
 
-3. Run `npm start`
+2. Run `npm run build` to start webpack
+
+3. Run `npm start` to start server
 
 ## Wireframes
 
