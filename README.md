@@ -10,7 +10,7 @@ Wedding Planner Finder is a simplistic website used to match engaged couples wit
 
 ## Getting Started
 
-- Will contain install instructions
+- Ensure you have gulp-cli installed, if not run `npm install gulp-cli -g`
 
 ## Branches
 
@@ -41,7 +41,7 @@ Wedding Planner Finder is a simplistic website used to match engaged couples wit
   - Daniel
   - John
   - Derrick
-  
+
 ###Jr Members
   - Sean
   - Kevin
