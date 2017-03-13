@@ -1,10 +1,14 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import logger from 'morgan';
+import bluebird from 'bluebird';
 
-let app = express();
+const app = express();
 
+mongoose.Promise = bluebird;
 mongoose.connect('localhost:27017/wedding-planner');
 
+app.use(logger('dev'));
 app.use(express.static('public'));
 require('./routes').default(app);
 
