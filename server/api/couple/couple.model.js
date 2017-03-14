@@ -3,11 +3,16 @@
 import mongoose from 'mongoose';
 import preferencesSchema from '../preferences/preferences.model';
 
-var coupleSchema = new mongoose.Schema({
+let coupleSchema = new mongoose.Schema({
   name: String,
   email: String,
-  phoneNumer: String,
+  phoneNumber: String,
+  status: Number,
   preferences: preferencesSchema,
+  status: {
+    type: String,
+    default: 'active'
+  },
   facebook: {},
   google: {}
 });

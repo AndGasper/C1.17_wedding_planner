@@ -2,20 +2,24 @@
 
 import mongoose from 'mongoose';
 
-var weddingPlannerPreferencesSchema = new mongoose.Schema({
+let weddingPlannerPreferencesSchema = new mongoose.Schema({
   size: String,
-  cost: String
+  cost: String,
+  style: String
 });
 
-var weddingPlannerSchema = new mongoose.Schema({
+let weddingPlannerSchema = new mongoose.Schema({
   name: String,
   website: String,
   email: String,
   description: String,
+  status: {
+    type: String,
+    default: 'active'
+  },
   preferences: weddingPlannerPreferencesSchema,
   facebook: {},
-  google: {},
-  role: String
+  google: {}
 });
 
 export default mongoose.model('WeddingPlanner', weddingPlannerSchema);
