@@ -40,3 +40,15 @@ input {
 label {
     font-size: 2em;
 }
+
+.profileInfo {
+    width: 50vw;
+}
+
+a {
+    color: #336699;
+}
+
+a:hover {
+    text-decoration: none;
+}

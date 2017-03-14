@@ -18,6 +18,7 @@ const About = () => (
                 <br/>
             </form>
             <button className="btn btn-primary"><NavLink to="/contact">Log in</NavLink></button>
+            <button className='btn btn-primary'><NavLink to='/planner-profile'>Profile</NavLink></button>
             <br/>
             <br/>
             <br/>
