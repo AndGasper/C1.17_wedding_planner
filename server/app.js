@@ -9,7 +9,7 @@ const app = express();
 mongoose.Promise = bluebird;
 mongoose.connect('localhost:27017/wedding-planner');
 
-var db = mongoose.Connection;
+//var db = mongoose.Connection;
 
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({

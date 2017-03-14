@@ -4,10 +4,12 @@ import NavLink from './nav_link';
 
 const container = ' container';
 
-this.state = {
+/*this.state = {
     name: '',
     age: ''
 };
+
+console.log(this.state);*/
 
 const App = (props) => (
     <div className={styles.app + container}>
