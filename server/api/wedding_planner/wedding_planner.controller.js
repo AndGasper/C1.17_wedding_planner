@@ -1,17 +1,64 @@
 import weddingPlannerModel from './wedding_planner.model';
 
+function respondWithResult(statusCode, res) {
+  res.status(statusCode).json()
+}
+
 export function index(req, res) {
-  res.send('\nrecieved get request on "/api/wedding_planner/"\n\n');
+  console.log(weddingPlannerModel.find().exec((err, planners) => {
+    if (err) {
+      console.log("Error:", err);
+      res.status(404).send('\nfailed to get couples\n\n');
+    } else {
+      res.status(200).json(planners);
+    }
+  }));
 }
 
 export function getWeddingPlanner(req, res) {
-  res.send('\nWe recieved a get request on "/api/wedding_planner/:id" with id ' + req.params.id + "\n\n");
+  weddingPlannerModel.findById({
+    '_id': req.params.id
+  }).exec((err, planners) => {
+    if (err) {
+      res.status(404).json(err);
+    } else {
+      res.status(200).json(planners);
+    }
+  });
 }
 
 export function create(req, res) {
-  res.send('\nrecieved post request on "/api/couple/" to create a new couple\n\n');
+  var couple = new weddingPlannerModel(req.body);
+  couple.save((err) => {
+    if (err) res.status(404).json(err);
+    else {
+      res.status(200).send("/nAdded planner/n/n")
+    }
+  });
 }
 
-export function updateWeddingPlanner(req, res) {
-  res.send('\nWe recieved your request to update user ' + req.params.id);
+export function updateWeddingPlanner(req, res) { 
+  weddingPlannerModel.findOneAndUpdate({
+      '_id': req.params.id
+    }, req.body, {
+      returnNewDocument: true
+    })
+    .then((planner) => {
+      res.json(planner);
+    }).catch((err) => {
+      res.status(404).json(err);
+    });
+}
+
+export function deleteWeddingPlanner(req, res) { // TODO
+    weddingPlannerModel.findOneAndUpdate({
+      '_id': req.params.id
+    }, { $set: { 'status': 'deleted' }}, {
+      returnNewDocument: true
+    })
+    .then((planner) => {
+      res.json(planner);
+    }).catch((err) => {
+      res.status(404).json(err);
+    });
 }

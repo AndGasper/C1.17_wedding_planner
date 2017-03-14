@@ -3,14 +3,11 @@
 Wedding Planner Finder is a simplistic website used to match engaged couples with wedding planners who excel at the style and price range specified.
 
 ## Technologies
-- HTML/CSS
+- HTML5
+- Less
 - Node.js/Express.js
-- React
-
-
-## Getting Started
-
-- Ensure you have gulp-cli installed, if not run `npm install gulp-cli -g`
+- PassportJS for authentication
+- React and React Redux
 
 ## Branches
 
@@ -35,14 +32,16 @@ Wedding Planner Finder is a simplistic website used to match engaged couples wit
 
 - [NinjaMock](https://ninjamock.com/s/351CJ/)
 
-##Members
-###Sr Members
+
+## Members 
+
+### Senior Members
   - Darin
   - Daniel
   - John
   - Derrick
 
-###Jr Members
+### Junior Members 
   - Sean
   - Kevin
   - Andres
