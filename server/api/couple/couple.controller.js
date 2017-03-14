@@ -1,17 +1,64 @@
 import coupleModel from './couple.model';
 
+function respondWithResult(statusCode, res) {
+  res.status(statusCode).json()
+}
+
 export function index(req, res) {
-  res.send('\nrecieved get request on "/api/couple/"\n\n');
+  console.log(coupleModel.find().exec((err, couples) => {
+    if (err) {
+      console.log("Error:", err);
+      res.status(404).send('\nfailed to get couples\n\n');
+    } else {
+      res.status(200).json(couples);
+    }
+  }));
 }
 
 export function user(req, res) {
-  res.send('\nWe recieved a get request on "/api/couple/:id" with id ' + req.params.id + "\n\n");
+  coupleModel.findById({
+    '_id': req.params.id
+  }).exec((err, couples) => {
+    if (err) {
+      res.status(404).json(err);
+    } else {
+      res.status(200).json(couples);
+    }
+  });
 }
 
 export function create(req, res) {
-  res.send('\nrecieved post request on "/api/couple/" to create a new couple\n\n');
+  var couple = new coupleModel(req.body);
+  couple.save((err) => {
+    if (err) res.status(404).json(err);
+    else {
+      res.status(200).send("/nAdded user/n/n")
+    }
+  });
 }
 
-export function updateUser(req, res) {
-  res.send('\nWe recieved your request to update user ' + req.params.id);
+export function updateUser(req, res) { 
+  coupleModel.findOneAndUpdate({
+      '_id': req.params.id
+    }, req.body, {
+      returnNewDocument: true
+    })
+    .then((couple) => {
+      res.json(couple);
+    }).catch((err) => {
+      res.status(404).json(err);
+    });
+}
+
+export function deleteUser(req, res) { // TODO
+    coupleModel.findOneAndUpdate({
+      '_id': req.params.id
+    }, { $set: { 'status': 'deleted' }}, {
+      returnNewDocument: true
+    })
+    .then((couple) => {
+      res.json(couple);
+    }).catch((err) => {
+      res.status(404).json(err);
+    });
 }
