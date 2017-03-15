@@ -2,8 +2,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import promise from 'redux-promise';
-import coupleData from '../data/coupleData';
-import images from '../data/images';
+import coupleData from './data/coupleData';
+import images from './data/images';
 
 
 import rootReducer from './reducers/index';
