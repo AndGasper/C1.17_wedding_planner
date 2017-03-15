@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import {connect} from 'react-redux';
+
 
 class Questions extends Component {
     render() {
@@ -22,4 +24,11 @@ class Questions extends Component {
     }
 }
 
-export default Questions;
+function mapStateToProps(state) {
+    return {
+        coupleData: state.coupleData
+    }
+}
+
+
+export default connect(mapStateToProps)(Questions);
