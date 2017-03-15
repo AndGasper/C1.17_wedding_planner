@@ -8,7 +8,6 @@ let coupleSchema = new mongoose.Schema({
   email: String,
   password: String,
   phoneNumber: String,
-  status: Number,
   preferences: preferencesSchema,
   status: {
     type: String,
