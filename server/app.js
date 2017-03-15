@@ -15,6 +15,7 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+
 app.use(express.static('public'));
 require('./routes').default(app);
 
