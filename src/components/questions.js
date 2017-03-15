@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import {connect} from 'react-redux';
+import QuestionImages from './questionsImages';
 
 
 class Questions extends Component {
+
+    renderImages() {
+        console.log("yay, i'm rendering images...");
+        return this.props.imageData[0].map((image, index) => {
+            return <QuestionImages key={index}
+                                   image={image}
+            />
+        })
+    }
+
     render() {
         return (
-            <div>
-                <h2>Questions Page</h2>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <div>
-                    Image Questions Will be Added here
+            <div className="container">
+                <h3>Music</h3>
+                <div className="row">
+                    {this.renderImages()}
                 </div>
             </div>
         )
@@ -26,7 +28,8 @@ class Questions extends Component {
 
 function mapStateToProps(state) {
     return {
-        coupleData: state.coupleData
+        coupleData: state.coupleData,
+        imageData: state.imageData
     }
 }
 
