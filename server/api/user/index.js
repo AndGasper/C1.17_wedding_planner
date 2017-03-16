@@ -1,7 +1,7 @@
 'use strict';
 
 import express from 'express';
-import { index, user, create, updateUser, deleteUser } from './couple.controller'
+import { index, user, create, updateUser, deleteUser } from './user.controller'
 //let controller = require('./couple.controller');
 
 let app = express();

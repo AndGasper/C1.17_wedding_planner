@@ -3,12 +3,16 @@
 import mongoose from 'mongoose';
 import preferencesSchema from '../preferences/preferences.model';
 
-let coupleSchema = new mongoose.Schema({
+let userSchema = new mongoose.Schema({
   name: String,
   email: String,
   password: String,
   phoneNumber: String,
   preferences: preferencesSchema,
+  admin: {
+    type: Boolean,
+    default: false
+  },
   status: {
     type: String,
     default: 'active'
@@ -17,4 +21,4 @@ let coupleSchema = new mongoose.Schema({
   google: {}
 });
 
-export default mongoose.model('Couple', coupleSchema);
+export default mongoose.model('User', userSchema);
