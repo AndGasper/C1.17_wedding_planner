@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './app.css';
-import NavLink from './nav_link';
+import { Link } from 'react-router';
 
 class Home extends Component {
     constructor(props){
@@ -20,10 +20,15 @@ class Home extends Component {
                     <br/>
                     <br/>
                     <br/>
+                    <button className='btn btn-info'><Link to="/questions">Get Started</Link></button>
                     <br/>
                     <br/>
-                    <button className='btn btn-info'><NavLink to="/questions">Get Started</NavLink></button>
-                    <NavLink className=' planner_login' to="/plannerPageLogin">Wedding Planner? Log in Here</NavLink>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <Link className=' planner_login' to="/plannerPageLogin">Wedding Planner? Log in Here</Link>
                 </div>
             </div>
         )
