@@ -25,6 +25,7 @@ class MainLogin extends Component {
     }
 
     render(){
+        const { handleSubmit } = this.props;
         return (
             <div className = {styles.loginPage}>
                 <h2>Login</h2>

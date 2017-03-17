@@ -10,7 +10,14 @@ class Home extends Component {
         return (
             <div className={styles.homePage} >
                 <div>
-                    <h1>Wedding Planner Finder</h1>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
                     <button className='btn btn-info'><NavLink to="/Login">Login</NavLink></button>
                     <br/>
                     <br/>
