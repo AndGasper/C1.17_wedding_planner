@@ -18,7 +18,8 @@ class Home extends Component {
                     <br/>
                     <br/>
                     <br/>
-                    <button className='btn btn-info'><NavLink to="/Login">Login</NavLink></button>
+                    <br/>
+                    <br/>
                     <br/>
                     <br/>
                     <button className='btn btn-info'><NavLink to="/questions">Get Started</NavLink></button>
