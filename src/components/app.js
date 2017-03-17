@@ -1,0 +1,17 @@
+import React from 'react';
+import styles from './app.css';
+import Header from './header';
+
+const container = ' container';
+
+
+const App = (props) => (
+    <div>
+        <Header />
+        <div className={styles.app + container}>
+            { props.children }
+        </div>
+    </div>
+);
+
+export default App;

@@ -32,7 +32,7 @@ export function create(req, res) {
   couple.save((err) => {
     if (err) res.status(404).json(err);
     else {
-      res.status(200).send("/nAdded user/n/n")
+      res.status(200).send("/nAdded user/n/n");
     }
   });
 }
