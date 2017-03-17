@@ -24,7 +24,7 @@ class Header extends Component {
                             <a className="nav-link" href="#">Pricing</a>
                         </li>
                         <li className="nav-item dropdown float-right">
-                            <a className="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Dropdown link
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
