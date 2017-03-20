@@ -7,6 +7,10 @@
     color: red;
 }
 
+li img {
+    height: 5vh;
+}
+
 h1 {
     color: darkred;
     font-size: 4.0em;
@@ -70,6 +74,9 @@ a:hover {
 .footer{
     font-size: 2vmin;
     background-color: rgba(255, 255, 255, .3);
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
 }
 
 .footer p {
