@@ -11,22 +11,25 @@ class Header extends Component {
                 <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <a className="navbar-brand"><Link to="/">Wedding Planner Finder</Link></a>
+                <Link className="navbar-brand"><Link to="/">Wedding Planner Finder</Link></Link>
                 <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                     <ul className="navbar-nav">
                         <li className="nav-item active">
-                            <a className="nav-link" href="#">Home<span className="sr-only">(current)</span></a>
+                            <Link className="nav-link" to="/">Home<span className="sr-only">(current)</span></Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">About us</a>
+                            <Link className="nav-link" to="/questions">About us</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link"><Link>Sign-in</Link></a>
+                            <Link className="nav-link" to='/client_login_page'><Link>Sign-in</Link></Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to='/client_login_page'><img src='../../login_icons/GooglePlus.png' /></Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to='/client_login_page'><img src='../../login_icons/facebook-256.png' /></Link>
                         </li>
                     </ul>
-                    <span className="navbar-text mr-auto">
-                    Navbar text with an inline element
-                    </span>
                 </div>
             </nav>
         )
