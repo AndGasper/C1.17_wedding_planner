@@ -55,10 +55,16 @@ a:hover {
 
 .questionImages {
     padding-bottom: 30px;
+
 }
+
 .questionImages:hover img{
     transform:scale(1.1);
     -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.67);
     -moz-box-shadow:    0px 0px 20px 0px rgba(0, 0, 0, 0.67);
     box-shadow:         0px 0px 20px 0px rgba(0, 0, 0, 0.67);
+}
+
+.clicked {
+    border: 1px red solid;
 }
