@@ -41,20 +41,24 @@ module.exports = (passport) => {
         
         process.nextTick(() => {
             User.findOne({ 'facebook.id' : profile.id }, (err, user) => {
-                if(err) return done(err);
+                if(err){
+                    console.log('error', err);
+                    return done(err);
+                }
                 
-                if(user) return done(null, user);
-                else {
+                if(user){
+                    console.log('user exists:', user);
+                    return done(null, user);
+                } else {
                     let newUser = new User();
                     newUser.facebook.id       = profile.id;
                     newUser.facebook.token    = token;
                     newUser.facebook.name     = profile.name.givenName + ' ' + profile.name.familyName;
                     newUser.facebook.email    = profile.emails[0].value;
-                    console.log(profile);
+                    console.log(newUser);
                     
                     newUser.save((err) => {
                         if(err) throw err;
-                        
                         return done(null, newUser)
                     });
                 }

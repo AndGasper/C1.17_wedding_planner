@@ -27,7 +27,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: 'active'
   },
-  facebook: {},
+  facebook: {
+    id: String,
+    name: String,
+    token: String,
+    email: String
+  },
   google: {}
 });
 
