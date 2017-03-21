@@ -41,13 +41,10 @@ module.exports = (passport) => {
         
         process.nextTick(() => {
             User.findOne({ 'facebook.id' : profile.id }, (err, user) => {
-                if(err) {
-                    return done(err);
-                }
+                if(err) return done(err);
                 
-                if(user) {
-                    return done(null, user);
-                } else {
+                if(user) return done(null, user);
+                else {
                     let newUser = new User();
                     newUser.facebook.id       = profile.id;
                     newUser.facebook.token    = token;
@@ -56,9 +53,7 @@ module.exports = (passport) => {
                     console.log(profile);
                     
                     newUser.save((err) => {
-                        if(err) {
-                            throw err;
-                        }
+                        if(err) throw err;
                         
                         return done(null, newUser)
                     });

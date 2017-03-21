@@ -26,5 +26,11 @@ router.post('/login', passport.authenticate('local-login', {
 }));
 router.put('/:id', isLoggedIn, updateUser);
 router.delete('/:id', deleteUser);
+router.get('/facebook/callback', passport.authenticate('facebook', {
+    successRedirect : '/',
+    failureRedirect : '/'
+}));
+router.get('/login/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
 
 export default router;
