@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import styles from './app.css';
 
 class clientLogin extends Component {
     render() {
         return (
-            <div>
-                <h2>Welcome Client</h2>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <div>
-                    Area with info about current wedding/planner
+            <div className={styles.client}>
+                <h1>Welcome (Client)</h1>
+                <div className="info-section">
+                    <p>Hello there</p>
                 </div>
             </div>
         )
