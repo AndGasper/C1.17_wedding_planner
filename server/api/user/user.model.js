@@ -1,7 +1,6 @@
 'use strict';
 
 import mongoose from 'mongoose';
-import preferencesSchema from '../preferences/preferences.model';
 import bcrypt from 'bcrypt-nodejs';
 
 let userSchema = new mongoose.Schema({
@@ -21,6 +20,14 @@ let userSchema = new mongoose.Schema({
   facebook: {},
   google: {}
 });
+
+let preferencesSchema = new mongoose.Schema({
+  cost: Number,
+  //location: String,
+  
+
+});
+
 
 // generating a hash
 userSchema.methods.generateHash = function(password) {

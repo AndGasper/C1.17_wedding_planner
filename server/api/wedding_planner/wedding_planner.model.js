@@ -11,6 +11,7 @@ let weddingPlannerPreferencesSchema = new mongoose.Schema({
 let weddingPlannerSchema = new mongoose.Schema({
   name: String,
   website: String,
+  address: String,
   email: String,
   description: String,
   status: {
