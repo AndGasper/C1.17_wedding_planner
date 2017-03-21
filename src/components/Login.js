@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import styles from './app.css';
 import NavLink from './nav_link';
 
 class MainLogin extends Component {
@@ -27,9 +26,9 @@ class MainLogin extends Component {
     render(){
         const { handleSubmit } = this.props;
         return (
-            <div className = {styles.loginPage}>
+            <div>
                 <h2>Login</h2>
-                <div className = {styles.formDiv}>
+                <div>
                     <form onSubmit={(e) => this.onSubmit(e)}>
                         <br/>
                         <label htmlFor="username">Username:</label>
@@ -46,7 +45,7 @@ class MainLogin extends Component {
                     </form>
 
                     <br/>
-                    <button className="btn btn-info"><NavLink to='/client_login_page'>Overide to Client Page</NavLink></button>
+                    <button className="btn btn-info"><NavLink to='/client_login_page'>Override to Client Page</NavLink></button>
                     <br/>
                     <button className="btn btn-danger">Log in With Facebook</button>
                     <br/>

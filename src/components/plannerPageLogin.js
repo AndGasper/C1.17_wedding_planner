@@ -1,11 +1,10 @@
 import React from 'react';
-import styles from './app.css';
 import NavLink from './nav_link';
 
 const plannerPageLogin = () => (
-    <div className = {styles.loginPage}>
+    <div>
         <h2>Wedding Planner Login</h2>
-        <div className = {styles.formDiv}>
+        <div>
             <form>
                 <br/>
                 <label htmlFor="username">Username:</label>

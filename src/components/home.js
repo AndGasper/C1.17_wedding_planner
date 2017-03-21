@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import styles from './app.css';
 import { Link } from 'react-router';
 import Footer from './footer';
 
@@ -9,7 +8,7 @@ class Home extends Component {
     }
     render(){
         return (
-            <div className={styles.homePage} >
+            <div>
                 <div>
                     <div className='text-center'>
                         <h1>Welcome To Matchromonie</h1>
