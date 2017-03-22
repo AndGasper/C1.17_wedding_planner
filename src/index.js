@@ -14,6 +14,7 @@ import PlannerPageLogin from './components/plannerPageLogin';
 import QuestionPage from './components/questions';
 import QuestionImages from './components/questionsImages';
 import ClientLogin from './components/client_login_page';
+import PlannerSignup from './components/plannerSignup';
 
 ReactDOM.render(
     <Provider store={store}>
@@ -22,9 +23,10 @@ ReactDOM.render(
                 <IndexRoute component={Home}/>
                 <Route path="Login" component={Login} />
                 <Route path="client_login_page" component={ClientLogin} />
-                <Route path="planner-profile" component={PlannerProfile} />
+                <Route path="planner_profile" component={PlannerProfile} />
                 <Route path="plannerPageLogin" component={PlannerPageLogin} />
                 <Route path="questions" component={QuestionPage} />
+                <Route path='planner_signup' component={PlannerSignup} />
             </Route>
         </Router>
     </Provider>,
