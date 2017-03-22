@@ -15,16 +15,22 @@ router.get('/', index);
 router.get('/:id', isLoggedIn, user); // get http://localhost:3000/api/couple
 router.get('/logout/:id', isLoggedIn, logout);
 router.post('/', passport.authenticate('local-signup', {
-    successRedirect : '/', 
-    failureRedirect : '/', 
+    successRedirect : '/profile',
+    failureRedirect : '/login',
     failureFlash : true // allow flash messages
 })); // post http://localhost:3000/api/couple
 router.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/', // redirect to the secure profile section
-    failureRedirect : '/', // redirect back to the signup page if there is an error
+    successRedirect : '/profile', // redirect to the secure profile section
+    failureRedirect : '/login', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
 }));
 router.put('/:id', isLoggedIn, updateUser);
 router.delete('/:id', deleteUser);
+router.get('/facebook/callback', passport.authenticate('facebook', {
+    successRedirect : '/profile',
+    failureRedirect : '/login'
+}));
+router.get('/login/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
 
 export default router;
