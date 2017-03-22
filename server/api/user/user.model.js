@@ -32,7 +32,8 @@ const UserSchema = new mongoose.Schema({
     id: String,
     name: String,
     token: String,
-    email: String
+    email: String,
+    photo: String
   },
   google: {}
 });
