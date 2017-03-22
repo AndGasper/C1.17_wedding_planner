@@ -13,7 +13,7 @@ import PlannerProfile from './components/planner_profile';
 import PlannerPageLogin from './components/plannerPageLogin';
 import QuestionPage from './components/questions';
 import QuestionImages from './components/questionsImages';
-import ClientLogin from './components/client_login_page';
+import Profile from './components/profile';
 
 ReactDOM.render(
     <Provider store={store}>
@@ -21,7 +21,7 @@ ReactDOM.render(
             <Route path="/" component={App}>
                 <IndexRoute component={Home}/>
                 <Route path="Login" component={Login} />
-                <Route path="client_login_page" component={ClientLogin} />
+                <Route path="profile" component={Profile} />
                 <Route path="planner-profile" component={PlannerProfile} />
                 <Route path="plannerPageLogin" component={PlannerPageLogin} />
                 <Route path="questions" component={QuestionPage} />
