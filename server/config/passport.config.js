@@ -51,11 +51,11 @@ module.exports = (passport) => {
                     return done(null, user);
                 } else {
                     let newUser = new User();
+                    newUser.name              = profile.displayName;
                     newUser.facebook.id       = profile.id;
                     newUser.facebook.token    = token;
-                    newUser.facebook.name     = profile.name.givenName + ' ' + profile.name.familyName;
-                    newUser.facebook.email    = profile.emails[0].value;
-                    console.log(newUser);
+                    newUser.facebook.name     = profile.displayName;
+                    // newUser.facebook.email    = profile.emails[0].value;
                     
                     newUser.save((err) => {
                         if(err) throw err;

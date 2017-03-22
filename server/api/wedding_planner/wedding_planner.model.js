@@ -2,13 +2,13 @@
 
 import mongoose from 'mongoose';
 
-let WeddingPlannerPreferencesSchema = new mongoose.Schema({
+const WeddingPlannerPreferencesSchema = new mongoose.Schema({
   size: String,
   cost: String,
   style: String
 });
 
-let WeddingPlannerSchema = new mongoose.Schema({
+const WeddingPlannerSchema = new mongoose.Schema({
   name: String,
   website: String,
   address: String,
