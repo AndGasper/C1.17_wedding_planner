@@ -3,4 +3,5 @@ npm-debug.log
 app/
 dist
 /server/config/express.config.js
+/server/config/auth.js
 
