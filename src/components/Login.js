@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './app.css';
-import NavLink from './nav_link';
+import { Link } from 'react-router';
 
 class MainLogin extends Component {
     constructor(props) {
@@ -24,6 +24,23 @@ class MainLogin extends Component {
 
     }
 
+    removeHash() {
+    var scrollV, scrollH, loc = window.location;
+    if ('replaceState' in history) {
+        history.replaceState('', document.title, loc.pathname + loc.search);
+    } else {
+        // Prevent scrolling by storing the page's current scroll offset
+        scrollV = document.body.scrollTop;
+        scrollH = document.body.scrollLeft;
+
+        loc.hash = '';
+
+        // Restore the scroll offset, should be flicker free
+        document.body.scrollTop = scrollV;
+        document.body.scrollLeft = scrollH;
+    }
+}
+
     render(){
         const { handleSubmit } = this.props;
         return (
@@ -44,15 +61,14 @@ class MainLogin extends Component {
                         <br/>
                         <button type='submit' className="btn btn-info">Log in</button>
                     </form>
-
+                    <button type='submit' className="btn btn-info">Create an Account</button>
                     <br/>
-                    <button className="btn btn-info"><NavLink to='/client_login_page'>Overide to Client Page</NavLink></button>
+                    <button className="btn btn-info"><Link to='/profile'>Overide to Client Page</Link></button>
                     <br/>
-                    <button className="btn btn-danger">Log in With Facebook</button>
+                    <button className="btn btn-danger"><Link to="/api/user/login/facebook" onClick={this.removeHash}>Log in With Facebook</Link></button>
                     <br/>
                     <br/>
-                    <button className="btn btn-danger">Log in With Google</button>
-                    <NavLink to="/" >Back to Home</NavLink>
+                    <Link to="/" >Back to Home</Link>
                 </div>
             </div>
         )

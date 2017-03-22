@@ -25,6 +25,7 @@ ReactDOM.render(
                 <Route path="planner-profile" component={PlannerProfile} />
                 <Route path="plannerPageLogin" component={PlannerPageLogin} />
                 <Route path="questions" component={QuestionPage} />
+                <Route path="api/user/login/facebook" />
             </Route>
         </Router>
     </Provider>,

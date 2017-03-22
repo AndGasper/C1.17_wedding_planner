@@ -1,8 +1,20 @@
 import axios from 'axios';
-import { AUTH_USER } from './types';
+import { AUTH_USER, FETCH_CLIENT_INFO } from './types';
 import { browserHistory } from 'react-router';
 
-const BASE_URL = 'http://scottbowlerdev.com/api';
+const BASE_URL = 'http://localhost:3000/api';
+
+const instance = axios.create({
+    headers: {'Content-type': 'application/x-www-form-urlencoded'}
+});
+
+export function fetchClientInfo(){
+    const request = instance.get(`${BASE_URL}/user`);
+    return {
+        type: FETCH_CLIENT_INFO,
+        payload: request
+    }
+}
 
 export function signinUser({email, password}){
     return function(dispatch){
