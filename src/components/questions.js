@@ -23,8 +23,39 @@ class Questions extends Component {
         })
     }
 
+    decreaseImageIndex() {
+        this.setState({
+            pageIndex: --this.state.pageIndex
+        })
+    }
+
+    submitProfile() {
+        console.log('this is the end')
+    }
+
+
+    renderBackButton() {
+        if (this.state.pageIndex > 0) {
+            return (
+                <button onClick={this.decreaseImageIndex.bind(this)} className='btn btn-outline-danger'>Back</button>
+            )
+        }
+    }
+
+    renderNextButton() {
+        if (this.state.pageIndex !== 2) {
+            return (
+                <button onClick={this.increaseImageIndex.bind(this)} className='btn btn-outline-primary'>Next</button>
+            )
+        }
+        else {
+            return (
+                <button onClick={this.submitProfile.bind(this)} className='btn btn-outline-primary'>Submit</button>
+            )
+        }
+    }
+
     displayImages() {
-        console.log("yay, i'm rendering images...");
         return this.props.imageData[0][this.state.pageIndex].map((image, index) => {
             return <QuestionImages key={index}
                                    pageIndex={this.state.pageIndex}
@@ -42,7 +73,8 @@ class Questions extends Component {
                 <div className="row">
                     {this.displayImages()}
                 </div>
-                <button onClick={this.increaseImageIndex.bind(this)} className='btn btn-primary'>Next</button>
+                {this.renderBackButton()}
+                {this.renderNextButton()}
             </div>
         )
     }
