@@ -12,7 +12,6 @@ const App = (props) => (
         <div className={styles.app + container}>
             { props.children }
         </div>
-        <Footer />
     </div>
 );
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './app.css';
 import { Link } from 'react-router';
+import Footer from './footer';
 
 class Home extends Component {
     constructor(props){
@@ -24,6 +25,9 @@ class Home extends Component {
                     <div>
                         <Link className=' planner_login' to="/plannerPageLogin">Wedding Planner? Log in Here</Link>
                     </div>
+                </div>
+                <div className={styles.footer}>
+                    <Footer />
                 </div>
             </div>
         )
