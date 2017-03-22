@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './app.css';
 import NavLink from './nav_link';
+import { reduxForm } from 'redux-form';
+import * as actions from '../actions';
 
 const plannerPageLogin = () => (
     <div className = {styles.loginPage}>
@@ -18,7 +20,8 @@ const plannerPageLogin = () => (
                 <br/>
             </form>
 
-            <button className="btn btn-info"><NavLink to="/planner-profile">Log in</NavLink></button>
+            <button className="btn btn-info"><NavLink to="/planner_profile">Log in</NavLink></button>
+            <button className='btn btn-info'><NavLink to='/planner_signup'>Sign Up</NavLink></button>
 
             <br/>
             <NavLink to="/" >Back to Home</NavLink>
