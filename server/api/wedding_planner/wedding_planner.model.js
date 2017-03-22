@@ -23,4 +23,14 @@ const WeddingPlannerSchema = new mongoose.Schema({
   google: {}
 });
 
+// generating a hash
+WeddingPlannerSchema.methods.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+// checking if password is valid
+WeddingPlannerSchema.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
+};
+
 export default mongoose.model('WeddingPlanner', WeddingPlannerSchema);

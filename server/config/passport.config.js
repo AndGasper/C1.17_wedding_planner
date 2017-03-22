@@ -1,6 +1,7 @@
 import passportLocal from 'passport-local';
 import passportFacebook from 'passport-facebook';
 import User from '../api/user/user.model';
+import WeddingPlanner from '../api/wedding_planner/wedding_planner.model';
 import configAuth from './auth';
 
 let FacebookStrategy = passportFacebook.Strategy;
@@ -156,6 +157,86 @@ module.exports = (passport) => {
             // all is well, return successful user
             console.log(user);
             return done(null, user);
+        });
+    }));
+
+    passport.use('planner-local-signup', new LocalStrategy({
+        // by default, local strategy uses username and password, we will override with email
+        usernameField       : 'email',
+        passwordField       : 'password',
+        passReqToCallback   : true // allows us to pass back the entire request to the callback
+    },
+    (req, email, password, done) => {
+
+        // asynchronous
+        // User.findOne wont fire unless data is sent back
+        process.nextTick(function() {
+
+            // find a user whose email is the same as the forms email
+            // we are checking to see if the user trying to login already exists
+            WeddingPlanner.findOne({ 'email' :  email }, function(err, planner) {
+                // if there are any errors, return the error
+                if (err) {
+                    return done(err);
+                }
+
+                // check to see if theres already a user with that email
+                if (planner) {
+                    return done(null, false);
+                } else {
+
+                    // if there is no user with that email
+                    // create the user
+                    var newPlanner = new WeddingPlanner();
+
+                    // set the user's local credentials
+                    newPlanner.email      = email;
+                    newPlanner.password   = newPlanner.generateHash(password);
+
+                    // save the user
+                    newPlanner.save(function(err) {
+                        if (err) {
+                            throw err;
+                        }
+                        return done(null, newUser);
+                    });
+                }
+            });
+        });
+    }));
+
+    passport.use('planner-local-login', new LocalStrategy({
+        // by default, local strategy uses username and password, we will override with email
+        usernameField       : 'email',
+        passwordField       : 'password',
+        passReqToCallback   : true // allows us to pass back the entire request to the callback
+    },
+    function(req, email, password, done) { // callback with email and password from our form
+
+        // find a user whose email is the same as the forms email
+        // we are checking to see if the user trying to login already exists
+        WeddingPlanner.findOne({ 'email' :  email }, function(err, planner) {
+            // if there are any errors, return the error before anything else
+            if (err) {
+                console.log('Error:', err);
+                return done(err);
+            }
+
+            // if no user is found, return the message
+            if (!planner) {
+                console.log("Wedding Planner not found");
+                return done(null, false); // req.flash is the way to set flashdata using connect-flash
+            }
+
+            // if the user is found but the password is wrong
+            if (!planner.validPassword(password)) {
+                console.log("Not a valid password");
+                return done(null, false); // create the loginMessage and save it to session as flashdata
+            }
+
+            // all is well, return successful user
+            console.log(planner);
+            return done(null, planner);
         });
     }));
 };
