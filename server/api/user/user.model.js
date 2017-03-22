@@ -16,6 +16,7 @@ const PreferencesSchema = new mongoose.Schema({
 const UserSchema = new mongoose.Schema({
   name: String,
   email: String,
+  photo: String,
   password: String,
   phoneNumber: String,
   preferences: [PreferencesSchema],

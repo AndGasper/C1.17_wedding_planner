@@ -35,7 +35,8 @@ module.exports = (passport) => {
         //pulling in our app id and secret from auth.js file
         clientID        : configAuth.facebookAuth.clientID,
         clientSecret    : configAuth.facebookAuth.clientSecret,
-        callbackURL     : configAuth.facebookAuth.callbackURL
+        callbackURL     : configAuth.facebookAuth.callbackURL,
+        profileFields   : ['id', 'displayName', 'photos', 'email']
     },
     (token, refreshToken, profile, done) => {
         
@@ -50,12 +51,15 @@ module.exports = (passport) => {
                     console.log('user exists:', user);
                     return done(null, user);
                 } else {
+                    console.log(profile);
                     let newUser = new User();
                     newUser.name              = profile.displayName;
                     newUser.facebook.id       = profile.id;
                     newUser.facebook.token    = token;
                     newUser.facebook.name     = profile.displayName;
-                    // newUser.facebook.email    = profile.emails[0].value;
+                    newUser.facebook.email    = profile.emails[0].value;
+                    newUser.email             = profile.emails[0].value;
+
                     
                     newUser.save((err) => {
                         if(err) throw err;
