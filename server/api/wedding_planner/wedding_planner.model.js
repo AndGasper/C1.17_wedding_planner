@@ -1,6 +1,7 @@
 'use strict';
 
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt-nodejs';
 
 const WeddingPlannerPreferencesSchema = new mongoose.Schema({
   size: String,
@@ -10,6 +11,7 @@ const WeddingPlannerPreferencesSchema = new mongoose.Schema({
 
 const WeddingPlannerSchema = new mongoose.Schema({
   name: String,
+  password: String,
   website: String,
   address: String,
   email: String,

@@ -198,7 +198,7 @@ module.exports = (passport) => {
                         if (err) {
                             throw err;
                         }
-                        return done(null, newUser);
+                        return done(null, newPlanner);
                     });
                 }
             });

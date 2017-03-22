@@ -13,7 +13,7 @@ let router = express.Router();
 
 router.get('/', index);
 router.get('/:id', isLoggedIn, user); // get http://localhost:3000/api/couple
-router.get('/logout/:id', isLoggedIn, logout);
+router.get('/logout', isLoggedIn, logout);
 router.post('/', passport.authenticate('local-signup', {
     successRedirect : '/profile',
     failureRedirect : '/login',
