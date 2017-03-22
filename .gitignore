@@ -3,4 +3,6 @@ npm-debug.log
 app/
 dist
 /server/config/express.config.js
+/public/bundle.js
+
 
