@@ -16,16 +16,10 @@ export function fetchClientInfo(){
     }
 }
 
-export function signinUser({email, password}){
-    return function(dispatch){
-        axios.post(`${BASE_URL}/signin`, {email, password}).then(resp => {
-            dispatch({type: AUTH_USER});
-
-            localStorage.setItem('token', resp.data.token);
-
-            browserHistory.push('/client_login_page');
-        }).catch(err => {
-            dispatch(authError('Bad Login Info'));
-        });
+export function signinClient({email, password}) {
+    const request = axios.post(`${BASE_URL}/user`, {email, password});
+    return {
+        type: AUTH_USER,
+        payload: request
     }
 }

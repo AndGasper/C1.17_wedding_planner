@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import styles from './app.css';
 
 class clientLogin extends Component {
     render() {

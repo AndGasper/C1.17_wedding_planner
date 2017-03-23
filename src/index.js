@@ -7,7 +7,7 @@ import { AUTH_USER } from './actions/types';
 import store, { history } from './store';
 import App from './components/app';
 import Home from './components/home';
-import Login from './components/Login';
+import Login from './components/auth/client_login';
 import NavLink from './components/nav_link';
 import PlannerProfile from './components/planner_profile';
 import PlannerPageLogin from './components/plannerPageLogin';
@@ -20,7 +20,7 @@ ReactDOM.render(
         <Router history={history}>
             <Route path="/" component={App}>
                 <IndexRoute component={Home}/>
-                <Route path="Login" component={Login} />
+                <Route path="login" component={Login} />
                 <Route path="profile" component={Profile} />
                 <Route path="planner-profile" component={PlannerProfile} />
                 <Route path="plannerPageLogin" component={PlannerPageLogin} />

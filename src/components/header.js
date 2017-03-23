@@ -26,7 +26,7 @@ class Header extends Component {
                                 <Link className="nav-link" to='/Login'>Sign-in</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to='/Login'><img src='../../login_icons/GooglePlus.png' /></Link>
+                                <Link className="nav-link" to='/'><img src='../../login_icons/GooglePlus.png' /></Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to='/api'><img src='../../login_icons/facebook-256.png' /></Link>
