@@ -1,8 +1,8 @@
-import {SELECT_IMAGE} from './types';
+import {UPDATE_COUPLE_PROFILE} from '../action/types'
 
-export function selectImage(pageIndex, imageIndex) {
+export function updateCoupleProfile(category, imageValue) {
     return {
-        type: SELECT_IMAGE,
-        payload: {pageIndex, imageIndex}
+        type: UPDATE_COUPLE_PROFILE,
+        payload: {category, imageValue}
     }
 }

@@ -14,7 +14,10 @@ class Questions extends Component {
     }
 
     clickImage(pageIndex, imageIndex) {
-        this.props.selectImage(pageIndex, imageIndex)
+        let imageValue = this.props.imageData[0][pageIndex][imageIndex].value;
+        let category = this.props.imageData[1][pageIndex];
+        this.props.updateCoupleProfile(category, imageValue);
+        this.increaseImageIndex();
     }
 
     increaseImageIndex() {
@@ -23,37 +26,11 @@ class Questions extends Component {
         })
     }
 
-    decreaseImageIndex() {
-        this.setState({
-            pageIndex: --this.state.pageIndex
-        })
-    }
 
     submitProfile() {
         console.log('this is the end')
     }
 
-
-    renderBackButton() {
-        if (this.state.pageIndex > 0) {
-            return (
-                <button onClick={this.decreaseImageIndex.bind(this)} className='btn btn-outline-danger'>Back</button>
-            )
-        }
-    }
-
-    renderNextButton() {
-        if (this.state.pageIndex !== 2) {
-            return (
-                <button onClick={this.increaseImageIndex.bind(this)} className='btn btn-outline-primary'>Next</button>
-            )
-        }
-        else {
-            return (
-                <button onClick={this.submitProfile.bind(this)} className='btn btn-outline-primary'>Submit</button>
-            )
-        }
-    }
 
     displayImages() {
         return this.props.imageData[0][this.state.pageIndex].map((image, index) => {
@@ -69,12 +46,9 @@ class Questions extends Component {
     render() {
         return (
             <div className="container">
-                <h3>{this.props.imageData[1][this.state.pageIndex]}</h3>
                 <div className="row">
                     {this.displayImages()}
                 </div>
-                {this.renderBackButton()}
-                {this.renderNextButton()}
             </div>
         )
     }
