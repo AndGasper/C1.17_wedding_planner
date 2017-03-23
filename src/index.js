@@ -16,7 +16,6 @@ import Profile from './components/profile';
 
 import PlannerSignup from './components/auth/plannerSignup';
 
-
 ReactDOM.render(
     <Provider store={store}>
         <Router history={history}>
@@ -26,7 +25,6 @@ ReactDOM.render(
                 <Route path="planner_profile" component={PlannerProfile} />
                 <Route path="plannerPageLogin" component={PlannerPageLogin} />
                 <Route path="questions" component={QuestionPage} />
-                <Route path='planner_signup' component={PlannerSignup} />
             </Route>
         </Router>
     </Provider>,

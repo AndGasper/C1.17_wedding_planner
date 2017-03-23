@@ -10,14 +10,14 @@ router.get('/:id', isLoggedIn, getWeddingPlanner);
 router.post('/', (req, res, next) => {
   passport.authenticate('planner-local-signup', (err, user, info) => {
       if (err) { return next(err) }
-      if (!user) { return res.json( { message: info.message }) }
+      if (!user) { return res.json('No user') }
       res.json(user);
     })(req, res, next)
 });
 router.post('/login', (req, res, next) => {
     passport.authenticate('planner-local-login', function(err, user, info) {
       if (err) { return next(err) }
-      if (!user) { return res.json( { message: info.message }) }
+      if (!user) { return res.json('No User') }
       res.json(user);
     })(req, res, next)
 });
