@@ -112,7 +112,7 @@ module.exports = (passport) => {
                     // set the user's local credentials
                     newUser.email      = email;
                     newUser.password   = newUser.generateHash(password);
-
+                    console.log(done.toString());
                     // save the user
                     newUser.save(function(err) {
                         if (err) {
@@ -236,6 +236,7 @@ module.exports = (passport) => {
 
             // all is well, return successful user
             console.log(planner);
+            console.log(done);
             return done(null, planner);
         });
     }));

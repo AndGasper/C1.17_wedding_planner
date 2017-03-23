@@ -7,16 +7,20 @@ let router = express.Router();
 
 router.get('/', index);
 router.get('/:id', isLoggedIn, getWeddingPlanner);
-router.post('/', passport.authenticate('planner-local-signup', {
-    successRedirect : '/profile',
-    failureRedirect : '/login',
-    failureFlash : true // allow flash messages
-})); // post http://localhost:3000/api/couple
-router.post('/login', passport.authenticate('planner-local-login', {
-    successRedirect : '/profile', // redirect to the secure profile section
-    failureRedirect : '/login', // redirect back to the signup page if there is an error
-    failureFlash : true // allow flash messages
-}));
+router.post('/', (req, res, next) => {
+  passport.authenticate('planner-local-signup', (err, user, info) => {
+      if (err) { return next(err) }
+      if (!user) { return res.json( { message: info.message }) }
+      res.json(user);
+    })(req, res, next)
+});
+router.post('/login', (req, res, next) => {
+    passport.authenticate('planner-local-login', function(err, user, info) {
+      if (err) { return next(err) }
+      if (!user) { return res.json( { message: info.message }) }
+      res.json(user);
+    })(req, res, next)
+});
 router.get('/logout', isLoggedIn, logout)
 router.put('/:id', isLoggedIn, updateWeddingPlanner);
 router.delete('/:id', deleteWeddingPlanner);
