@@ -13,23 +13,30 @@ let router = express.Router();
 
 router.get('/', index);
 router.get('/:id', isLoggedIn, user); // get http://localhost:3000/api/couple
-router.get('/logout/:id', isLoggedIn, logout);
-router.post('/', passport.authenticate('local-signup', {
-    successRedirect : '/profile',
-    failureRedirect : '/login',
-    failureFlash : true // allow flash messages
-})); // post http://localhost:3000/api/couple
-router.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/profile', // redirect to the secure profile section
-    failureRedirect : '/login', // redirect back to the signup page if there is an error
-    failureFlash : true // allow flash messages
-}));
+router.get('/logout', isLoggedIn, logout);
+router.post('/', (req, res, next) => {
+  passport.authenticate('local-signup', (err, user, info) => {
+      if (err) { return next(err) }
+      if (!user) { return res.json( { message: info.message }) }
+      res.json(user);
+    })(req, res, next)
+});
+router.post('/login', (req, res, next) => {
+    passport.authenticate('local', function(err, user, info) {
+      if (err) { return next(err) }
+      if (!user) { return res.json( { message: info.message }) }
+      res.json(user);
+    })(req, res, next)
+});
 router.put('/:id', isLoggedIn, updateUser);
 router.delete('/:id', deleteUser);
-router.get('/facebook/callback', passport.authenticate('facebook', {
-    successRedirect : '/profile',
-    failureRedirect : '/login'
-}));
+router.get('/facebook/callback', (req, res, next) => {
+  passport.authenticate('facebook', (err, user, info) => {
+      if (err) { return next(err) }
+      if (!user) { return res.json( { message: info.message }) }
+      res.json(user);
+    })(req, res, next)
+});
 router.get('/login/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
 

@@ -7,10 +7,14 @@
     color: red;
 }
 
+li img {
+    height: 5vh;
+}
+
 h1 {
     color: darkred;
     font-size: 4.0em;
-    font-family: 'Perpetua', 'sans-serif';
+    font-family: 'Clicker Script', 'Perpetua', 'sans-serif';
     margin-bottom: 3.3em;
 }
 h2 {
@@ -65,4 +69,27 @@ a:hover {
 
 .spanText {
     text-align: right;
+}
+
+.footer{
+    font-size: 2vmin;
+    background-color: rgba(255, 255, 255, .3);
+    width: 115.5%;
+    margin-left: -7vw;
+    position: absolute;
+    bottom: 0;
+}
+
+.footer p {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.header {
+    opacity: 0.5;
+    width: 100%;
+}
+
+.client .info-section {
+    color: green;
 }
