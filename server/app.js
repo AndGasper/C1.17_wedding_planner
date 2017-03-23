@@ -23,9 +23,11 @@ app.use(passport.session());
 
 app.use(session({ secret: secret }));
 
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+// app.use(bodyParser.urlencoded({
+//   extended: false
+// }));
+
+app.use(bodyParser.json({type: '*/*'}));
 
 app.use(express.static('public'));
 require('./routes').default(app);

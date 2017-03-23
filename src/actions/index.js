@@ -25,7 +25,7 @@ const PLANNER_URL = 'http://localhost:3000/api/';
   export function signupPlanner({email, password}){
     return function(dispatch){
         axios.post(`${PLANNER_URL}wedding_planner`, {email, password}).then(response => {
-            console.log(response);
+            dispatch({type: AUTH_USER});
 
             browserHistory.push('/plannerPageLogin');
         }).catch((err) => {
