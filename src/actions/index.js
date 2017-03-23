@@ -16,22 +16,4 @@ export function signinUser({email, password}){
             dispatch(authError('Bad Login Info'));
         });
     }
-<<<<<<< HEAD
 }
-
-const PLANNER_URL = 'localhost:3000/api/';
-
-  export function signupPlanner({email, password}){
-    return function(dispatch){
-        axios.post(`${PLANNER_URL}wedding_planner`, {email, password}).then(response => {
-            dispatch({type: AUTH_USER});
-
-            browserHistory.push('/planner_profile');
-        }).catch((err) => {
-            dispatch(authError(err.response.data.error));
-        });
-    }
-  };
-=======
-}
->>>>>>> parent of d427c5d... wedding planner signup form made and submit function is console logging
