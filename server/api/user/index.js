@@ -17,14 +17,14 @@ router.get('/logout', isLoggedIn, logout);
 router.post('/', (req, res, next) => {
   passport.authenticate('local-signup', (err, user, info) => {
       if (err) { return next(err) }
-      if (!user) { return res.json( { message: info.message }) }
+      if (!user) { return res.json( 'User Not Found') }
       res.json(user);
     })(req, res, next)
 });
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', function(err, user, info) {
       if (err) { return next(err) }
-      if (!user) { return res.json( { message: info.message }) }
+      if (!user) { return res.json('User Not Found') }
       res.json(user);
     })(req, res, next)
 });
@@ -33,7 +33,7 @@ router.delete('/:id', deleteUser);
 router.get('/facebook/callback', (req, res, next) => {
   passport.authenticate('facebook', (err, user, info) => {
       if (err) { return next(err) }
-      if (!user) { return res.json( { message: info.message }) }
+      if (!user) { return res.json('User Not Found') }
       res.json(user);
     })(req, res, next)
 });
