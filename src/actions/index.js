@@ -16,6 +16,7 @@ export function signinUser({email, password}){
             dispatch(authError('Bad Login Info'));
         });
     }
+<<<<<<< HEAD
 }
 
 const PLANNER_URL = 'localhost:3000/api/';
@@ -31,3 +32,6 @@ const PLANNER_URL = 'localhost:3000/api/';
         });
     }
   };
+=======
+}
+>>>>>>> parent of d427c5d... wedding planner signup form made and submit function is console logging
