@@ -38,6 +38,7 @@ export function user(req, res) {
 // }
 
 export function updateUser(req, res) {
+  console.log(req.body);
   userModel.findOneAndUpdate({
       '_id': req.params.id
     }, req.body, {
@@ -61,6 +62,20 @@ export function deleteUser(req, res) { // TODO
     }).catch((err) => {
       res.status(404).json(err);
     });
+}
+
+export function searchResults(req, res) {
+  userModel.findById({
+    '_id': req.params.id
+  }).exec((err, user) => {
+    if (err) {
+      res.status(404).json(err);
+    } else {
+      let preferences = user.preferences;
+      console.log(preferences);
+      res.json('recieved request for wedding planner results');
+    }
+  });
 }
 
 export function logout(req, res) {
