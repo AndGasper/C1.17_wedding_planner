@@ -7,8 +7,10 @@ class Cost extends Component {
 
     handleClick() {
         let value = document.forms.budgetForm.options.value;
-        this.props.updateCoupleProfile('cost', Number(value));
+        this.props.updatePrefs('cost', Number(value));
+
         if (value) {
+            this.props.sendPrefsToServer(this.props.coupleData);
             history.push('/')
         }
     }

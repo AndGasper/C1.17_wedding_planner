@@ -18,7 +18,7 @@ class Questions extends Component {
     clickImage(pageIndex, imageIndex) {
         let imageValue = this.props.imageData[0][pageIndex][imageIndex].value;
         let category = this.props.imageData[1][pageIndex];
-        this.props.updateCoupleProfile(category, imageValue);
+        this.props.updatePrefs(category, imageValue);
         this.increaseImageIndex();
         if (pageIndex === 9) {
             history.push('cost')
