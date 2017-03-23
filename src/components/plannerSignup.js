@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import * as actions from '../actions';
+import * as actions from '../../actions';
 
 class PlannerSignup extends Component {
     handleFormSubmit(values){
-        console.log(this.state);
-        //this.props.signupPlanner(values);
+        console.log(this.props.state);
+        actions.signupPlanner(values);
     }
 
     render(){
@@ -52,6 +52,7 @@ function validate(values){
 }
 
 function mapStateToProps(state){
+    debugger;
     console.log(state);
     return { errorMsg: state.auth.error }
 }

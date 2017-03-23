@@ -1,13 +1,17 @@
+// import modules
 import { createStore, applyMiddleware } from 'redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
-import promise from 'redux-promise';
-import coupleData from './data/coupleData';
-import images from './data/images';
 import reduxThunk from 'redux-thunk';
 
+//import components
+import coupleData from './data/coupleData';
+import images from './data/images';
+import PlannerSignup from './components/auth/plannerSignup';
 
-import rootReducer from './reducers/index';
+
+
+import rootReducer from './reducers';
 
 const defaultState = {
     coupleData,

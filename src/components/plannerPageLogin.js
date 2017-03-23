@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './app.css';
-import NavLink from './nav_link';
+import styles from '../app.css';
+import NavLink from '../nav_link';
 import { reduxForm } from 'redux-form';
-import * as actions from '../actions';
+import * as actions from '../../actions';
 
 const plannerPageLogin = () => (
     <div className = {styles.loginPage}>

@@ -8,11 +8,11 @@ import Home from './components/home';
 import Login from './components/Login';
 import NavLink from './components/nav_link';
 import PlannerProfile from './components/planner_profile';
-import PlannerPageLogin from './components/plannerPageLogin';
+import PlannerPageLogin from './components/auth/plannerPageLogin';
 import QuestionPage from './components/questions';
 import QuestionImages from './components/questionsImages';
 import ClientLogin from './components/client_login_page';
-import PlannerSignup from './components/plannerSignup';
+import PlannerSignup from './components/auth/plannerSignup';
 
 
 ReactDOM.render(
