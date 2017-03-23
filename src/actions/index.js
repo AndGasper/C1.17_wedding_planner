@@ -18,7 +18,7 @@ export function signinUser({email, password}){
     }
 }
 
-const PLANNER_URL = 'localhost:3000/api/';
+const PLANNER_URL = 'http://localhost:3000/api/';
 
   export function signupPlanner({email, password}){
     return function(dispatch){
@@ -27,7 +27,7 @@ const PLANNER_URL = 'localhost:3000/api/';
 
             browserHistory.push('/planner_profile');
         }).catch((err) => {
-            dispatch(authError(err.response.data.error));
+            dispatch("error");
         });
     }
   };
