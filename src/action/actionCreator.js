@@ -1,4 +1,4 @@
-import {UPDATE_PREFS, SEND_PREFS_TO_SERVER} from '../action/types';
+import {UPDATE_PREFS, GET_COUPLE_PROFILE} from '../action/types';
 import axios from 'axios';
 
 
