@@ -21,7 +21,7 @@ class Questions extends Component {
         this.props.updatePrefs(category, imageValue);
         this.increaseImageIndex();
         if (pageIndex === 9) {
-            history.push('cost')
+            history.push('/cost')
         }
 
     }
@@ -61,4 +61,6 @@ function mapStateToProps(state) {
     }
 }
 
+
 export default connect(mapStateToProps, actions)(Questions);
+

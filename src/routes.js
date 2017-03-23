@@ -8,7 +8,7 @@ import Home from './components/home';
 import PlannerProfile from './components/planner_profile';
 import PlannerPageLogin from './components/plannerPageLogin';
 import QuestionPage from './components/questions';
-import CostPage from './components/cost'
+import CostPage from './components/cost';
 
 export default (
     <Route path="/" component={App}>

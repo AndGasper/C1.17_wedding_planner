@@ -37,7 +37,7 @@ export function create(req, res) {
   });
 }
 
-export function updateWeddingPlanner(req, res) { 
+export function updateWeddingPlanner(req, res) {
   weddingPlannerModel.findOneAndUpdate({
       '_id': req.params.id
     }, req.body, {
@@ -61,4 +61,16 @@ export function deleteWeddingPlanner(req, res) { // TODO
     }).catch((err) => {
       res.status(404).json(err);
     });
+}
+
+export function logout(req, res) {
+  req.logout();
+  res.redirect('/');
+}
+
+export function isLoggedIn(req, res, next) {
+  if(req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/');
 }

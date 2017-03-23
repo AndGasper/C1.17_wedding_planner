@@ -2,3 +2,6 @@ node_modules
 npm-debug.log
 app/
 dist
+/server/config/express.config.js
+/server/config/auth.js
+/public/bundle.js
