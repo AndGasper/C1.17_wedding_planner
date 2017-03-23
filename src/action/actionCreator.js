@@ -1,4 +1,5 @@
-import {UPDATE_PREFS, SEND_PREFS_TO_SERVER} from '../action/types'
+import {UPDATE_PREFS, SEND_PREFS_TO_SERVER} from '../action/types';
+import axios from 'axios';
 
 
 const BASE_URL = 'http://localhost:8000/api';
