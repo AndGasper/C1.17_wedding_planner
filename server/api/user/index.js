@@ -19,14 +19,15 @@ router.post('/', (req, res, next) => {
       if (err) { return next(err) }
       if (!user) { return res.json( 'User Not Found') }
       res.json(user);
-    })(req, res, next)
+    })(req, res, next);
 });
 router.post('/login', (req, res, next) => {
-    passport.authenticate('local', function(err, user, info) {
+    passport.authenticate('local-login', function(err, user, info) {
+      console.log('in passport authenticate');
       if (err) { return next(err) }
       if (!user) { return res.json('User Not Found') }
       res.json(user);
-    })(req, res, next)
+    })(req, res, next);
 });
 router.put('/:id', isLoggedIn, updateUser);
 router.delete('/:id', deleteUser);
@@ -35,7 +36,7 @@ router.get('/facebook/callback', (req, res, next) => {
       if (err) { return next(err) }
       if (!user) { return res.json('User Not Found') }
       res.json(user);
-    })(req, res, next)
+    })(req, res, next);
 });
 router.get('/login/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
