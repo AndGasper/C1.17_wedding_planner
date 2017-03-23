@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import * as actions from '../actions';
 
 class PlannerSignup extends Component {
@@ -56,6 +56,6 @@ function mapStateToProps(state){
 
 export default reduxForm({
     form: 'wedding_planner',
-    fields: ['email', 'password', 'passwordConfirm'],
+    fields: ['name', 'company', 'email', 'password', 'passwordConfirm', 'websiteurl', 'street', 'city', 'state', 'zip', 'phoneNumber', 'specialty'],
     validate
 }, mapStateToProps, actions)(PlannerSignup);

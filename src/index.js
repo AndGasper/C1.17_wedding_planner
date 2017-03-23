@@ -16,7 +16,6 @@ import QuestionImages from './components/questionsImages';
 import ClientLogin from './components/client_login_page';
 import PlannerSignup from './components/plannerSignup';
 
-
 ReactDOM.render(
     <Provider store={store}>
         <Router history={history}>
