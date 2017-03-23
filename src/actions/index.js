@@ -12,6 +12,8 @@ export function signinUser({email, password}){
             localStorage.setItem('token', resp.data.token);
 
             browserHistory.push('/client_login_page');
+
+            
         }).catch(err => {
             dispatch(authError('Bad Login Info'));
         });
@@ -23,9 +25,9 @@ const PLANNER_URL = 'http://localhost:3000/api/';
   export function signupPlanner({email, password}){
     return function(dispatch){
         axios.post(`${PLANNER_URL}wedding_planner`, {email, password}).then(response => {
-            dispatch({type: AUTH_USER});
+            console.log(response);
 
-            browserHistory.push('/planner_profile');
+            browserHistory.push('/plannerPageLogin');
         }).catch((err) => {
             dispatch("error");
         });
