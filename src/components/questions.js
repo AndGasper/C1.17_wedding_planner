@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import QuestionImages from './questionsImages';
 import * as actions from '../action/actionCreator';
+import { history } from '../store';
 
 
 class Questions extends Component {
@@ -13,11 +14,16 @@ class Questions extends Component {
         }
     }
 
+
     clickImage(pageIndex, imageIndex) {
         let imageValue = this.props.imageData[0][pageIndex][imageIndex].value;
         let category = this.props.imageData[1][pageIndex];
         this.props.updateCoupleProfile(category, imageValue);
         this.increaseImageIndex();
+        if (pageIndex === 9) {
+            history.push('cost')
+        }
+
     }
 
     increaseImageIndex() {
@@ -25,12 +31,6 @@ class Questions extends Component {
             pageIndex: ++this.state.pageIndex
         })
     }
-
-
-    submitProfile() {
-        console.log('this is the end')
-    }
-
 
     displayImages() {
         return this.props.imageData[0][this.state.pageIndex].map((image, index) => {

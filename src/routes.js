@@ -8,6 +8,7 @@ import Home from './components/home';
 import PlannerProfile from './components/planner_profile';
 import PlannerPageLogin from './components/plannerPageLogin';
 import QuestionPage from './components/questions';
+import CostPage from './components/cost'
 
 export default (
     <Route path="/" component={App}>
@@ -17,5 +18,6 @@ export default (
         <Route path="planner-profile" component={PlannerProfile} />
         <Route path="plannerPageLogin" component={PlannerPageLogin} />
         <Route path="questions" component={QuestionPage} />
+        <Route path="cost" component={CostPage} />
     </Route>
 );

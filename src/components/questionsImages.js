@@ -9,7 +9,6 @@ class QuestionImages extends Component {
     }
 
     renderImages() {
-
         const {pageIndex} = this.props;
         const {imageIndex} = this.props;
 
@@ -19,7 +18,6 @@ class QuestionImages extends Component {
             </div>
         )
     }
-
 
     render() {
         return (
