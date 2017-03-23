@@ -4,7 +4,8 @@ import * as actions from '../actions';
 
 class PlannerSignup extends Component {
     handleFormSubmit(values){
-        actions.signupPlanner(values);
+        console.log(this.state);
+        //this.props.signupPlanner(values);
     }
 
     render(){
@@ -51,6 +52,7 @@ function validate(values){
 }
 
 function mapStateToProps(state){
+    console.log(state);
     return { errorMsg: state.auth.error }
 }
 

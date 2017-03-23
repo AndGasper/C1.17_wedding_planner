@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import reduxThunk from 'redux-thunk';
-import { AUTH_USER } from './actions/types';
 import store, { history } from './store';
 import App from './components/app';
 import Home from './components/home';
