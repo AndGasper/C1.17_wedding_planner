@@ -1,8 +1,5 @@
 import userModel from './user.model';
-
-function respondWithResult(statusCode, res) {
-  res.status(statusCode).json()
-}
+import plannerModel from '../wedding_planner/wedding_planner.model';
 
 export function index(req, res) {
   console.log(userModel.find().exec((err, user) => {
@@ -26,16 +23,6 @@ export function user(req, res) {
     }
   });
 }
-
-// export function create(req, res) {
-//   var user = new userModel(req.body);
-//   user.save((err) => {
-//     if (err) res.status(404).json(err);
-//     else {
-//       res.status(200).send("/nAdded user/n/n");
-//     }
-//   });
-// }
 
 export function updateUser(req, res) {
   console.log(req.body);
@@ -65,17 +52,26 @@ export function deleteUser(req, res) { // TODO
 }
 
 export function searchResults(req, res) {
-  userModel.findById({
-    '_id': req.params.id
-  }).exec((err, user) => {
-    if (err) {
+  plannerModel.find({
+    'cost': req.params.cost
+  }).exec((err, planner) => {
+    if(err) {
       res.status(404).json(err);
     } else {
-      let preferences = user.preferences;
-      console.log(preferences);
-      res.json('recieved request for wedding planner results');
+      let continue = true;
+      let iterations = 1;
+      while(planner.length > 5 && continue) {
+        iterations++;
+        planners = refineSearch(req, res, iterations);
+      }
     }
+
   });
+}
+
+// refine the search for wedding planners to ensure we get anywhere from 4 to 6
+function refineSearch(req, res, amount) {
+
 }
 
 export function logout(req, res) {

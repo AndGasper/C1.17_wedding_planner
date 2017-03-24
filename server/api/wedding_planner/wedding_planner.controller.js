@@ -1,9 +1,5 @@
 import weddingPlannerModel from './wedding_planner.model';
 
-function respondWithResult(statusCode, res) {
-  res.status(statusCode).json()
-}
-
 export function index(req, res) {
   console.log(weddingPlannerModel.find().exec((err, planners) => {
     if (err) {
@@ -58,7 +54,7 @@ export function updateWeddingPlanner(req, res) {
   });
 }
 
-export function deleteWeddingPlanner(req, res) { 
+export function deleteWeddingPlanner(req, res) {
   weddingPlannerModel.findOneAndUpdate({
     '_id': req.params.id
   }, { $set: { 'status': 'deleted' }}, {
