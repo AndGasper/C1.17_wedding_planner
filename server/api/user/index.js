@@ -12,7 +12,7 @@ let router = express.Router();
 // all routes are relative to /api/couple
 
 router.get('/', index);
-router.get('/:id', isLoggedIn, user); // get http://localhost:3000/api/couple
+router.get('/:id', user); // get http://localhost:3000/api/couple
 router.get('/logout', isLoggedIn, logout);
 router.post('/', (req, res, next) => {
   passport.authenticate('local-signup', (err, user) => {
@@ -39,7 +39,7 @@ router.get('/facebook/callback', (req, res, next) => {
     })(req, res, next);
 });
 router.get('/login/facebook', passport.authenticate('facebook', { scope : 'email' }));
-router.get('/:id/results', isLoggedIn, searchResults);
+router.get('/:id/results', searchResults);
 
 
 export default router;

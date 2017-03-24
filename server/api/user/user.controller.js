@@ -42,7 +42,7 @@ export function updateUser(req, res) {
   userModel.findOneAndUpdate({
       '_id': req.params.id
     }, req.body, {
-      returnNewDocument: true
+      new: true
     })
     .then((user) => {
       res.json(user);
@@ -55,7 +55,7 @@ export function deleteUser(req, res) { // TODO
     userModel.findOneAndUpdate({
       '_id': req.params.id
     }, { $set: { 'status': 'deleted' }}, {
-      returnNewDocument: true
+      new: true
     })
     .then((user) => {
       res.json(user);
