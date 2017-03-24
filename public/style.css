@@ -1,3 +1,7 @@
+body {
+    background-image: url('../assets/images/home/bg.jpg');
+    background-repeat: no-repeat;
+}
 
 .app {
     text-align: center;
@@ -26,6 +30,11 @@ h2 {
 
 .homePage, .loginPage {
     height: 100vh;
+}
+
+.bg-image {
+
+    background-size: 100%;
 }
 
 a{
@@ -97,7 +106,6 @@ a:hover {
 }
 
 #client-info {
-    height: 70vh;
     width: 40%;
     display: inline-block;
     border: 2px dashed #336699;
@@ -106,7 +114,6 @@ a:hover {
 }
 
 #client-pref {
-    height: 70vh;
     display: inline-block;
     width: 40%;
     border: 2px dashed #336699;

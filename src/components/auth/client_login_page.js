@@ -5,26 +5,15 @@ class clientLogin extends Component {
 
 
     render() {
-        function handleChange(){
+        function handleChange() {
             console.log('Props are:', this.props);
         }
 
-       /* function faceBook(){
-            if(!this.props.active_client.facebook){
-                return (
-                    <h4 className="client-spec">{this.props.active_client.facebook.email}</h4>
-                )
-            } else {
-                return (
-                    <h4 className="client-spec">No Facebook Linked</h4>
-                )
-            }
-        };
-*/
+
 
         return (
             <div>
-                <h1 id="client-name">Welcome Back {this.props.active_client.name}</h1>
+                <h1 id="client-name">Welcome Back</h1>
                 <div>
                     <div onClick={handleChange.bind(this)} id="client-info">
                         <h2 className="client-about">About You</h2>
@@ -39,11 +28,11 @@ class clientLogin extends Component {
                     <div id="client-pref">
                         <h2 className="client-about">Preferences</h2>
                         <h4 className="user-labels">Images</h4>
-                        <h4 className="client-spec">a</h4>
+                        <h4 className="client-spec">*Insert Images Here*</h4>
                         <h4 className="user-labels client-hide">Email</h4>
-                        <h4 className="client-spec client-hide">b</h4>
+                        <h4 className="client-spec client-hide">e</h4>
                         <h4 className="user-labels">Summary</h4>
-                        <h4 className="client-spec">d</h4>
+                        <h4 className="client-spec">*Insert Summary Here*</h4>
                     </div>
                 </div>
             </div>

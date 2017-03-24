@@ -16,7 +16,7 @@ const defaultState = {
     imageData: images
 };
 
-const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+const createStoreWithMiddleware = applyMiddleware(reduxThunk, promise)(createStore);
 
 const store = createStoreWithMiddleware(rootReducer, defaultState);
 
