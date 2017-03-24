@@ -22,7 +22,15 @@ export function getWeddingPlanner(req, res) {
     if (err) {
       res.status(404).json(err);
     } else {
-      res.status(200).json(planners);
+      if(planners.status === 'deleted') {
+        res.json('User is deleted');
+      }
+       else if(planners.status === 'banned') {
+        res.json('User is banned');
+      } else {
+        res.status(200).json(planners);
+      }
+
     }
   });
 }
@@ -39,28 +47,28 @@ export function create(req, res) {
 
 export function updateWeddingPlanner(req, res) {
   weddingPlannerModel.findOneAndUpdate({
-      '_id': req.params.id
-    }, req.body, {
-      new: true
-    })
-    .then((planner) => {
-      res.json(planner);
-    }).catch((err) => {
-      res.status(404).json(err);
-    });
+    '_id': req.params.id
+  }, req.body, {
+    new: true
+  })
+  .then((planner) => {
+    res.json(planner);
+  }).catch((err) => {
+    res.status(404).json(err);
+  });
 }
 
-export function deleteWeddingPlanner(req, res) { // TODO
-    weddingPlannerModel.findOneAndUpdate({
-      '_id': req.params.id
-    }, { $set: { 'status': 'deleted' }}, {
-      new: true
-    })
-    .then((planner) => {
-      res.json(planner);
-    }).catch((err) => {
-      res.status(404).json(err);
-    });
+export function deleteWeddingPlanner(req, res) { 
+  weddingPlannerModel.findOneAndUpdate({
+    '_id': req.params.id
+  }, { $set: { 'status': 'deleted' }}, {
+    new: true
+  })
+  .then((planner) => {
+    res.json(planner);
+  }).catch((err) => {
+    res.status(404).json(err);
+  });
 }
 
 export function logout(req, res) {
@@ -69,8 +77,9 @@ export function logout(req, res) {
 }
 
 export function isLoggedIn(req, res, next) {
-  if(req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/');
+  return next();
+  // if(req.isAuthenticated()) {
+  //   return next();
+  // }
+  // res.redirect('/');
 }
