@@ -45,8 +45,10 @@ UserSchema.methods.generateHash = function(password) {
 
 // checking if password is valid
 UserSchema.methods.validPassword = function(password) {
-  console.log('in validPassword');
+  if(this.password) {
     return bcrypt.compareSync(password, this.password);
+  }
+  return false;
 };
 
 export default mongoose.model('User', UserSchema);

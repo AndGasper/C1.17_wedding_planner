@@ -34,10 +34,11 @@ module.exports = (passport) => {
     passport.use(new FacebookStrategy({
 
         //pulling in our app id and secret from auth.js file
-        clientID        : configAuth.facebookAuth.clientID,
-        clientSecret    : configAuth.facebookAuth.clientSecret,
-        callbackURL     : configAuth.facebookAuth.callbackURL,
-        profileFields   : ['id', 'displayName', 'photos', 'email']
+        clientID            : configAuth.facebookAuth.clientID,
+        clientSecret        : configAuth.facebookAuth.clientSecret,
+        callbackURL         : configAuth.facebookAuth.callbackURL,
+        profileFields       : ['id', 'displayName', 'photos', 'email'],
+        passReqToCallback   : true
     },
     (token, refreshToken, profile, done) => {
 
@@ -52,7 +53,6 @@ module.exports = (passport) => {
                     console.log('user exists:', user);
                     return done(null, user);
                 } else {
-                    console.log(profile);
                     let newUser = new User();
                     newUser.name              = profile.displayName;
                     newUser.facebook.id       = profile.id;
@@ -132,7 +132,7 @@ module.exports = (passport) => {
         passReqToCallback   : true // allows us to pass back the entire request to the callback
     },
     function(req, email, password, done) { // callback with email and password from our form
-
+        console.log('In passport local-login strategy')
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
         User.findOne({ 'email' :  email }, function(err, user) {
@@ -147,15 +147,16 @@ module.exports = (passport) => {
                 console.log("User not found");
                 return done(null, false); // req.flash is the way to set flashdata using connect-flash
             }
-
+            console.log('user:', user);
             // if the user is found but the password is wrong
             if (!user.validPassword(password)) {
+              console.log('not a valid password')
                 console.log("Not a valid password");
                 return done(null, false); // create the loginMessage and save it to session as flashdata
             }
 
             // all is well, return successful user
-            console.log(user);
+            console.log('before done call');
             return done(null, user);
         });
     }));
