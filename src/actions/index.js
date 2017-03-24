@@ -7,7 +7,7 @@ const PLANNER_URL = 'http://localhost:3000/api/';
 export function signinClient(values){
     return function(dispatch){
         const request = axios.get(`${PLANNER_URL}user`).then(resp => {
-            for(var i=0; i< resp.data.length; i++){
+            for(let i=0; i< resp.data.length; i++){
                 if(resp.data[i].email === values.email){
                     console.log('User\'s info: ', resp.data[i]);
                     dispatch({
@@ -23,8 +23,7 @@ export function signinClient(values){
     }
 }
 
-
-  export function signupPlanner({email, password}){
+export function signupPlanner({email, password}){
     return function(dispatch){
         axios.post(`${PLANNER_URL}wedding_planner`, {email, password}).then(response => {
             dispatch({type: AUTH_USER});
@@ -35,3 +34,4 @@ export function signinClient(values){
         });
     }
   };
+
