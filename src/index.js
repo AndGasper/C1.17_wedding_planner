@@ -1,18 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import reduxThunk from 'redux-thunk';
-import { AUTH_USER } from './actions/types';
+import { Router, Route, IndexRoute } from 'react-router';
 import store, { history } from './store';
 import App from './components/app';
 import Home from './components/home';
 import Login from './components/Login';
-import NavLink from './components/nav_link';
 import PlannerProfile from './components/planner_profile';
 import PlannerPageLogin from './components/plannerPageLogin';
 import QuestionPage from './components/questions';
-import QuestionImages from './components/questionsImages';
 import ClientLogin from './components/client_login_page';
 import CostPage from './components/cost';
 

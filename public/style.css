@@ -1,3 +1,7 @@
+body {
+    background-image: url('../assets/images/home/bg.jpg');
+    background-repeat: no-repeat;
+}
 
 .app {
     text-align: center;
@@ -26,6 +30,11 @@ h2 {
 
 .homePage, .loginPage {
     height: 100vh;
+}
+
+.bg-image {
+
+    background-size: 100%;
 }
 
 a{
