@@ -45,12 +45,10 @@ module.exports = (passport) => {
         process.nextTick(() => {
             User.findOne({ 'facebook.id' : profile.id }, (err, user) => {
                 if(err){
-                    console.log('error', err);
                     return done(err);
                 }
 
                 if(user){
-                    console.log('user exists:', user);
                     return done(null, user);
                 } else {
                     let newUser = new User();
@@ -137,20 +135,16 @@ module.exports = (passport) => {
         User.findOne({ 'email' :  email }, function(err, user) {
             // if there are any errors, return the error before anything else
             if (err) {
-                console.log('Error:', err);
                 return done(err);
             }
 
             // if no user is found, return the message
             if (!user) {
-                console.log("User not found");
                 return done(null, false); // req.flash is the way to set flashdata using connect-flash
             }
             console.log('user:', user);
             // if the user is found but the password is wrong
             if (!user.validPassword(password)) {
-              console.log('not a valid password')
-                console.log("Not a valid password");
                 return done(null, false); // create the loginMessage and save it to session as flashdata
             }
 

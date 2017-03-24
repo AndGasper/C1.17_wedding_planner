@@ -41,7 +41,7 @@ export function updateWeddingPlanner(req, res) {
   weddingPlannerModel.findOneAndUpdate({
       '_id': req.params.id
     }, req.body, {
-      returnNewDocument: true
+      new: true
     })
     .then((planner) => {
       res.json(planner);
@@ -54,7 +54,7 @@ export function deleteWeddingPlanner(req, res) { // TODO
     weddingPlannerModel.findOneAndUpdate({
       '_id': req.params.id
     }, { $set: { 'status': 'deleted' }}, {
-      returnNewDocument: true
+      new: true
     })
     .then((planner) => {
       res.json(planner);

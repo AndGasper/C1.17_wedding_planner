@@ -23,7 +23,6 @@ router.post('/', (req, res, next) => {
 });
 router.post('/login', (req, res, next) => {
     passport.authenticate('local-login', function(err, user, info) {
-      console.log('in passport authenticate');
       if (err) { return next(err) }
       if (!user) { return res.json('User Not Found') }
       res.json(user);

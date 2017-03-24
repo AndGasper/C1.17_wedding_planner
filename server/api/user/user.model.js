@@ -7,10 +7,17 @@ const Schema = mongoose.Schema;
 
 const PreferencesSchema = new mongoose.Schema({
   cost: Number,
-  style: Number,
+  size: Number,
+  food: Number,
   flowers: Number,
-  alcohol: Number
-  //location: String
+  music: Number,
+  alcohol: Number,
+  attendance: Number,
+  photography: Number,
+  time_of_year: Number,
+  venue_reception: Number,
+  venue_ceremony: Number,
+  reception_vibe: Number
 });
 
 const UserSchema = new mongoose.Schema({
