@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
+import reduxThunk from 'redux-thunk';
 import promise from 'redux-promise';
 import coupleData from './data/coupleData';
 import images from './data/images';
@@ -13,7 +14,7 @@ const defaultState = {
     imageData: images
 };
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+const createStoreWithMiddleware = applyMiddleware(reduxThunk, promise)(createStore);
 
 const store = createStoreWithMiddleware(rootReducer, defaultState);
 
