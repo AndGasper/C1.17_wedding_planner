@@ -5,13 +5,13 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import store, { history } from './store';
 import App from './components/app';
 import Home from './components/home';
-import Login from './components/Login';
+import Login from './components/auth/Login';
 import NavLink from './components/nav_link';
 import PlannerProfile from './components/planner_profile';
 import PlannerPageLogin from './components/auth/plannerPageLogin';
 import QuestionPage from './components/questions';
 import QuestionImages from './components/questionsImages';
-import ClientLogin from './components/client_login_page';
+import ClientLogin from './components/auth/client_login_page';
 import PlannerSignup from './components/auth/plannerSignup';
 
 
