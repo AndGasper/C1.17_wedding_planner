@@ -1,4 +1,3 @@
-'use strict';
 
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
@@ -45,7 +44,10 @@ UserSchema.methods.generateHash = function(password) {
 
 // checking if password is valid
 UserSchema.methods.validPassword = function(password) {
+  if(this.password) {
     return bcrypt.compareSync(password, this.password);
+  }
+  return false;
 };
 
 export default mongoose.model('User', UserSchema);
