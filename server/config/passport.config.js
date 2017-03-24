@@ -53,7 +53,6 @@ module.exports = (passport) => {
                     console.log('user exists:', user);
                     return done(null, user);
                 } else {
-                    console.log(profile);
                     let newUser = new User();
                     newUser.name              = profile.displayName;
                     newUser.facebook.id       = profile.id;
