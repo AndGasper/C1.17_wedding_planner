@@ -1,0 +1,144 @@
+body {
+    background-image: url('../assets/images/home/bg.jpg');
+    background-repeat: no-repeat;
+}
+
+.app {
+    text-align: center;
+    color: #336699;
+}
+
+.nav-pills {
+    color: red;
+}
+
+li img {
+    height: 5vh;
+}
+
+h1 {
+    color: darkred;
+    font-size: 4.0em;
+    font-family: 'Perpetua', 'sans-serif';
+    margin-bottom: 3.3em;
+}
+h2 {
+    color: darkred;
+    font-size: 4.0em;
+    font-family: 'Perpetua', 'sans-serif';
+}
+
+.homePage, .loginPage {
+    height: 100vh;
+}
+
+.bg-image {
+
+    background-size: 100%;
+}
+
+a{
+    color: #31708f;
+}
+
+.formDiv {
+    height: 70%;
+    background: rgba(230, 161, 161, .5);
+    width: 100%;
+}
+
+input {
+    margin-left: 1em;
+}
+
+label {
+    font-size: 2em;
+}
+
+.profileInfo {
+    width: 50vw;
+}
+
+a {
+    color: #336699;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.questionImages {
+    padding-bottom: 30px;
+}
+.questionImages:hover img{
+    transform:scale(1.1);
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.67);
+    -moz-box-shadow:    0px 0px 20px 0px rgba(0, 0, 0, 0.67);
+    box-shadow:         0px 0px 20px 0px rgba(0, 0, 0, 0.67);
+}
+
+.spanText {
+    text-align: right;
+}
+
+.footer{
+    font-size: 2vmin;
+    background-color: rgba(255, 255, 255, .3);
+    width: 115.5%;
+    margin-left: -7vw;
+    position: absolute;
+    bottom: 0;
+}
+
+.footer p {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.header {
+    opacity: 0.5;
+    width: 100%;
+}
+
+#client-name {
+    color: white;
+    margin: auto;
+}
+
+#client-info {
+    width: 40%;
+    display: inline-block;
+    border: 2px dashed #336699;
+    box-shadow: inset 0 -1px 0 0 #336699, inset 0 1px 0 0 #336699, 0 1px 0 0 #336699, 0 -1px 0 0 #336699;
+    background-color: rgba(255,255,255,0.3);
+}
+
+#client-pref {
+    display: inline-block;
+    width: 40%;
+    border: 2px dashed #336699;
+    box-shadow: inset 0 -1px 0 0 #336699, inset 0 1px 0 0 #336699, 0 1px 0 0 #336699, 0 -1px 0 0 #336699;
+    background-color: rgba(255,255,255,0.3);
+}
+
+.client-about {
+    color: black;
+    font-size: 3em;
+    text-align: center;
+}
+
+.user-labels {
+    text-decoration: underline;
+}
+.info-holder {
+    height: 70%;
+}
+
+.client-spec {
+    color: black;
+}
+
+.client-hide {
+    visibility: hidden;
+}
+
