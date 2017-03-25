@@ -20,8 +20,7 @@ const plannerPageLogin = () => (
                 <br/>
             </form>
 
-            <button className="btn btn-info"><NavLink to="/planner_profile">Log in</NavLink></button>
-            <button className='btn btn-info'><NavLink to='/planner_signup'>Sign Up</NavLink></button>
+            <button className="btn btn-info"><NavLink to="/planner-profile">Log in</NavLink></button>
 
             <br/>
             <NavLink to="/" >Back to Home</NavLink>
