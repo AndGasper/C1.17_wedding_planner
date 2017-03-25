@@ -22,12 +22,24 @@ export function signinUser({email, password}){
 
 const PLANNER_URL = 'http://localhost:3000/api/';
 
-  export function signupPlanner({email, password}){
+  export function signupPlanner({password, email}){
     return function(dispatch){
-        axios.post(`${PLANNER_URL}wedding_planner`, {email, password}).then(response => {
+        axios.post(`${PLANNER_URL}wedding_planner`, {password, email}).then(response => {
             dispatch({type: AUTH_USER});
 
-            browserHistory.push('/plannerPageLogin');
+            browserHistory.push('/planner_details');
+        }).catch((err) => {
+            dispatch("error");
+        });
+    }
+  };
+
+  export function updatePlanner({password, email}){
+    return function(dispatch){
+        axios.put(`${PLANNER_URL}wedding_planner`, {name, description, website}).then(response => {
+            dispatch({type: AUTH_USER});
+
+            browserHistory.push('/planner_profile');
         }).catch((err) => {
             dispatch("error");
         });

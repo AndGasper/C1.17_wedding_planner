@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import {Field, reduxForm} from 'redux-form';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
@@ -17,7 +17,6 @@ const createInput = function(input, type, error){
     }
 }
 
-
 const renderInput = function ({input, label, type, meta: {touched, error } }){
     return(
         <div className={'form-group row'}>
@@ -30,21 +29,17 @@ const renderInput = function ({input, label, type, meta: {touched, error } }){
     )
 }
 
-class PlannerSignup extends Component {
+class PlannerDetails extends Component {
     handleFormSubmit(values){
-        console.log(values);
-        this.props.signupPlanner(values);
+        this.props.updatePlanner(values);
     }
 
     render(){
-        const {  handleSubmit } = this.props;
+        const { handleSubmit } = this.props;
 
         return (
-            <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-                <Field name='email' component={renderInput} label='Email' type='text' />
-                <Field name='password' component={renderInput} label='Password' type='password' />
-                <Field name='confirmPassword' component={renderInput} label='Confirm Password' type='password' />
-                <button className="btn btn-primary">Sign Up!</button>
+            <form onSubmit={handleSumbit(this.handleFormSubmit.bind(this))}>
+
             </form>
         );
     }

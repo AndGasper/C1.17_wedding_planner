@@ -13,6 +13,7 @@ import QuestionPage from './components/questions';
 import QuestionImages from './components/questionsImages';
 import ClientLogin from './components/client_login_page';
 import PlannerSignup from './components/auth/plannerSignup';
+import PlannerDetails from './components/auth/plannerDetails';
 
 
 ReactDOM.render(
@@ -26,6 +27,7 @@ ReactDOM.render(
                 <Route path="plannerPageLogin" component={PlannerPageLogin} />
                 <Route path="questions" component={QuestionPage} />
                 <Route path='planner_signup' component={PlannerSignup} />
+                <Route path='planner_details' component={PlannerDetails} />
             </Route>
         </Router>
     </Provider>,
