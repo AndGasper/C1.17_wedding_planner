@@ -8,12 +8,12 @@ import promise from 'redux-promise';
 import coupleData from './data/coupleData';
 import images from './data/images';
 import PlannerSignup from './components/auth/plannerSignup';
-
 import rootReducer from './reducers';
 
 const defaultState = {
     coupleData,
     imageData: images
+    
 };
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk, promise)(createStore);

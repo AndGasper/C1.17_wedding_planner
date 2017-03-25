@@ -3,11 +3,27 @@ import styles from '../app.css';
 import NavLink from '../nav_link';
 import { reduxForm } from 'redux-form';
 import * as actions from '../../actions';
+import { Link } from 'react-router';
+import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
+
+const style = {
+    margin: 12,
+};
+
+const paperStyle = {
+    width: 300,
+    backgroundColor: 'white',
+    color: 'gray',
+    padding: '10px',
+    fontSize: '.9em'
+
+};
 
 const plannerPageLogin = () => (
     <div className = {styles.loginPage}>
         <h2>Wedding Planner Login</h2>
-        <div className = {styles.formDiv}>
+        <div>
             <form>
                 <br/>
                 <label htmlFor="username">Username:</label>
@@ -20,7 +36,9 @@ const plannerPageLogin = () => (
                 <br/>
             </form>
 
-            <button className="btn btn-info"><NavLink to="/planner-profile">Log in</NavLink></button>
+            <Link to="/planner_profile"><RaisedButton label="Login" secondary={true} style={style}/></Link>
+            <br />
+            <Link to="/planner_signup"><RaisedButton label="Sign Up" secondary={true} style={style}/></Link>
 
             <br/>
             <NavLink to="/" >Back to Home</NavLink>
