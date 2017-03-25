@@ -2,6 +2,23 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import { Link } from 'react-router';
+import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
+
+const style = {
+    margin: 12,
+};
+
+const paperStyle = {
+    width: 300,
+    backgroundColor: 'white',
+    color: 'gray',
+    padding: '10px',
+    fontSize: '.9em'
+
+};
+
 
 const createInput = function(input, type, error){
     const inputClass = `form-control ${error ? 'form-control-danger' : ''}`;
@@ -44,7 +61,7 @@ class PlannerSignup extends Component {
                 <Field name='email' component={renderInput} label='Email' type='text' />
                 <Field name='password' component={renderInput} label='Password' type='password' />
                 <Field name='confirmPassword' component={renderInput} label='Confirm Password' type='password' />
-                <button className="btn btn-primary">Sign Up!</button>
+                <Link to="/planner_details"><RaisedButton label="Sign Up" secondary={true} style={style}/></Link>
             </form>
         );
     }
@@ -71,7 +88,7 @@ function validate(values){
 }
 
 function mapStateToProps(state){
-    return { errorMsg: state.auth.error }
+    return { errorMsg: state.auth}
 }
 
 const componentWithForm = reduxForm({
