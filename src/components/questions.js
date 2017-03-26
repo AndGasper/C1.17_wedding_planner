@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import QuestionImages from './questionsImages';
 import * as actions from '../action/actionCreator';
 import { history } from '../store';
+import styles from './app.css';
 
 
 class Questions extends Component {
@@ -45,8 +46,9 @@ class Questions extends Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="row">
+            <div className={`${styles.imagesTitle}`}>
+                <h4>Click the image that best represents your ideal wedding</h4>
+                <div className={`${styles.imagesDiv}`}>
                     {this.displayImages()}
                 </div>
             </div>
@@ -63,4 +65,3 @@ function mapStateToProps(state) {
 
 
 export default connect(mapStateToProps, actions)(Questions);
-
