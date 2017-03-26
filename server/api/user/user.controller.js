@@ -58,20 +58,18 @@ export function searchResults(req, res) {
     if(err) {
       res.status(404).json(err);
     } else {
-      let continue = true;
       let iterations = 1;
-      while(planner.length > 5 && continue) {
+      while(planner.length > 5) {
         iterations++;
         planners = refineSearch(req, res, iterations);
       }
     }
-
   });
 }
 
 // refine the search for wedding planners to ensure we get anywhere from 4 to 6
 function refineSearch(req, res, amount) {
-
+  
 }
 
 export function logout(req, res) {
