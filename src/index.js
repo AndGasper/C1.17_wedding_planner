@@ -14,6 +14,7 @@ import PlannerPageLogin from './components/plannerPageLogin';
 import QuestionPage from './components/questions';
 import QuestionImages from './components/questionsImages';
 import ClientLogin from './components/client_login_page';
+import CostPage from './components/cost';
 
 ReactDOM.render(
     <Provider store={store}>
@@ -25,6 +26,7 @@ ReactDOM.render(
                 <Route path="planner-profile" component={PlannerProfile} />
                 <Route path="plannerPageLogin" component={PlannerPageLogin} />
                 <Route path="questions" component={QuestionPage} />
+                <Route path="cost" component={CostPage} />
             </Route>
         </Router>
     </Provider>,
