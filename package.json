@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Learning-Fuze/C1.17_wedding_planner#readme",
   "dependencies": {
     "axios": "^0.15.3",
+    "babel-register": "^6.24.0",
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
