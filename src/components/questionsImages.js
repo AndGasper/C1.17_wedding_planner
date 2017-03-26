@@ -21,11 +21,9 @@ class QuestionImages extends Component {
         const {imageIndex} = this.props;
 
         return (
-
                 <Paper style={style} zDepth={5}>
-                    <img width="300" src={this.props.image.image} onClick={this.props.clickImage.bind(this, pageIndex, imageIndex)}/>
+                    <img className={styles.zoom} width="300" src={this.props.image.image} onClick={this.props.clickImage.bind(this, pageIndex, imageIndex)}/>
                 </Paper>
-
         )
     }
 

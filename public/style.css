@@ -1,6 +1,5 @@
 body {
-    background-image: url('../assets/images/home/bg.jpg');
-    background-repeat: no-repeat;
+
 }
 
 .app {
@@ -144,3 +143,34 @@ a:hover {
     visibility: hidden;
 }
 
+.home {
+    background: url('../assets/images/home/bg.jpg') no-repeat;
+    background-position: left top;
+    height: 100%;
+}
+
+.label-form {
+    display: list-item;
+    list-style-type: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.cost-div {
+    margin-top: 40px;
+    background-color:rgba(61, 61, 51, 0.2);
+    padding: 20px;
+}
+
+.imagesDiv {
+    background-color:rgba(61, 61, 51, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.budget-text {
+    color: #9C27B0
+}
