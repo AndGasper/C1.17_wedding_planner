@@ -2,6 +2,21 @@ import React, { Component } from 'react';
 import {Field, reduxForm} from 'redux-form';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import { Link } from 'react-router';
+import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
+
+const style = {
+    margin: 12,
+};
+
+const paperStyle = {
+    width: 300,
+    backgroundColor: 'white',
+    color: 'gray',
+    padding: '10px',
+    fontSize: '.9em'
+};
 
 const createInput = function(input, type, error){
     const inputClass = `form-control ${error ? 'form-control-danger' : ''}`;
@@ -31,6 +46,7 @@ const renderInput = function ({input, label, type, meta: {touched, error } }){
 
 class PlannerDetails extends Component {
     handleFormSubmit(values){
+        debugger;
         this.props.updatePlanner(values);
     }
 
@@ -39,7 +55,10 @@ class PlannerDetails extends Component {
 
         return (
             <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-
+                <Field name='name' component={renderInput} label='Company Name' type='text' />
+                <Field name='website' component={renderInput} label='Website' type='text' />
+                <Field name='description' component={renderInput} label='Description' type='textarea' />
+                <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Sign Up" secondary={true} style={style}/>
             </form>
         );
     }
@@ -71,7 +90,7 @@ function mapStateToProps(state){
 
 const componentWithForm = reduxForm({
     form: 'form',
-    fields: ['email', 'password', 'passwordConfirm'],
+    fields: ['name', 'website', 'description'],
     validate
 })(PlannerDetails)
 

@@ -16,7 +16,6 @@ const paperStyle = {
     color: 'gray',
     padding: '10px',
     fontSize: '.9em'
-
 };
 
 

@@ -29,7 +29,6 @@ export function signupPlanner({email, password}){
     return function(dispatch){
         axios.post(`${BASE_URL}wedding_planner`, {password, email}).then(response => {
             dispatch({type: AUTH_USER});
-
             browserHistory.push('/planner_details');
         }).catch((err) => {
             dispatch("error");
@@ -37,11 +36,10 @@ export function signupPlanner({email, password}){
     }
   };
 
-  export function updatePlanner({password, email}){
+  export function updatePlanner({name, website, description}){
     return function(dispatch){
-        axios.put(`${BASE_URL}wedding_planner`, {name, description, website}).then(response => {
+        axios.put(`${BASE_URL}wedding_planner`, {name, website, description}).then(response => {
             dispatch({type: AUTH_USER});
-
             browserHistory.push('/planner_profile');
         }).catch((err) => {
             dispatch("error");
