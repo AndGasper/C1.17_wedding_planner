@@ -24,7 +24,10 @@ const UserSchema = new mongoose.Schema({
   name: String,
   email: String,
   photo: String,
-  password: String,
+  password: {
+    type: String,
+    select: false
+  },
   phoneNumber: String,
   preferences: [PreferencesSchema],
   admin: {

@@ -20,7 +20,10 @@ const WeddingPlannerPreferencesSchema = new mongoose.Schema({
 
 const WeddingPlannerSchema = new mongoose.Schema({
   name: String,
-  password: String,
+  password: {
+    type: String,
+    select: false
+  },
   website: String,
   address: String,
   email: String,
@@ -30,7 +33,13 @@ const WeddingPlannerSchema = new mongoose.Schema({
     default: 'active'
   },
   preferences: [WeddingPlannerPreferencesSchema],
-  facebook: {},
+  facebook: {
+    id: String,
+    name: String,
+    token: String,
+    email: String,
+    photo: String
+  },
   google: {}
 });
 

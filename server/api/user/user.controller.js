@@ -51,36 +51,14 @@ export function deleteUser(req, res) { // TODO
     });
 }
 
-export function searchResults(req, res) {
-  plannerModel.find({
-    'cost': req.params.cost
-  }).exec((err, planner) => {
-    if(err) {
-      res.status(404).json(err);
-    } else {
-      let iterations = 1;
-      while(planner.length > 5) {
-        iterations++;
-        planners = refineSearch(req, res, iterations);
-      }
-    }
-  });
-}
-
-// refine the search for wedding planners to ensure we get anywhere from 4 to 6
-function refineSearch(req, res, amount) {
-  
-}
-
 export function logout(req, res) {
   req.logout();
   res.redirect('/');
 }
 
 export function isLoggedIn(req, res, next) {
-  return next();
-//   if(req.isAuthenticated()) {
-//     return next();
-//   }
-//   res.redirect('/');
+  if(req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/');
 }
