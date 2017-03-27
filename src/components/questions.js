@@ -8,8 +8,9 @@ import styles from './app.css';
 import LinearProgress from 'material-ui/LinearProgress';
 
 const style = {
-    progress: {
+    progressBar: {
         maxWidth: '1200px'
+
     }
 };
 
@@ -33,7 +34,6 @@ class Questions extends Component {
         let category = this.props.imageData[1][pageIndex];
         this.props.updatePrefs(category, imageValue);
 
-        console.log('rendered', this.state.pageIndex);
         if (this.state.pageIndex === 9) {
             setTimeout(function() {
                 history.push('/cost');
@@ -63,7 +63,10 @@ class Questions extends Component {
         return (
             <div className={`${styles.imagesTitle}`}>
                 <h4>Click the image that best represents your ideal wedding</h4>
-                <LinearProgress style={style.progress} color="purple" mode="determinate" value={this.state.progress} />
+
+                <LinearProgress style={style.progressBar} color="purple" mode="determinate" value={this.state.progress} />
+
+
                 <div className={`${styles.imagesDiv}`}>
                     {this.displayImages()}
                 </div>

@@ -19,7 +19,7 @@ class Cost extends Component {
     render() {
         return (
             <div className={`${styles.budgetTitle}`}>
-                <h4>Wedding Budget</h4>
+                <h3>Wedding Budget</h3>
                 <div className={`${styles.budgetDiv}`}>
                     <div className="btn-group">
                         <form name="budgetForm" onClick={this.handleClick.bind(this)}>
