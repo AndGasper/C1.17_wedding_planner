@@ -5,12 +5,14 @@ import reduxThunk from 'redux-thunk';
 import promise from 'redux-promise';
 import coupleData from './data/coupleData';
 import images from './data/images';
+import plannerData from './data/plannerData'
 
 
 import rootReducer from './reducers/index';
 
 const defaultState = {
     coupleData,
+    plannerData,
     imageData: images
 };
 
