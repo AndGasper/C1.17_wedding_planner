@@ -14,6 +14,7 @@ import QuestionImages from './components/questionsImages';
 import ClientLogin from './components/auth/client_login_page';
 import PlannerSignup from './components/auth/plannerSignup';
 import CostPage from './components/cost';
+import EditClientInfo from './components/auth/edit_client_info';
 
 
 ReactDOM.render(
@@ -27,6 +28,7 @@ ReactDOM.render(
                 <Route path="plannerPageLogin" component={PlannerPageLogin} />
                 <Route path="questions" component={QuestionPage} />
                 <Route path="cost" component={CostPage} />
+                <Route path="edit_client_info" component={EditClientInfo} />
             </Route>
         </Router>
     </Provider>,

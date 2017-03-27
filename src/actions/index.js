@@ -33,5 +33,11 @@ export function signupPlanner({email, password}){
             dispatch("error");
         });
     }
-  };
+  }
+
+export function updateClientInfo(){
+    return function(dispatch){
+        console.log('hello');
+    }
+}
 
