@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import secret from './config/express.config';
 import passport from 'passport';
 import session from 'express-session';
+import path from 'path';
 
 const app = express();
 
@@ -26,6 +27,9 @@ app.use(session({ secret: secret }));
 app.use(bodyParser.json({type: '*/*'}));
 
 app.use(express.static('public'));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '..', 'public', 'index.html'));
+});
 require('./routes').default(app);
 
 app.listen(3000, function() {

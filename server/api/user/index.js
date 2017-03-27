@@ -17,7 +17,7 @@ router.get('/logout', isLoggedIn, logout);
 router.post('/', (req, res, next) => {
   passport.authenticate('local-signup', (err, user) => {
       if (err) { return next(err) }
-      if (!user) { return res.json('User not found') }
+      if (!user) { return res.json('Credentials are wrong') }
       res.json(user);
     })(req, res, next);
 });

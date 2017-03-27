@@ -9,4 +9,7 @@ export default function(app) {
   app.use('/api/user', user);
   app.use('/api/search', search);
   app.use('/api/wedding_planner', planner);
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '..', 'public', 'index.html'));
+  });
 }
