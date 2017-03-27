@@ -11,6 +11,7 @@ import PlannerPageLogin from './components/plannerPageLogin';
 import QuestionPage from './components/questions';
 import ClientLogin from './components/client_login_page';
 import CostPage from './components/cost';
+import Results from './components/results';
 
 ReactDOM.render(
     <Provider store={store}>
@@ -23,6 +24,7 @@ ReactDOM.render(
                 <Route path="plannerPageLogin" component={PlannerPageLogin} />
                 <Route path="questions" component={QuestionPage} />
                 <Route path="cost" component={CostPage} />
+                <Route path="results" component={Results} />
             </Route>
         </Router>
     </Provider>,

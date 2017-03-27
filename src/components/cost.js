@@ -12,7 +12,7 @@ class Cost extends Component {
         if (value) {
             console.log('sending to server: ', {preferences: this.props.coupleData});
             this.props.sendPrefsToServer({preferences: this.props.coupleData});
-            history.push('/')
+            history.push('/results')
         }
     }
 
