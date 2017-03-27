@@ -56,7 +56,7 @@ class Header extends Component {
             <div className={styles.header}>
                 <Toolbar style={toolbarStyle.toolbar} >
                     <ToolbarGroup firstChild={true}>
-                        <Link to="/" ><ToolbarTitle style={titleStyle} text="Matchromonie" /></Link>
+                        <Link to="/" ><ToolbarTitle style={titleStyle} text="Matchromonies" /></Link>
                     </ToolbarGroup>
                     {this.renderAuthLinks()}
                 </Toolbar>

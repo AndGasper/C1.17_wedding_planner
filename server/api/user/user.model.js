@@ -6,17 +6,27 @@ const Schema = mongoose.Schema;
 
 const PreferencesSchema = new mongoose.Schema({
   cost: Number,
-  style: Number,
+  size: Number,
+  food: Number,
   flowers: Number,
-  alcohol: Number
-  //location: String
+  music: Number,
+  alcohol: Number,
+  attendance: Number,
+  photography: Number,
+  time_of_year: Number,
+  venue_reception: Number,
+  venue_ceremony: Number,
+  reception_vibe: Number
 });
 
 const UserSchema = new mongoose.Schema({
   name: String,
   email: String,
   photo: String,
-  password: String,
+  password: {
+    type: String,
+    select: false
+  },
   phoneNumber: String,
   preferences: [PreferencesSchema],
   admin: {
@@ -44,10 +54,13 @@ UserSchema.methods.generateHash = function(password) {
 
 // checking if password is valid
 UserSchema.methods.validPassword = function(password) {
-  if(this.password) {
-    return bcrypt.compareSync(password, this.password);
-  }
-  return false;
+  return mongoose.model('User', UserSchema).findOne({'_id': this._id }).select('+password').exec((err, user) => {
+    if(!user.password) {
+      return false;
+    }
+    return bcrypt.compareSync(password, user.password);
+  })
 };
 
 export default mongoose.model('User', UserSchema);
+

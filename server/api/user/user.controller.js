@@ -1,8 +1,5 @@
 import userModel from './user.model';
-
-function respondWithResult(statusCode, res) {
-  res.status(statusCode).json()
-}
+import plannerModel from '../wedding_planner/wedding_planner.model';
 
 export function index(req, res) {
   console.log(userModel.find().exec((err, user) => {
@@ -17,7 +14,7 @@ export function index(req, res) {
 
 export function user(req, res) {
   userModel.findById({
-    '_id': req.params.id
+    '_id': req.user._id
   }).exec((err, user) => {
     if (err) {
       res.status(404).json(err);
@@ -27,20 +24,10 @@ export function user(req, res) {
   });
 }
 
-// export function create(req, res) {
-//   var user = new userModel(req.body);
-//   user.save((err) => {
-//     if (err) res.status(404).json(err);
-//     else {
-//       res.status(200).send("/nAdded user/n/n");
-//     }
-//   });
-// }
-
 export function updateUser(req, res) {
   console.log(req.body);
   userModel.findOneAndUpdate({
-      '_id': req.params.id
+      '_id': req.user._id
     }, req.body, {
       new: true
     })
@@ -53,7 +40,7 @@ export function updateUser(req, res) {
 
 export function deleteUser(req, res) { // TODO
     userModel.findOneAndUpdate({
-      '_id': req.params.id
+      '_id': req.user._id
     }, { $set: { 'status': 'deleted' }}, {
       new: true
     })
@@ -62,20 +49,6 @@ export function deleteUser(req, res) { // TODO
     }).catch((err) => {
       res.status(404).json(err);
     });
-}
-
-export function searchResults(req, res) {
-  userModel.findById({
-    '_id': req.params.id
-  }).exec((err, user) => {
-    if (err) {
-      res.status(404).json(err);
-    } else {
-      let preferences = user.preferences;
-      console.log(preferences);
-      res.json('recieved request for wedding planner results');
-    }
-  });
 }
 
 export function logout(req, res) {

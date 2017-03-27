@@ -79,5 +79,4 @@ const componentWithForm = reduxForm({
     fields: ['email', 'password', 'passwordConfirm'],
     validate
 })(ClientSignin)
-
 export default connect(mapStateToProps, actions)(componentWithForm) ;
