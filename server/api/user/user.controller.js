@@ -14,7 +14,7 @@ export function index(req, res) {
 
 export function user(req, res) {
   userModel.findById({
-    '_id': req.params.id
+    '_id': req.user._id
   }).exec((err, user) => {
     if (err) {
       res.status(404).json(err);
@@ -27,7 +27,7 @@ export function user(req, res) {
 export function updateUser(req, res) {
   console.log(req.body);
   userModel.findOneAndUpdate({
-      '_id': req.params.id
+      '_id': req.user._id
     }, req.body, {
       new: true
     })
@@ -40,7 +40,7 @@ export function updateUser(req, res) {
 
 export function deleteUser(req, res) { // TODO
     userModel.findOneAndUpdate({
-      '_id': req.params.id
+      '_id': req.user._id
     }, { $set: { 'status': 'deleted' }}, {
       new: true
     })

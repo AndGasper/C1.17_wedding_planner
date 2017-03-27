@@ -28,7 +28,7 @@ router.post('/login', (req, res, next) => {
       res.json(user);
     })(req, res, next);
 });
-router.put('/delete', isLoggedIn, updateUser);
+router.put('/me', isLoggedIn, updateUser);
 router.delete('/', isLoggedIn, deleteUser);
 router.get('/facebook/callback', (req, res, next) => {
   passport.authenticate('facebook', (err, user) => {

@@ -13,7 +13,7 @@ export function index(req, res) {
 
 export function getWeddingPlanner(req, res) {
   weddingPlannerModel.findById({
-    '_id': req.params.id
+    '_id': req.user._id
   }).exec((err, planners) => {
     if (err) {
       res.status(404).json(err);
@@ -43,7 +43,7 @@ export function create(req, res) {
 
 export function updateWeddingPlanner(req, res) {
   weddingPlannerModel.findOneAndUpdate({
-    '_id': req.params.id
+    '_id': req.user._id
   }, req.body, {
     new: true
   })
@@ -56,7 +56,7 @@ export function updateWeddingPlanner(req, res) {
 
 export function deleteWeddingPlanner(req, res) {
   weddingPlannerModel.findOneAndUpdate({
-    '_id': req.params.id
+    '_id': req.user._id
   }, { $set: { 'status': 'deleted' }}, {
     new: true
   })

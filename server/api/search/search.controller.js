@@ -1,10 +1,11 @@
 import PlannerModel from '../wedding_planner/wedding_planner.model';
 
 export function search(req, res) {
+  let params = fuzzyObject(req.user.preferences);
   PlannerModel.find({
-    fuzzyObject(req.params)
+    params
   }).limit(5).exec((err, planners) => {
-
+    console.log(planners);
   })
 }
 
