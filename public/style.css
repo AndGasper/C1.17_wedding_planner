@@ -149,7 +149,7 @@ a:hover {
 
 .home {
     background: url('../assets/images/home/bg.jpg') no-repeat;
-    background-position: left top;
+    background-position: center top;
     height: 100%;
     width: 100vw;
 }
