@@ -55,10 +55,11 @@ UserSchema.methods.generateHash = function(password) {
 
 // checking if password is valid
 UserSchema.methods.validPassword = function(password) {
-  if(this.password) {
-    return bcrypt.compareSync(password, this.password);
-  }
-  return false;
-};
-
+  return mongoose.model('User', UserSchema).findOne({'_id': this._id }).select('+password').exec((err, user) => {
+    if(!user.password) {
+      return false;
+    }
+    return bcrypt.compareSync(password, user.password);
+  })
+}
 export default mongoose.model('User', UserSchema);

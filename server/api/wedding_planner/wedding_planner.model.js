@@ -50,7 +50,12 @@ WeddingPlannerSchema.methods.generateHash = function(password) {
 
 // checking if password is valid
 WeddingPlannerSchema.methods.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
+  return mongoose.model('WeddingPlanner', WeddingPlannerSchema).findOne({'_id': this._id }).select('+password').exec((err, user) => {
+    if(!user.password) {
+      return false;
+    }
+    return bcrypt.compareSync(password, user.password);
+  })
 };
 
 export default mongoose.model('WeddingPlanner', WeddingPlannerSchema);
