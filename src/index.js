@@ -17,6 +17,7 @@ import PlannerDetails from './components/auth/plannerDetails';
 import CostPage from './components/cost';
 import EditClientInfo from './components/auth/edit_client_info';
 import ClientSignup from './components/auth/clientSignup';
+import Signout from './components/auth/signout';
 
 
 ReactDOM.render(
@@ -34,6 +35,7 @@ ReactDOM.render(
                 <Route path="cost" component={CostPage} />
                 <Route path="edit_client_info" component={EditClientInfo} />
                 <Route path="createAccount" component={ClientSignup} />
+                <Route path="signout" component={Signout}/>
             </Route>
         </Router>
     </Provider>,

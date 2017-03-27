@@ -20,10 +20,7 @@ const WeddingPlannerPreferencesSchema = new mongoose.Schema({
 
 const WeddingPlannerSchema = new mongoose.Schema({
   name: String,
-  password: {
-    type: String,
-    select: false
-  },
+  password: String,
   website: String,
   address: String,
   email: String,
@@ -50,12 +47,10 @@ WeddingPlannerSchema.methods.generateHash = function(password) {
 
 // checking if password is valid
 WeddingPlannerSchema.methods.validPassword = function(password) {
-  return mongoose.model('WeddingPlanner', WeddingPlannerSchema).findOne({'_id': this._id }).select('+password').exec((err, user) => {
-    if(!user.password) {
-      return false;
-    }
-    return bcrypt.compareSync(password, user.password);
-  })
+  if(!this.password) {
+    return false;
+  }
+  return bcrypt.compareSync(password, this.password);
 };
 
 export default mongoose.model('WeddingPlanner', WeddingPlannerSchema);

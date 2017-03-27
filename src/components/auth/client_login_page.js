@@ -4,7 +4,6 @@ import { Link } from 'react-router';
 
 class clientLogin extends Component {
     renderName(){
-        console.log('cvcvcv', this.props.active_client);
         const { name } = this.props.active_client;
         if(name){
             return (
@@ -12,23 +11,33 @@ class clientLogin extends Component {
             )
         }
         return [
-            <h4 className="client-spec">*Click Edit Profile Info to insert name*</h4>
+            <h2 key='client_signin' className="client-spec">*Click Edit Profile Info to insert name*</h2>
         ]
     }
 
     renderPhone(){
-        const { phone } = this.props.active_client;
-        if(phone){
+        const { phoneNumber } = this.props.active_client;
+        if(phoneNumber){
             return (
                 <h4 className="client-spec">{this.props.active_client.phoneNumber}</h4>
             )
         }
         return [
-            <h4 className="client-spec">*Click Edit Profile Info to insert phone number*</h4>
+            <h2 key='client_signin' className="client-spec">*Click Edit Profile Info to insert phone number*</h2>
         ]
     }
 
-
+    renderHeaderName(){
+        const { name } = this.props.active_client;
+        if(name){
+            return (
+                <span>{this.props.active_client.name}!</span>
+            )
+        }
+        return [
+            <span key="client_signin">!</span>
+        ]
+    }
 
 
     render() {
@@ -39,7 +48,7 @@ class clientLogin extends Component {
 
         return (
             <div>
-                <h1 id="client-name">Welcome Back {this.renderName()}</h1>
+                <h1 id="client-name">Welcome Back {this.renderHeaderName()}</h1>
                 <div>
                     <div onClick={handleChange.bind(this)} id="client-info">
                         <h3 className="client-about">About You</h3>

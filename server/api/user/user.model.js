@@ -23,10 +23,7 @@ const UserSchema = new mongoose.Schema({
   name: String,
   email: String,
   photo: String,
-  password: {
-    type: String,
-    select: false
-  },
+  password: String,
   phoneNumber: String,
   preferences: [PreferencesSchema],
   admin: {
@@ -54,13 +51,11 @@ UserSchema.methods.generateHash = function(password) {
 
 // checking if password is valid
 UserSchema.methods.validPassword = function(password) {
-  return mongoose.model('User', UserSchema).findOne({'_id': this._id }).select('+password').exec((err, user) => {
-    if(!user.password) {
-      return false;
-    }
-    return bcrypt.compareSync(password, user.password);
-  })
-};
+  if(!this.password) {
+    return false;
+  }
+  return bcrypt.compareSync(password, this.password);
+}
 
 export default mongoose.model('User', UserSchema);
 
