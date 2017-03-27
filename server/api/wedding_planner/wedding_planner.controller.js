@@ -1,9 +1,5 @@
 import weddingPlannerModel from './wedding_planner.model';
 
-function respondWithResult(statusCode, res) {
-  res.status(statusCode).json()
-}
-
 export function index(req, res) {
   console.log(weddingPlannerModel.find().exec((err, planners) => {
     if (err) {
@@ -17,12 +13,20 @@ export function index(req, res) {
 
 export function getWeddingPlanner(req, res) {
   weddingPlannerModel.findById({
-    '_id': req.params.id
+    '_id': req.user._id
   }).exec((err, planners) => {
     if (err) {
       res.status(404).json(err);
     } else {
-      res.status(200).json(planners);
+      if(planners.status === 'deleted') {
+        res.json('User is deleted');
+      }
+       else if(planners.status === 'banned') {
+        res.json('User is banned');
+      } else {
+        res.status(200).json(planners);
+      }
+
     }
   });
 }
@@ -39,28 +43,28 @@ export function create(req, res) {
 
 export function updateWeddingPlanner(req, res) {
   weddingPlannerModel.findOneAndUpdate({
-      '_id': req.params.id
-    }, req.body, {
-      returnNewDocument: true
-    })
-    .then((planner) => {
-      res.json(planner);
-    }).catch((err) => {
-      res.status(404).json(err);
-    });
+    '_id': req.user._id
+  }, req.body, {
+    new: true
+  })
+  .then((planner) => {
+    res.json(planner);
+  }).catch((err) => {
+    res.status(404).json(err);
+  });
 }
 
-export function deleteWeddingPlanner(req, res) { // TODO
-    weddingPlannerModel.findOneAndUpdate({
-      '_id': req.params.id
-    }, { $set: { 'status': 'deleted' }}, {
-      returnNewDocument: true
-    })
-    .then((planner) => {
-      res.json(planner);
-    }).catch((err) => {
-      res.status(404).json(err);
-    });
+export function deleteWeddingPlanner(req, res) {
+  weddingPlannerModel.findOneAndUpdate({
+    '_id': req.user._id
+  }, { $set: { 'status': 'deleted' }}, {
+    new: true
+  })
+  .then((planner) => {
+    res.json(planner);
+  }).catch((err) => {
+    res.status(404).json(err);
+  });
 }
 
 export function logout(req, res) {
@@ -69,8 +73,9 @@ export function logout(req, res) {
 }
 
 export function isLoggedIn(req, res, next) {
-  if(req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/');
+  return next();
+  // if(req.isAuthenticated()) {
+  //   return next();
+  // }
+  // res.redirect('/');
 }

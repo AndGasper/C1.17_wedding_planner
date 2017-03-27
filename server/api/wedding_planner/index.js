@@ -6,11 +6,11 @@ import passport from 'passport';
 let router = express.Router();
 
 router.get('/', index);
-router.get('/:id', isLoggedIn, getWeddingPlanner);
+router.get('/me', isLoggedIn, getWeddingPlanner);
 router.post('/', (req, res, next) => {
   passport.authenticate('planner-local-signup', (err, user, info) => {
       if (err) { return next(err) }
-      if (!user) { return res.json('No user') }
+      if (user) { return res.json('user exists') }
       res.json(user);
     })(req, res, next)
 });
@@ -22,7 +22,7 @@ router.post('/login', (req, res, next) => {
     })(req, res, next)
 });
 router.get('/logout', isLoggedIn, logout)
-router.put('/:id', isLoggedIn, updateWeddingPlanner);
-router.delete('/:id', deleteWeddingPlanner);
+router.put('/', isLoggedIn, updateWeddingPlanner);
+router.delete('/', deleteWeddingPlanner);
 
 export default router;

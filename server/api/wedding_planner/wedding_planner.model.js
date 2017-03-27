@@ -4,14 +4,26 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
 
 const WeddingPlannerPreferencesSchema = new mongoose.Schema({
-  size: String,
-  cost: String,
-  style: String
+  cost: Number,
+  size: Number,
+  food: Number,
+  flowers: Number,
+  music: Number,
+  alcohol: Number,
+  attendance: Number,
+  photography: Number,
+  time_of_year: Number,
+  venue_reception: Number,
+  venue_ceremony: Number,
+  reception_vibe: Number
 });
 
 const WeddingPlannerSchema = new mongoose.Schema({
   name: String,
-  password: String,
+  password: {
+    type: String,
+    select: false
+  },
   website: String,
   address: String,
   email: String,
@@ -21,7 +33,13 @@ const WeddingPlannerSchema = new mongoose.Schema({
     default: 'active'
   },
   preferences: [WeddingPlannerPreferencesSchema],
-  facebook: {},
+  facebook: {
+    id: String,
+    name: String,
+    token: String,
+    email: String,
+    photo: String
+  },
   google: {}
 });
 
@@ -32,6 +50,9 @@ WeddingPlannerSchema.methods.generateHash = function(password) {
 
 // checking if password is valid
 WeddingPlannerSchema.methods.validPassword = function(password) {
+  if(!this.password) {
+    return false;
+  }
     return bcrypt.compareSync(password, this.password);
 };
 
