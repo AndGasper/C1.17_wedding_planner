@@ -15,7 +15,7 @@ export function index(req, res) {
 export function user(req, res) {
   userModel.findById({
     '_id': req.user._id
-  }).exec((err, user) => {
+  }).select('-password').exec((err, user) => {
     if (err) {
       res.status(404).json(err);
     } else {
