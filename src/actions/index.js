@@ -13,11 +13,16 @@ export function ClientSignin(values){
                 type: SET_CURRENT_CLIENT,
                 payload: response.data
             });
-            console.log('user that logged in: ', response.data);
-            localStorage.setItem('id', response.data);
-            browserHistory.push('/client_login_page');
+            if(response.data === 'Credentials are wrong'){
+                window.alert('Email or Password is incorrect, Try Again');
+            } else {
+                console.log('user that logged in: ', response.data);
+                localStorage.setItem('id', response.data);
+                browserHistory.push('/client_login_page');
+            }
+
         }).catch(err => {
-            console.log(err);
+            console.log('this is error ', err);
         })
     }
 }
