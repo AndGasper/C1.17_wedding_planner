@@ -13,8 +13,10 @@ import QuestionPage from './components/questions';
 import QuestionImages from './components/questionsImages';
 import ClientLogin from './components/auth/client_login_page';
 import PlannerSignup from './components/auth/plannerSignup';
+import PlannerDetails from './components/auth/plannerDetails';
 import CostPage from './components/cost';
 import EditClientInfo from './components/auth/edit_client_info';
+import ClientSignup from './components/auth/clientSignup';
 
 
 ReactDOM.render(
@@ -24,11 +26,14 @@ ReactDOM.render(
                 <IndexRoute component={Home}/>
                 <Route path="Login" component={Login} />
                 <Route path="client_login_page" component={ClientLogin} />
-                <Route path="planner-profile" component={PlannerProfile} />
-                <Route path="plannerPageLogin" component={PlannerPageLogin} />
+                <Route path="planner_profile" component={PlannerProfile} />
+                <Route path="planner_login" component={PlannerPageLogin} />
                 <Route path="questions" component={QuestionPage} />
+                <Route path='planner_signup' component={PlannerSignup} />
+                <Route path='planner_details' component={PlannerDetails} />
                 <Route path="cost" component={CostPage} />
                 <Route path="edit_client_info" component={EditClientInfo} />
+                <Route path="createAccount" component={ClientSignup} />
             </Route>
         </Router>
     </Provider>,

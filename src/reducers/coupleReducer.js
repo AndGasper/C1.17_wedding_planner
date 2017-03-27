@@ -17,7 +17,8 @@ function coupleData(state = [], action) {
         case SET_CURRENT_CLIENT:
             return {
                     ...state,
-                    active_client: action.payload
+                    active_client: action.payload,
+                    authenticated: true
                 };
         case CHANGE_CLIENT_INFO:
             return {

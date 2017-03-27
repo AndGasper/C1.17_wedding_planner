@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import {Field, reduxForm} from 'redux-form';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { Link } from 'react-router';
+import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
+
+const style = {
+    margin: 12,
+};
+
+const paperStyle = {
+    width: 300,
+    backgroundColor: 'white',
+    color: 'gray',
+    padding: '10px',
+    fontSize: '.9em'
+};
 
 const createInput = function(input, type, error){
     const inputClass = `form-control ${error ? 'form-control-danger' : ''}`;
@@ -18,7 +32,6 @@ const createInput = function(input, type, error){
     }
 }
 
-
 const renderInput = function ({input, label, type, meta: {touched, error } }){
     return(
         <div className={'form-group row'}>
@@ -31,26 +44,22 @@ const renderInput = function ({input, label, type, meta: {touched, error } }){
     )
 }
 
-class EditClientInfo extends Component {
+class ClientInfo extends Component {
     handleFormSubmit(values){
-        event.preventDefault();
         console.log(values);
+        this.props.updateClient(values);
     }
 
-
-
     render(){
-        function handleChange() {
-            console.log('Props are:', this.props);
-        }
-        const {  handleSubmit } = this.props;
+        const { handleSubmit } = this.props;
 
         return (
-            <form onClick={handleChange.bind(this)} onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-                <Field name='name' component={renderInput} label='Name' type='text'/>
-                <Field name='email' component={renderInput} label='Email' type='text'/>
-                <Field name='phoneNumber' component={renderInput} label='Phone Number'/>
-                <button className="btn btn-primary">Change Info</button>
+            <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+                <Field name='name' component={renderInput} label='Name' type='text' />
+                <Field name='email' component={renderInput} label='Email' type='text' />
+                <Field name='phoneNumber' component={renderInput} label='Phone Number' type='text' />
+                <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Update Profile" secondary={true} style={style}/>
+                <RaisedButton label="Change Password" secondary={true} style={style}/>
             </form>
         );
     }
@@ -77,15 +86,13 @@ function validate(values){
 }
 
 function mapStateToProps(state){
-    return {
-        active_client: state.coupleData.active_client
-    }
+    return { errorMsg: state.auth }
 }
 
 const componentWithForm = reduxForm({
     form: 'form',
-    fields: ['email', 'password', 'passwordConfirm'],
+    fields: ['name', 'email', 'phoneNumber'],
     validate
-})(EditClientInfo)
+})(ClientInfo)
 
 export default connect(mapStateToProps, actions)(componentWithForm) ;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import styles from '../app.css';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
@@ -17,8 +16,8 @@ const paperStyle = {
     color: 'gray',
     padding: '10px',
     fontSize: '.9em'
-
 };
+
 
 const createInput = function(input, type, error){
     const inputClass = `form-control ${error ? 'form-control-danger' : ''}`;
@@ -47,10 +46,10 @@ const renderInput = function ({input, label, type, meta: {touched, error } }){
     )
 }
 
-class PlannerPageLogin extends Component {
+class ClientSignup extends Component {
     handleFormSubmit(values){
         console.log(values);
-        this.props.plannerLogin(values);
+        this.props.signupClient(values);
     }
 
     render(){
@@ -60,8 +59,8 @@ class PlannerPageLogin extends Component {
             <form>
                 <Field name='email' component={renderInput} label='Email' type='text' />
                 <Field name='password' component={renderInput} label='Password' type='password' />
-                <Link to="/planner_signup"><RaisedButton label="Sign Up" secondary={true} style={style}/></Link>
-                <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Login" secondary={true} style={style}/>
+                <Field name='confirmPassword' component={renderInput} label='Confirm Password' type='password' />
+                <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Sign Up" secondary={true} style={style}/>
             </form>
         );
     }
@@ -95,6 +94,6 @@ const componentWithForm = reduxForm({
     form: 'form',
     fields: ['email', 'password', 'passwordConfirm'],
     validate
-})(PlannerPageLogin)
+})(ClientSignup)
 
 export default connect(mapStateToProps, actions)(componentWithForm) ;

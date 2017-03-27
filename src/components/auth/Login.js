@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import { Link } from 'react-router';
 
 const createInput = function(input, type, error){
     const inputClass = `form-control ${error ? 'form-control-danger' : ''}`;
@@ -32,7 +33,6 @@ const renderInput = function ({input, label, type, meta: {touched, error } }){
 
 class ClientSignin extends Component {
     handleFormSubmit(values){
-        console.log(values);
         this.props.signinClient(values);
     }
 
@@ -44,6 +44,7 @@ class ClientSignin extends Component {
                 <Field name='email' component={renderInput} label='Email' type='text' />
                 <Field name='password' component={renderInput} label='Password' type='password' />
                 <button className="btn btn-primary">Sign In</button>
+                <button className="btn btn-primary"><Link to="/createAccount">Create Account</Link></button>
             </form>
         );
     }

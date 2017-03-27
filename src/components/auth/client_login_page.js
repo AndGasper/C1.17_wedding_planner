@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 class clientLogin extends Component {
-
+    componentWillMount(){
+        console.log('asdka', this.props);
+    }
 
     render() {
         function handleChange() {
@@ -43,7 +45,8 @@ class clientLogin extends Component {
 
 function mapStateToProps(state){
     return {
-        active_client: state.coupleData.active_client
+        active_client: state.coupleData.active_client,
+        authenticated: state.coupleData.authenticated
     }
 }
 

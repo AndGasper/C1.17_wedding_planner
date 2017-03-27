@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import styles from '../app.css';
-import { Field, reduxForm } from 'redux-form';
+import {Field, reduxForm} from 'redux-form';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { Link } from 'react-router';
@@ -17,7 +16,6 @@ const paperStyle = {
     color: 'gray',
     padding: '10px',
     fontSize: '.9em'
-
 };
 
 const createInput = function(input, type, error){
@@ -34,7 +32,6 @@ const createInput = function(input, type, error){
     }
 }
 
-
 const renderInput = function ({input, label, type, meta: {touched, error } }){
     return(
         <div className={'form-group row'}>
@@ -47,21 +44,20 @@ const renderInput = function ({input, label, type, meta: {touched, error } }){
     )
 }
 
-class PlannerPageLogin extends Component {
+class PlannerDetails extends Component {
     handleFormSubmit(values){
-        console.log(values);
-        this.props.plannerLogin(values);
+        this.props.updatePlanner(values);
     }
 
     render(){
-        const {  handleSubmit } = this.props;
+        const { handleSubmit } = this.props;
 
         return (
-            <form>
-                <Field name='email' component={renderInput} label='Email' type='text' />
-                <Field name='password' component={renderInput} label='Password' type='password' />
-                <Link to="/planner_signup"><RaisedButton label="Sign Up" secondary={true} style={style}/></Link>
-                <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Login" secondary={true} style={style}/>
+            <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+                <Field name='name' component={renderInput} label='Company Name' type='text' />
+                <Field name='website' component={renderInput} label='Website' type='text' />
+                <Field name='description' component={renderInput} label='Description' type='textarea' />
+                <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Update Profile" secondary={true} style={style}/>
             </form>
         );
     }
@@ -88,13 +84,13 @@ function validate(values){
 }
 
 function mapStateToProps(state){
-    return { errorMsg: state.auth}
+    return { errorMsg: state.auth }
 }
 
 const componentWithForm = reduxForm({
     form: 'form',
-    fields: ['email', 'password', 'passwordConfirm'],
+    fields: ['name', 'website', 'description'],
     validate
-})(PlannerPageLogin)
+})(PlannerDetails)
 
 export default connect(mapStateToProps, actions)(componentWithForm) ;

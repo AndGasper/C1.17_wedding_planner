@@ -46,6 +46,8 @@ class Home extends Component {
                             </Paper>
                             <div>
                                 <Link to="/questions"><RaisedButton label="Get Started" secondary={true} style={style}/></Link>
+                                <br />
+                                <Link to="/planner_login"><RaisedButton label="Wedding Planner?" secondary={true} style={style}/></Link>
                             </div>
                         </div>
 
