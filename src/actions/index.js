@@ -40,19 +40,10 @@ export function signupPlanner({email, password}){
   export function plannerLogin(values){
       const id = localStorage.getItem('id');
       return function(dispatch){
-        axios.get(`${BASE_URL}wedding_planner`).then(resp => {
-            for(let i=0; i< resp.data.length; i++){
-                if(resp.data[i].email === values.email){
-                    console.log('User\'s info: ', resp.data[i]);
-                    dispatch({
-                        type: SET_CURRENT_CLIENT,
-                        payload: resp.data[i]
-                    });
-                }
-            }
+        axios.post(`${BASE_URL}wedding_planner/login`, values).then(response => {
+            dispatch({type: AUTH_USER});
+            console.log(response);
             browserHistory.push('/planner_profile');
-
-            
         }).catch(err => {
             console.log(err);
         });

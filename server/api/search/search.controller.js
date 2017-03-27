@@ -5,7 +5,9 @@ export function search(req, res) {
   PlannerModel.find({
     params
   }).limit(6).exec((err, planners) => {
-    console.log(planners);
+    if (err) res.send(err);
+    else if(!planners) res.status(200).json('No planners match search');
+    else res.status(200).json(planners);
   })
 }
 
