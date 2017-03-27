@@ -62,4 +62,5 @@ UserSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, user.password);
   })
 }
+
 export default mongoose.model('User', UserSchema);
