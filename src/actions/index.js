@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTH_USER, SET_CURRENT_CLIENT } from './types';
+import { AUTH_USER, SET_CURRENT_CLIENT, CHANGE_CLIENT_INFO } from './types';
 import { browserHistory } from 'react-router';
 
 const PLANNER_URL = 'http://localhost:3000/api/';
@@ -35,7 +35,7 @@ export function signupPlanner({email, password}){
     }
   }
 
-export function updateClientInfo(){
+export function updateClientInfo(values){
     return function(dispatch){
         console.log('hello');
     }

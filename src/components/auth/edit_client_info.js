@@ -33,6 +33,7 @@ const renderInput = function ({input, label, type, meta: {touched, error } }){
 
 class EditClientInfo extends Component {
     handleFormSubmit(values){
+        event.preventDefault();
         console.log(values);
     }
 
@@ -46,9 +47,9 @@ class EditClientInfo extends Component {
 
         return (
             <form onClick={handleChange.bind(this)} onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-                <Field name='name' component={renderInput} label='Name' type='text' value={this.props.active_client.name}/>
-                <Field name='email' component={renderInput} label='Email' type='text' value={this.props.active_client.email}/>
-                <Field name='phoneNumber' component={renderInput} label='Phone Number' type='number' value={this.props.active_client.phoneNumber}/>
+                <Field name='name' component={renderInput} label='Name' type='text'/>
+                <Field name='email' component={renderInput} label='Email' type='text'/>
+                <Field name='phoneNumber' component={renderInput} label='Phone Number'/>
                 <button className="btn btn-primary">Change Info</button>
             </form>
         );
