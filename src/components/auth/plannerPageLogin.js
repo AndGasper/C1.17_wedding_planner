@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styles from '../app.css';
-import NavLink from '../nav_link';
-import { reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { Link } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -20,30 +20,81 @@ const paperStyle = {
 
 };
 
-const plannerPageLogin = () => (
-    <div className = {styles.loginPage}>
-        <h2>Wedding Planner Login</h2>
-        <div>
-            <form>
-                <br/>
-                <label htmlFor="username">Username:</label>
-                <input id="username" type="text"/>
-                <br/>
-                <br/>
-                <label htmlFor="password"> Password: </label>
-                <input id="password" type="password"/>
-                <br/>
-                <br/>
-            </form>
+const createInput = function(input, type, error){
+    const inputClass = `form-control ${error ? 'form-control-danger' : ''}`;
+    switch (type){
+        case 'textarea':
+            return (
+                <textarea {...input} className={inputClass}></textarea>
+            );
+        default:
+            return (
+                <input {...input} className={inputClass} type={type} />
+            );
+    }
+}
 
-            <Link to="/planner_profile"><RaisedButton label="Login" secondary={true} style={style}/></Link>
-            <br />
-            <Link to="/planner_signup"><RaisedButton label="Sign Up" secondary={true} style={style}/></Link>
 
-            <br/>
-            <NavLink to="/" >Back to Home</NavLink>
+const renderInput = function ({input, label, type, meta: {touched, error } }){
+    return(
+        <div className={'form-group row'}>
+            <label className='col-sm-3 col-form-label'>{ label }</label>
+            <div className='col-sm-9'>
+                {createInput(input, type)}
+                <div className='form-control-feedback'></div>
+            </div>
         </div>
-    </div>
-);
+    )
+}
 
-export default plannerPageLogin;
+class PlannerPageLogin extends Component {
+    handleFormSubmit(values){
+        console.log(values);
+        this.props.plannerLogin(values);
+    }
+
+    render(){
+        const {  handleSubmit } = this.props;
+
+        return (
+            <form>
+                <Field name='email' component={renderInput} label='Email' type='text' />
+                <Field name='password' component={renderInput} label='Password' type='password' />
+                <Link to="/planner_signup"><RaisedButton label="Sign Up" secondary={true} style={style}/></Link>
+                <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Login" secondary={true} style={style}/>
+            </form>
+        );
+    }
+}
+
+function validate(values){
+    const error = {};
+
+    if (!values.email){
+        error.email = 'Please enter an email';
+    }
+    if(!values.password){
+        error.password = 'Please enter a password';
+    }
+    if(!values.passwordConfirm){
+        error.passwordConfirm = 'Please confirm password';
+    }
+
+    if(values.password !== values.passwordConfirm){
+        error.passwordConfirm = 'Passwords don\'t match';
+    }
+
+    return error;
+}
+
+function mapStateToProps(state){
+    return { errorMsg: state.auth}
+}
+
+const componentWithForm = reduxForm({
+    form: 'form',
+    fields: ['email', 'password', 'passwordConfirm'],
+    validate
+})(PlannerPageLogin)
+
+export default connect(mapStateToProps, actions)(componentWithForm) ;
