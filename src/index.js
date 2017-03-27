@@ -25,7 +25,7 @@ ReactDOM.render(
                 <Route path="Login" component={Login} />
                 <Route path="client_login_page" component={ClientLogin} />
                 <Route path="planner_profile" component={PlannerProfile} />
-                <Route path="plannerPageLogin" component={PlannerPageLogin} />
+                <Route path="planner_login" component={PlannerPageLogin} />
                 <Route path="questions" component={QuestionPage} />
                 <Route path='planner_signup' component={PlannerSignup} />
                 <Route path='planner_details' component={PlannerDetails} />

@@ -30,7 +30,7 @@ export function signupPlanner({email, password}){
         axios.post(`${BASE_URL}wedding_planner`, {password, email}).then(response => {
             dispatch({type: AUTH_USER});
             localStorage.setItem('id', response.data._id);
-            browserHistory.push('/planner_details');
+            browserHistory.push('/planner_login');
         }).catch((err) => {
             dispatch("error");
         });
