@@ -27,9 +27,6 @@ app.use(session({ secret: secret }));
 app.use(bodyParser.json({type: '*/*'}));
 
 app.use(express.static('public'));
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '..', 'public', 'index.html'));
-});
 require('./routes').default(app);
 
 app.listen(3000, function() {
