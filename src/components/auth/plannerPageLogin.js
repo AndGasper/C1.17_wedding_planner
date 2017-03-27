@@ -49,7 +49,6 @@ const renderInput = function ({input, label, type, meta: {touched, error } }){
 
 class PlannerPageLogin extends Component {
     handleFormSubmit(values){
-        console.log(values);
         this.props.plannerLogin(values);
     }
 

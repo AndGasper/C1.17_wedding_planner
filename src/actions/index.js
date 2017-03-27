@@ -43,7 +43,11 @@ export function signupPlanner({email, password}){
         axios.post(`${BASE_URL}wedding_planner/login`, values).then(response => {
             dispatch({type: AUTH_USER});
             console.log(response);
-            browserHistory.push('/planner_profile');
+            if(response.data === "Credentials are wrong"){
+                return false;
+            } else {
+                browserHistory.push('/planner_profile');
+            }
         }).catch(err => {
             console.log(err);
         });
