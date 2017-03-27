@@ -1,26 +1,24 @@
 import axios from 'axios';
-import { AUTH_USER, SET_CURRENT_CLIENT, CHANGE_CLIENT_INFO } from './types';
+import { AUTH_USER, SET_CURRENT_CLIENT, CHANGE_CLIENT_INFO, LOGOUT_CLIENT } from './types';
 import { browserHistory } from 'react-router';
 
 const BASE_URL = 'http://localhost:3000/api/';
 
-export function signinClient(values){
+export function ClientSignin(values){
     return function(dispatch){
-        const request = axios.get(`${BASE_URL}user`).then(resp => {
-            for(let i=0; i< resp.data.length; i++){
-                if(resp.data[i].email === values.email){
-                    console.log('User\'s info: ', resp.data[i]);
-                    dispatch({
-                        type: SET_CURRENT_CLIENT,
-                        payload: resp.data[i]
-                    })
-                }
-            }
+        let email = values.email;
+        let password = values.password;
+        axios.post(`${BASE_URL}user/login`, {email, password}).then(response => {
+            dispatch({
+                type: SET_CURRENT_CLIENT,
+                payload: response.data
+            });
+            console.log('user that logged in: ', response.data);
+            localStorage.setItem('id', response.data);
             browserHistory.push('/client_login_page');
-
         }).catch(err => {
             console.log(err);
-        });
+        })
     }
 }
 
@@ -36,6 +34,11 @@ export function signupClient({email, password}){
     };
 }
 
+export function signoutClient(){
+    localStorage.removeItem('id');
+    return { type: LOGOUT_CLIENT };
+}
+
 export function signupPlanner({email, password}){
     return function(dispatch){
         axios.post(`${BASE_URL}wedding_planner`, {password, email}).then(response => {
@@ -48,12 +51,15 @@ export function signupPlanner({email, password}){
     };
   }
 
-export function updateClient({name, email, phoneNumber}){
+export function updateClient(values){
     return function(dispatch){
-        var id = localStorage.getItem('id');
-        axios.put(`${BASE_URL}user/${id}`, {name, email, phoneNumber }).then(response => {
+        let email = values.email;
+        let name = values.name;
+        let phoneNumber = values.phoneNumber;
+        console.log(values);
+        axios.put(`${BASE_URL}user/me`, {name,email, phoneNumber}).then(response => {
             dispatch({type: CHANGE_CLIENT_INFO});
-            browserHistory.push('/Login');
+            browserHistory.push('/');
         }).catch((err) => {
             dispatch("error");
         });
@@ -99,4 +105,7 @@ export function updateClientInfo(values){
         console.log('hello');
     }
 }
+
+//post api/user/login {email, password}
+//resp > user info
 

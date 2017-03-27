@@ -31,6 +31,10 @@ const toolbarStyle = {
 
 class Header extends Component {
 
+    handleSignOut(){
+        window.confirm('You sure you would like to log out?');
+    }
+
     renderAuthLinks(){
         const { authenticated } = this.props;
         if(authenticated){
@@ -38,7 +42,7 @@ class Header extends Component {
                 <ToolbarGroup>
                     <FlatButton label="About Us" default={true} style={toolbarStyle.aboutButton}/>
                     <ToolbarSeparator/>
-                    <Link to="/" ><FlatButton label="Sign Out" secondary={true} style={toolbarStyle.signinButton}/></Link>
+                    <Link to="/signout"><FlatButton onClick={this.handleSignOut.bind(this)} label="Sign Out" secondary={true} style={toolbarStyle.signinButton}/></Link>
                 </ToolbarGroup>
             )
         }

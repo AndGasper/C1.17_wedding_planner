@@ -57,7 +57,9 @@ export function logout(req, res) {
 }
 
 export function isLoggedIn(req, res, next) {
+    console.log(req);
   if(req.isAuthenticated()) {
+    console.log('in this');
     return next();
   }
   res.redirect('/');

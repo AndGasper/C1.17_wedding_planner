@@ -40,3 +40,9 @@ router.get('/facebook/callback', (req, res, next) => {
 router.get('/login/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
 export default router;
+
+/*.put('localhost:3000/api/user/me', () => {
+    data: {
+        "name"
+    }:
+})*/
