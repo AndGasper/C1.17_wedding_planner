@@ -4,7 +4,7 @@ export function search(req, res) {
   let params = fuzzyObject(req.user.preferences);
   PlannerModel.find({
     params
-  }).limit(5).exec((err, planners) => {
+  }).limit(6).exec((err, planners) => {
     console.log(planners);
   })
 }
