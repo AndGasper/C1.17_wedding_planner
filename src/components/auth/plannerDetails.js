@@ -58,7 +58,7 @@ class PlannerDetails extends Component {
                 <Field name='name' component={renderInput} label='Company Name' type='text' />
                 <Field name='website' component={renderInput} label='Website' type='text' />
                 <Field name='description' component={renderInput} label='Description' type='textarea' />
-                <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Sign Up" secondary={true} style={style}/>
+                <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Update Profile" secondary={true} style={style}/>
             </form>
         );
     }
