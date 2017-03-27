@@ -34,8 +34,17 @@ export function signupPlanner({email, password}){
         }).catch((err) => {
             dispatch("error");
         });
-    }
-  };
+    };
+  }
+
+  export function plannerLogin({email, password}){
+      return function(dispatch){
+          axios.get(`${BASE_URL}wedding_planner`, {password, email}).then(response => {
+            dispatch({'type': AUTH_USER});
+            
+          });
+      };
+  }
 
   export function updatePlanner({name, website, description}){
     return function(dispatch){
