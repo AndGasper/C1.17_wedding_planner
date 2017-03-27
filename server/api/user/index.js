@@ -24,7 +24,7 @@ router.post('/', (req, res, next) => {
 router.post('/login', (req, res, next) => {
     passport.authenticate('local-login', function(err, user, info) {
       if (err) { return next(err) }
-      if (!user) { return res.json('User Not Found') }
+      if (!user) { return res.json('Credentials are wrong') }
       res.json(user);
     })(req, res, next);
 });
@@ -33,7 +33,7 @@ router.delete('/', isLoggedIn, deleteUser);
 router.get('/facebook/callback', (req, res, next) => {
   passport.authenticate('facebook', (err, user) => {
       if (err) { return next(err) }
-      if (!user) { return res.json('User Not Found') }
+      if (!user) { return res.json('Credentials are wrong') }
       res.json(user);
     })(req, res, next);
 });

@@ -207,8 +207,6 @@ module.exports = (passport) => {
         passReqToCallback   : true // allows us to pass back the entire request to the callback
     },
     function(req, email, password, done) { // callback with email and password from our form
-      console.log("Email:", email);
-      console.log("Password:", password);
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
         WeddingPlanner.findOne({ 'email' :  email }, function(err, planner) {
@@ -225,7 +223,6 @@ module.exports = (passport) => {
             }
 
             // if the user is found but the password is wrong
-            console.log(planner.validPassword(password));
             if (!planner.validPassword(password)) {
                 console.log("Not a valid password");
                 return done(null, false); // create the loginMessage and save it to session as flashdata
