@@ -21,10 +21,10 @@ const toolbarStyle = {
         height: '60px'
     },
     aboutButton: {
-        color: 'white'
+        color: 'black'
     },
     signinButton: {
-        color: 'black'
+        color: 'white'
     }
 };
 
