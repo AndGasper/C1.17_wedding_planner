@@ -8,6 +8,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import Menu from 'material-ui/svg-icons/navigation/menu';
 
 
 
@@ -63,7 +64,7 @@ class Header extends Component {
                         </ToolbarGroup>
                         <ToolbarGroup>
                             <IconMenu
-                                iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+                                iconButtonElement={<IconButton><Menu /></IconButton>}
                                 anchorOrigin={{horizontal: 'right', vertical: 'top'}}
                                 targetOrigin={{horizontal: 'right', vertical: 'top'}}
                             >

@@ -202,7 +202,7 @@ a:hover {
 .app {
     color: #336699;
     width: 100vw;
-    height: 92vh;
+    height: 90vh;
     display: flex;
     justify-content: center;
     margin-top: 10px;
@@ -212,7 +212,7 @@ a:hover {
 .header {
     opacity: 0.5;
     width: 100%;
-    height: 8vmin;
+    height: 8vh;
     margin-bottom: 10px;
 
 }
