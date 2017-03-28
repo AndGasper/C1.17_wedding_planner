@@ -10,4 +10,3 @@ export default function(app) {
   app.use('/api/search', search);
   app.use('/api/wedding_planner', planner);
 }
-
