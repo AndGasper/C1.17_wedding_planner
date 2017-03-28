@@ -5,6 +5,7 @@ import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui
 import {purple500} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 
 
@@ -32,7 +33,10 @@ const toolbarStyle = {
 class Header extends Component {
 
     handleSignOut(){
-        window.confirm('You sure you would like to log out?');
+        let resp = window.confirm('You sure you would like to log out?');
+        if(resp == true){
+            browserHistory.push('/signout');
+        }
     }
 
     renderAuthLinks(){
@@ -42,7 +46,7 @@ class Header extends Component {
                 <ToolbarGroup>
                     <FlatButton label="About Us" default={true} style={toolbarStyle.aboutButton}/>
                     <ToolbarSeparator/>
-                    <Link to="/signout"><FlatButton onClick={this.handleSignOut.bind(this)} label="Sign Out" secondary={true} style={toolbarStyle.signinButton}/></Link>
+                    <FlatButton onClick={this.handleSignOut.bind(this)} label="Sign Out" secondary={true} style={toolbarStyle.signinButton}/>
                 </ToolbarGroup>
             )
         }
