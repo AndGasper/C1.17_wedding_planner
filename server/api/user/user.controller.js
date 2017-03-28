@@ -51,8 +51,13 @@ export function deleteUser(req, res) { // TODO
 }
 
 export function logout(req, res) {
-  req.logout();
+  console.log('logout called');
+  req.logOut();
   req.session.destroy((err) => {
+    if(err){
+      console.log(err);
+    }
+    res.clearCookie('connect.sid');
     res.redirect('/');
   });
 }
