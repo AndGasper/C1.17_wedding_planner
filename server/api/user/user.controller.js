@@ -52,7 +52,9 @@ export function deleteUser(req, res) { // TODO
 
 export function logout(req, res) {
   req.logout();
-  res.redirect('/');
+  req.session.destroy((err) => {
+    res.redirect('/');
+  });
 }
 
 export function isLoggedIn(req, res, next) {
