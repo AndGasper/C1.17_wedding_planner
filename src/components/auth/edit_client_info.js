@@ -48,7 +48,9 @@ class ClientInfo extends Component {
     handleFormSubmit(values){
         console.log('client info being changed: ', values);
         this.props.updateClient(values);
+        this.props.handleProfileClick();
     }
+
 
     render(){
         const { handleSubmit } = this.props;

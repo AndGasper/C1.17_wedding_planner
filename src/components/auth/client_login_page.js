@@ -1,8 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
+
+const style = {
+    margin: 12,
+};
+
+const paperStyleHeader = {
+    width: 500,
+    backgroundColor: 'white',
+    color: 'gray',
+    padding: '10px',
+    fontSize: '.9em',
+    marginTop: '3%'
+};
+const paperStyleAbout = {
+    width: 500,
+    backgroundColor: 'white',
+    color: 'gray',
+    padding: '10px',
+    fontSize: '.9em',
+};
+const paperStylePref= {
+    width: 500,
+    backgroundColor: 'white',
+    color: 'gray',
+    padding: '10px',
+    fontSize: '.9em',
+};
 
 class clientLogin extends Component {
+
     renderName(){
         const { name } = this.props.active_client;
         if(name){
@@ -48,7 +78,12 @@ class clientLogin extends Component {
 
         return (
             <div>
-                <h1 id="client-name">Welcome {this.renderHeaderName()}</h1>
+                <Paper zDepth={4} style={paperStyleHeader}>
+                    <h1>Welcome {this.renderHeaderName()}</h1>
+                </Paper>
+                <Paper>
+
+                </Paper>
                 <div>
                     <div onClick={handleChange.bind(this)} id="client-info">
                         <h3 className="client-about">About You</h3>

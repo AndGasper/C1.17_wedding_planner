@@ -62,7 +62,7 @@ class Header extends Component {
                         <ToolbarGroup>
                             <FlatButton label="About Us" default={true} style={toolbarStyle.aboutButton}/>
                             <ToolbarSeparator/>
-                            <FlatButton onClick={this.handleSignOut.bind(this)} label="Sign Out" secondary={true} style={toolbarStyle.signinButton}/>
+                            <FlatButton label="Sign Out" secondary={true} style={toolbarStyle.signinButton}/>
                         </ToolbarGroup>
                     </Toolbar>
                 </div>

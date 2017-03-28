@@ -86,7 +86,6 @@ export function updateClient(values){
         console.log(values);
         axios.put(`${BASE_URL}user/me`, {name,email, phoneNumber}).then(response => {
             dispatch({type: CHANGE_CLIENT_INFO});
-            browserHistory.push('/');
         }).catch((err) => {
             dispatch("error");
         });
@@ -120,7 +119,7 @@ export function updateClient(values){
         var id = localStorage.getItem('id');
         axios.put(`${BASE_URL}wedding_planner/${id}`, {name, website, description}).then(response => {
             dispatch({type: AUTH_USER});
-            browserHistory.push('/planner_profile');
+            browserHistory.push('/');
         }).catch((err) => {
             dispatch("error");
         });
