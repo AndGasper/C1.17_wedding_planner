@@ -46,8 +46,11 @@ class Questions extends Component {
 
     render() {
         return (
-            <div className={`${styles.imagesDiv}`}>
+            <div className={`${styles.imagesTitle}`}>
+                <h4>Click the image that best represents your ideal wedding</h4>
+                <div className={`${styles.imagesDiv}`}>
                     {this.displayImages()}
+                </div>
             </div>
         )
     }
@@ -62,4 +65,3 @@ function mapStateToProps(state) {
 
 
 export default connect(mapStateToProps, actions)(Questions);
-

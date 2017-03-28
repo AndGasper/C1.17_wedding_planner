@@ -1,6 +1,6 @@
 
 import {UPDATE_PREFS, SEND_PREFS_TO_SERVER, GET_COUPLE_PROFILE} from '../action/types'
-import { SET_CURRENT_CLIENT } from '../actions/types';
+import { SET_CURRENT_CLIENT, CHANGE_CLIENT_INFO, LOGOUT_CLIENT } from '../actions/types';
 
 function coupleData(state = [], action) {
     switch(action.type) {
@@ -17,8 +17,18 @@ function coupleData(state = [], action) {
         case SET_CURRENT_CLIENT:
             return {
                     ...state,
-                    active_client: action.payload
-                }
+                    active_client: action.payload,
+                    authenticated: true
+                };
+        case CHANGE_CLIENT_INFO:
+            return {
+                ...state
+            };
+        case LOGOUT_CLIENT:
+            return {
+                ...state,
+                authenticated: false
+            }
     }
     return state;
 }

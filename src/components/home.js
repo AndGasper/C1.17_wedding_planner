@@ -24,7 +24,7 @@ class Home extends Component {
     }
     render(){
         return (
-            <div>
+            <div className="home">
                 <div className={`${styles.homePage}`} >
                     <div>
                         <div className={`${styles.homeText}`}>

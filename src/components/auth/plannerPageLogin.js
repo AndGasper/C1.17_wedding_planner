@@ -87,7 +87,7 @@ function validate(values){
 }
 
 function mapStateToProps(state){
-    return { errorMsg: state.auth}
+    return { errorMsg: state.auth }
 }
 
 const componentWithForm = reduxForm({

@@ -1,28 +1,42 @@
 import axios from 'axios';
-import { AUTH_USER, SET_CURRENT_CLIENT } from './types';
+import { AUTH_USER, SET_CURRENT_CLIENT, CHANGE_CLIENT_INFO, LOGOUT_CLIENT, SET_CURRENT_PLANNER } from './types';
 import { browserHistory } from 'react-router';
 
 const BASE_URL = 'http://localhost:3000/api/';
 
-export function signinClient(values){
+export function ClientSignin(values){
     return function(dispatch){
-        const request = axios.get(`${BASE_URL}user`).then(resp => {
-            for(let i=0; i< resp.data.length; i++){
-                if(resp.data[i].email === values.email){
-                    console.log('User\'s info: ', resp.data[i]);
-                    dispatch({
-                        type: SET_CURRENT_CLIENT,
-                        payload: resp.data[i]
-                    })
-                }
-            }
+        let email = values.email;
+        let password = values.password;
+        axios.post(`${BASE_URL}user/login`, {email, password}).then(response => {
+            dispatch({
+                type: SET_CURRENT_CLIENT,
+                payload: response.data
+            });
+            console.log('user that logged in: ', response.data);
+            localStorage.setItem('id', response.data);
             browserHistory.push('/client_login_page');
-
-            
         }).catch(err => {
             console.log(err);
-        });
+        })
     }
+}
+
+export function signupClient({email, password}){
+    return function(dispatch){
+        axios.post(`${BASE_URL}user`, {password, email}).then(response => {
+            dispatch({type: AUTH_USER});
+            localStorage.setItem('id', response.data._id);
+            browserHistory.push('/Login');
+        }).catch((err) => {
+            dispatch("error");
+        });
+    };
+}
+
+export function signoutClient(){
+    localStorage.removeItem('id');
+    return { type: LOGOUT_CLIENT };
 }
 
 export function signupPlanner({email, password}){
@@ -37,11 +51,29 @@ export function signupPlanner({email, password}){
     };
   }
 
+export function updateClient(values){
+    return function(dispatch){
+        let email = values.email;
+        let name = values.name;
+        let phoneNumber = values.phoneNumber;
+        console.log(values);
+        axios.put(`${BASE_URL}user/me`, {name,email, phoneNumber}).then(response => {
+            dispatch({type: CHANGE_CLIENT_INFO});
+            browserHistory.push('/');
+        }).catch((err) => {
+            dispatch("error");
+        });
+    }
+}
+
   export function plannerLogin(values){
       const id = localStorage.getItem('id');
       return function(dispatch){
         axios.post(`${BASE_URL}wedding_planner/login`, values).then(response => {
-            dispatch({type: AUTH_USER});
+            dispatch({
+                type: SET_CURRENT_PLANNER,
+                payload: response.data
+            });
             console.log(response);
             if(response.data === "Credentials are wrong"){
                 return false;
@@ -64,5 +96,14 @@ export function signupPlanner({email, password}){
             dispatch("error");
         });
     }
-  };
+  }
+
+export function updateClientInfo(values){
+    return function(dispatch){
+        console.log('hello');
+    }
+}
+
+//post api/user/login {email, password}
+//resp > user info
 
