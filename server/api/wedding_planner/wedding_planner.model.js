@@ -24,7 +24,7 @@ const WeddingPlannerSchema = new mongoose.Schema({
   planner: {
     type: Boolean,
     default: true
-  }
+  },
   website: String,
   address: String,
   email: String,
