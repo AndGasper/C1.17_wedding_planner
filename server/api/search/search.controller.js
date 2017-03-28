@@ -14,8 +14,9 @@ export function search(req, res) {
         res.status(404).json(err);
       });
   }
+  let params = fuzzyObject(req.body.preferences);
   PlannerModel.find({
-    fuzzyObject(req.body.preferences)
+    params
   }).select('-password').exec((err, planners) => {
     if(err) res.send(err);
     if(!planners) res.send('No planners match your search');
