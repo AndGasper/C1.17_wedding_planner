@@ -11,7 +11,6 @@ import PlannerSignup from './components/auth/plannerSignup';
 import plannerData from './data/plannerData'
 import rootReducer from './reducers/index';
 
-
 const defaultState = {
     coupleData,
     plannerData,

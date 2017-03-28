@@ -49,7 +49,6 @@ const renderInput = function ({input, label, type, meta: {touched, error } }){
 
 class PlannerPageLogin extends Component {
     handleFormSubmit(values){
-        console.log(values);
         this.props.plannerLogin(values);
     }
 
@@ -88,7 +87,7 @@ function validate(values){
 }
 
 function mapStateToProps(state){
-    return { errorMsg: state.auth}
+    return { errorMsg: state.auth }
 }
 
 const componentWithForm = reduxForm({

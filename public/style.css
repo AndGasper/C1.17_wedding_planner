@@ -30,6 +30,13 @@ h2 {
 h3 {
     text-align: center;
 }
+h4 {
+    color: deeppink;
+    font-size: 2.0em;
+    font-family: 'Perpetua', 'sans-serif';
+    text-align: center;
+}
+
 
 .homePage, .loginPage {
     height: 100vh;
@@ -203,3 +210,5 @@ a:hover {
 .form-control {
     width: 90%;
 }
+
+

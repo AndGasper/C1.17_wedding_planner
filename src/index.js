@@ -7,7 +7,7 @@ import store, { history } from './store';
 import App from './components/app';
 import Home from './components/home';
 import Login from './components/auth/Login';
-import PlannerProfile from './components/planner_profile';
+import PlannerProfile from './components/auth/planner_profile';
 import PlannerPageLogin from './components/auth/plannerPageLogin';
 import QuestionPage from './components/questions';
 import QuestionImages from './components/questionsImages';
@@ -21,7 +21,6 @@ import Signout from './components/auth/signout';
 import Results from './components/results';
 import PlannerDetail from './components/plannerDetail';
 import ResultsList from './components/resultsList';
-
 
 ReactDOM.render(
     <Provider store={store}>

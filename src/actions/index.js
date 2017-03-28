@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTH_USER, SET_CURRENT_CLIENT, CHANGE_CLIENT_INFO, LOGOUT_CLIENT } from './types';
+import { AUTH_USER, SET_CURRENT_CLIENT, CHANGE_CLIENT_INFO, LOGOUT_CLIENT, SET_CURRENT_PLANNER, CHANGE_PLANNER_INFO } from './types';
 import { browserHistory } from 'react-router';
 
 const BASE_URL = 'http://localhost:3000/api/';
@@ -70,7 +70,6 @@ export function signupPlanner({email, password}){
     return function(dispatch){
         axios.post(`${BASE_URL}wedding_planner`, {password, email}).then(response => {
             dispatch({type: AUTH_USER});
-            localStorage.setItem('id', response.data._id);
             browserHistory.push('/planner_login');
         }).catch((err) => {
             dispatch("error");
@@ -95,30 +94,30 @@ export function updateClient(values){
   export function plannerLogin(values){
       const id = localStorage.getItem('id');
       return function(dispatch){
-        axios.get(`${BASE_URL}wedding_planner`).then(resp => {
-            for(let i=0; i< resp.data.length; i++){
-                if(resp.data[i].email === values.email){
-                    console.log('User\'s info: ', resp.data[i]);
-                    dispatch({
-                        type: SET_CURRENT_CLIENT,
-                        payload: resp.data[i]
-                    });
-                }
+        axios.post(`${BASE_URL}wedding_planner/login`, values).then(response => {
+            dispatch({
+                type: SET_CURRENT_PLANNER,
+                payload: response.data
+            });
+            console.log(response);
+            if(response.data === "Credentials are wrong"){
+                return false;
+            } else {
+                browserHistory.push('/planner_profile');
             }
-            browserHistory.push('/planner_profile');
-
-            
         }).catch(err => {
             console.log(err);
         });
     };
   }
 
-  export function updatePlanner({name, website, description}){
+  export function updatePlanner(values){
     return function(dispatch){
-        var id = localStorage.getItem('id');
-        axios.put(`${BASE_URL}wedding_planner/${id}`, {name, website, description}).then(response => {
-            dispatch({type: AUTH_USER});
+        let name = values.name;
+        let website = values.website;
+        let description = values.description;
+        axios.put(`${BASE_URL}wedding_planner/me`, {name, website, description}).then(response => {
+            dispatch({type: CHANGE_PLANNER_INFO});
             browserHistory.push('/');
         }).catch((err) => {
             dispatch("error");
