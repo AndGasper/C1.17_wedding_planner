@@ -12,14 +12,14 @@ class Cost extends Component {
         if (value) {
             console.log('sending to server: ', {preferences: this.props.coupleData});
             this.props.sendPrefsToServer({preferences: this.props.coupleData});
-            history.push('/')
+            history.push('/results')
         }
     }
 
     render() {
         return (
             <div className={`${styles.budgetTitle}`}>
-                <h4>Wedding Budget</h4>
+                <h3>Wedding Budget</h3>
                 <div className={`${styles.budgetDiv}`}>
                     <div className="btn-group">
                         <form name="budgetForm" onClick={this.handleClick.bind(this)}>

@@ -8,10 +8,13 @@ import promise from 'redux-promise';
 import coupleData from './data/coupleData';
 import images from './data/images';
 import PlannerSignup from './components/auth/plannerSignup';
-import rootReducer from './reducers';
+import plannerData from './data/plannerData'
+import rootReducer from './reducers/index';
+
 
 const defaultState = {
     coupleData,
+    plannerData,
     imageData: images
     
 };
