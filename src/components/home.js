@@ -3,6 +3,8 @@ import styles from './app.css';
 import { Link } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 
 const style = {
@@ -22,7 +24,13 @@ class Home extends Component {
     constructor(props){
         super(props);
     }
+
+    handleProfile(){
+        console.log('yo this is props', this.props);
+        this.props.handleProfileClick();
+    }
     render(){
+
         return (
             <div className="home">
                 <div className={`${styles.homePage}`} >
@@ -48,6 +56,8 @@ class Home extends Component {
                                 <Link to="/questions"><RaisedButton label="Get Started" secondary={true} style={style}/></Link>
                                 <br />
                                 <Link to="/planner_login"><RaisedButton label="Wedding Planner?" secondary={true} style={style}/></Link>
+                                <br/>
+                                <RaisedButton onClick={this.handleProfile.bind(this)} label="Profile" secondary={true} style={style}/>
                             </div>
                         </div>
 
@@ -58,4 +68,11 @@ class Home extends Component {
     }
 }
 
-export default Home;
+function mapStateToProps(state){
+    return {
+        active_client: state.coupleData.active_client,
+        authenticated: state.coupleData.authenticated
+    }
+}
+
+export default connect(mapStateToProps, actions)(Home);

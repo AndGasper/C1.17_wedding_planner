@@ -4,6 +4,21 @@ import { browserHistory } from 'react-router';
 
 const BASE_URL = 'http://localhost:3000/api/';
 
+export function handleProfileClick(){
+    return function(dispatch){
+        axios.get(`${BASE_URL}user/me`).then(response => {
+            console.log('profile of active user:', response);
+            dispatch({
+                type: SET_CURRENT_CLIENT,
+                payload: response.data
+            });
+            browserHistory.push('/client_login_page');
+        }).catch(err => {
+            console.log('this is error ', err);
+        })
+    }
+}
+
 export function ClientSignin(values){
     return function(dispatch){
         let email = values.email;
@@ -17,7 +32,7 @@ export function ClientSignin(values){
                 window.alert('Email or Password is incorrect, Try Again');
             } else {
                 console.log('user that logged in: ', response);
-                localStorage.setItem('id', response.data);
+                localStorage.setItem('id', response);
                 browserHistory.push('/client_login_page');
             }
 
@@ -31,7 +46,6 @@ export function signupClient({email, password}){
     return function(dispatch){
         axios.post(`${BASE_URL}user`, {password, email}).then(response => {
             dispatch({type: AUTH_USER});
-            localStorage.setItem('id', response.data._id);
             browserHistory.push('/Login');
         }).catch((err) => {
             dispatch("error");
@@ -40,8 +54,16 @@ export function signupClient({email, password}){
 }
 
 export function signoutClient(){
-    localStorage.removeItem('id');
-    return { type: LOGOUT_CLIENT };
+    return function(dispatch){
+        axios.get(`${BASE_URL}user/logout`).then(response => {
+            dispatch({type: LOGOUT_CLIENT});
+            console.log('user has been logged out.', response)
+        }).catch(err => {
+            console.log('Error logging out', err)
+        })
+    }
+
+    //do get request to /api/user/logout
 }
 
 export function signupPlanner({email, password}){
@@ -105,11 +127,6 @@ export function updateClient(values){
     }
   }
 
-export function updateClientInfo(values){
-    return function(dispatch){
-        console.log('hello');
-    }
-}
 
 //post api/user/login {email, password}
 //resp > user info

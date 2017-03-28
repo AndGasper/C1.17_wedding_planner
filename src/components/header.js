@@ -50,30 +50,26 @@ class Header extends Component {
         }
     }
 
-    renderAuthLinks(){
+    renderAuthLinks1(){
         const { authenticated } = this.props;
         if(authenticated){
             return (
-                <ToolbarGroup>
-                    <FlatButton label="About Us" default={true} style={toolbarStyle.aboutButton}/>
-                    <ToolbarSeparator/>
-                    <FlatButton onClick={this.handleSignOut.bind(this)} label="Sign Out" secondary={true} style={toolbarStyle.signinButton}/>
-                </ToolbarGroup>
+                <div key='signin3' className={styles.headerToolbarWide}>
+                    <Toolbar style={toolbarStyle.toolbar} >
+                        <ToolbarGroup firstChild={true}>
+                            <Link to="/" ><ToolbarTitle style={toolbarStyle.titleWide} text="Planning The Date" /></Link>
+                        </ToolbarGroup>
+                        <ToolbarGroup>
+                            <FlatButton label="About Us" default={true} style={toolbarStyle.aboutButton}/>
+                            <ToolbarSeparator/>
+                            <FlatButton onClick={this.handleSignOut.bind(this)} label="Sign Out" secondary={true} style={toolbarStyle.signinButton}/>
+                        </ToolbarGroup>
+                    </Toolbar>
+                </div>
             )
-        }
-        return [
-            <ToolbarGroup key="signin">
-                <FlatButton label="About Us" default={true} style={toolbarStyle.aboutButton}/>
-                <ToolbarSeparator/>
-                <Link to="/Login" ><FlatButton label="Sign In" secondary={true} style={toolbarStyle.signinButton}/></Link>
-            </ToolbarGroup>
-        ]
-    }
-
-    render(){
-        return (
-            <div className={styles.header}>
-                <div className={styles.headerToolbarWide}>
+        } else {
+            return [
+                <div key='signin4' className={styles.headerToolbarWide}>
                     <Toolbar style={toolbarStyle.toolbar} >
                         <ToolbarGroup firstChild={true}>
                             <Link to="/" ><ToolbarTitle style={toolbarStyle.titleWide} text="Planning The Date" /></Link>
@@ -85,10 +81,18 @@ class Header extends Component {
                         </ToolbarGroup>
                     </Toolbar>
                 </div>
-                <div className={styles.headerToolbarShort}>
-                    <Toolbar style={toolbarStyle.toolbar} >
+            ]
+        }
+    }
+
+    renderAuthLinks2() {
+        const {authenticated} = this.props;
+        if (authenticated) {
+            return (
+                <div key='signin1' className={styles.headerToolbarShort}>
+                    <Toolbar style={toolbarStyle.toolbar}>
                         <ToolbarGroup firstChild={true}>
-                            <Link to="/" ><ToolbarTitle style={toolbarStyle.titleShort} text="Planning The Date" /></Link>
+                            <Link to="/"><ToolbarTitle style={toolbarStyle.titleShort} text="Planning The Date"/></Link>
                         </ToolbarGroup>
                         <ToolbarGroup>
                             <IconMenu
@@ -96,12 +100,45 @@ class Header extends Component {
                                 anchorOrigin={{horizontal: 'right', vertical: 'top'}}
                                 targetOrigin={{horizontal: 'right', vertical: 'top'}}
                             >
-                                <MenuItem primaryText="About" />
-                                <MenuItem primaryText="Sign In" />
+                                <MenuItem primaryText="About"/>
+                                <MenuItem primaryText="Sign Out"/>
                             </IconMenu>
                         </ToolbarGroup>
                     </Toolbar>
                 </div>
+            )
+        } else {
+            return [
+                <div key='signin2' className={styles.header}>
+                    <div className={styles.headerToolbarShort}>
+                        <Toolbar style={toolbarStyle.toolbar}>
+                            <ToolbarGroup firstChild={true}>
+                                <Link to="/"><ToolbarTitle style={toolbarStyle.titleShort}
+                                                           text="Planning The Date"/></Link>
+                            </ToolbarGroup>
+                            <ToolbarGroup>
+                                <IconMenu
+                                    iconButtonElement={<IconButton><Menu /></IconButton>}
+                                    anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+                                    targetOrigin={{horizontal: 'right', vertical: 'top'}}
+                                >
+                                    <MenuItem primaryText="About"/>
+                                    <MenuItem primaryText="Sign In"/>
+                                </IconMenu>
+                            </ToolbarGroup>
+                        </Toolbar>
+                    </div>
+                </div>
+            ]
+        }
+    }
+
+
+    render(){
+        return (
+            <div className={styles.header}>
+                {this.renderAuthLinks1()}
+                {this.renderAuthLinks2()}
             </div>
         )
     }
