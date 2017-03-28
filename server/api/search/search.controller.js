@@ -1,13 +1,25 @@
 import PlannerModel from '../wedding_planner/wedding_planner.model';
+import User from '../user/user.model';
 
 export function search(req, res) {
-  let params = fuzzyObject(req.user.preferences);
+  if(req.isAuthenticated()) {
+    userModel.findOneAndUpdate({
+        '_id': req.user._id
+      }, req.body.preferences, {
+        new: true
+      })
+      .then((user) => {
+        res.json(user);
+      }).catch((err) => {
+        res.status(404).json(err);
+      });
+  }
   PlannerModel.find({
-    params
-  }).limit(6).exec((err, planners) => {
-    if (err) res.send(err);
-    else if(!planners) res.status(200).json('No planners match search');
-    else res.status(200).json(planners);
+    fuzzyObject(req.body.preferences)
+  }).select('-password').exec((err, planners) => {
+    if(err) res.send(err);
+    if(!planners) res.send('No planners match your search');
+    res.status(200).json(planners);
   })
 }
 
