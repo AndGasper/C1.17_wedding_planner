@@ -13,7 +13,6 @@ let router = express.Router();
 
 router.get('/', index);
 router.get('/me', isLoggedIn, user);
-router.get('/isLoggedIn', isLoggedIn, loggedIn);
 router.get('/logout', isLoggedIn, logout);
 router.post('/', (req, res, next) => {
   passport.authenticate('local-signup', (err, user) => {
