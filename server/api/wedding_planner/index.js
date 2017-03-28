@@ -30,7 +30,7 @@ router.post('/login', (req, res, next) => {
                       return next(error);
                     }
                     console.log("Request Login supossedly successful.");
-                    return res.send('Login successful');
+                    return res.json(user);
                 });
     })(req, res, next)
 });
