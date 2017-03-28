@@ -21,6 +21,10 @@ const WeddingPlannerPreferencesSchema = new mongoose.Schema({
 const WeddingPlannerSchema = new mongoose.Schema({
   name: String,
   password: String,
+  planner: {
+    type: Boolean,
+    default: true
+  }
   website: String,
   address: String,
   email: String,
