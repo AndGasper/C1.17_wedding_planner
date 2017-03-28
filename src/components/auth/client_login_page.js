@@ -46,7 +46,7 @@ class clientLogin extends Component {
             )
         }
         return [
-            <h2 key='client_signin'>*Click Edit Profile Info to insert name*</h2>
+            <h4 key='client_signin'>*Click Edit Profile Info to insert name*</h4>
         ]
     }
 
@@ -58,7 +58,7 @@ class clientLogin extends Component {
             )
         }
         return [
-            <h2 key='client_signin'>*Click Edit Profile Info to insert phone number*</h2>
+            <h4 key='client_signin'>*Click Edit Profile Info to insert phone number*</h4>
         ]
     }
 
@@ -87,7 +87,7 @@ class clientLogin extends Component {
                     <h1>Welcome {this.renderHeaderName()}</h1>
                 </Paper>
                 <Paper zDepth={2} style={paperStyleAbout}>
-                    <h2>About You</h2>
+                    <h1>About You</h1>
                     <h4>Name</h4>
                     {this.renderName()}
                     <h4>Email</h4>
@@ -97,7 +97,7 @@ class clientLogin extends Component {
                     <h5 id="edit_client_info"><Link to="/edit_client_info">Edit Profile Info</Link></h5>
                 </Paper>
                 <Paper zDepth={2} style={paperStyleAbout}>
-                    <h2>Preferences</h2>
+                    <h1>Preferences</h1>
                     <h4>Images</h4>
                     <h4>*Insert Images Here*</h4>
                     <h4>Summary</h4>
