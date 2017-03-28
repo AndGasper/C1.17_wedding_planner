@@ -35,7 +35,7 @@ router.post('/login', (req, res, next) => {
     })(req, res, next)
 });
 router.get('/logout', isLoggedIn, logout)
-router.put('/', isLoggedIn, updateWeddingPlanner);
+router.put('/me', isLoggedIn, updateWeddingPlanner);
 router.delete('/', deleteWeddingPlanner);
 
 export default router;

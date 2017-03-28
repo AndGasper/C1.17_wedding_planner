@@ -7,7 +7,7 @@ import store, { history } from './store';
 import App from './components/app';
 import Home from './components/home';
 import Login from './components/auth/Login';
-import PlannerProfile from './components/planner_profile';
+import PlannerProfile from './components/auth/planner_profile';
 import PlannerPageLogin from './components/auth/plannerPageLogin';
 import QuestionPage from './components/questions';
 import QuestionImages from './components/questionsImages';

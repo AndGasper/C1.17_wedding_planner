@@ -52,11 +52,11 @@ class plannerLogin extends Component {
                 <div>
                     <div onClick={handleChange.bind(this)} id="client-info">
                         <h3 className="client-about">About You</h3>
-                        <h4 className="user-labels">Name</h4>
+                        <h4 className="user-labels">Company Name</h4>
                         {this.renderName()}
                         <h4 className="user-labels">Email</h4>
                         <h4 className="client-spec">{this.props.active_planner.email}</h4>
-                        <h4 className="user-labels">Phone Number</h4>
+                        <h4 className="user-labels">Website</h4>
                         {this.renderPhone()}
                         <h5 id="edit_client_info"><Link to="/planner_details">Edit Profile Info</Link></h5>
                     </div>

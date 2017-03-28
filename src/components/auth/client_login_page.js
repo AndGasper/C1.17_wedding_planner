@@ -31,7 +31,7 @@ class clientLogin extends Component {
         const { name } = this.props.active_client;
         if(name){
             return (
-                <span>{this.props.active_client.name}!</span>
+                <span>Back {this.props.active_client.name}!</span>
             )
         }
         return [
@@ -48,7 +48,7 @@ class clientLogin extends Component {
 
         return (
             <div>
-                <h1 id="client-name">Welcome Back {this.renderHeaderName()}</h1>
+                <h1 id="client-name">Welcome {this.renderHeaderName()}</h1>
                 <div>
                     <div onClick={handleChange.bind(this)} id="client-info">
                         <h3 className="client-about">About You</h3>

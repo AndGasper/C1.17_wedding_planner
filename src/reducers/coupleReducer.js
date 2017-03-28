@@ -27,6 +27,7 @@ function coupleData(state = [], action) {
         case LOGOUT_CLIENT:
             return {
                 ...state,
+                active_client: '',
                 authenticated: false
             }
     }
