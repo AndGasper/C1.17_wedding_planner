@@ -9,6 +9,4 @@ export default function(app) {
   app.use('/api/user', user);
   app.use('/api/search', search);
   app.use('/api/wedding_planner', planner);
-  //app.use('/api/preferences', pref);
 }
-

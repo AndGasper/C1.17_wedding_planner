@@ -14,7 +14,7 @@ export function index(req, res) {
 export function getWeddingPlanner(req, res) {
   weddingPlannerModel.findById({
     '_id': req.user._id
-  }).exec((err, planners) => {
+  }).select('-password').exec((err, planners) => {
     if (err) {
       res.status(404).json(err);
     } else {

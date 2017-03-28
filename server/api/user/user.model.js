@@ -58,4 +58,3 @@ UserSchema.methods.validPassword = function(password) {
 }
 
 export default mongoose.model('User', UserSchema);
-

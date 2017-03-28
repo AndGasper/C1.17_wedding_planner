@@ -15,7 +15,7 @@ export function index(req, res) {
 export function user(req, res) {
   userModel.findById({
     '_id': req.user._id
-  }).exec((err, user) => {
+  }).select('-password').exec((err, user) => {
     if (err) {
       res.status(404).json(err);
     } else {
@@ -25,7 +25,6 @@ export function user(req, res) {
 }
 
 export function updateUser(req, res) {
-  console.log(req.body);
   userModel.findOneAndUpdate({
       '_id': req.user._id
     }, req.body, {
@@ -57,9 +56,9 @@ export function logout(req, res) {
 }
 
 export function isLoggedIn(req, res, next) {
-    console.log(req);
+  console.log(req.isAuthenticated());
   if(req.isAuthenticated()) {
-    console.log('in this');
+    console.log('is authenticated');
     return next();
   }
   res.redirect('/');

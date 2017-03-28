@@ -17,15 +17,28 @@ router.get('/logout', isLoggedIn, logout);
 router.post('/', (req, res, next) => {
   passport.authenticate('local-signup', (err, user) => {
       if (err) { return next(err) }
-      if (!user) { return res.json('User not found') }
+      if (!user) { return res.json('Credentials are wrong') }
       res.json(user);
     })(req, res, next);
 });
 router.post('/login', (req, res, next) => {
     passport.authenticate('local-login', function(err, user, info) {
-      if (err) { return next(err) }
-      if (!user) { return res.json('Credentials are wrong') }
-      res.json(user);
+      if (err) {
+        console.log(err);
+        return next(err)
+      }
+      if (!user) {
+        console.log('credentials are wrong');
+        return res.json('Credentials are wrong')
+      }
+      req.login(user, (error) => {
+                    if (error) {
+                      console.log(err);
+                      return next(error);
+                    }
+                    console.log("Request Login supossedly successful.");
+                    return res.send('Login successful');
+                });
     })(req, res, next);
 });
 router.put('/me', isLoggedIn, updateUser);
@@ -34,7 +47,14 @@ router.get('/facebook/callback', (req, res, next) => {
   passport.authenticate('facebook', (err, user) => {
       if (err) { return next(err) }
       if (!user) { return res.json('Credentials are wrong') }
-      res.json(user);
+      req.login(user, (error) => {
+                    if (error) {
+                      console.log(err);
+                      return next(error);
+                    }
+                    console.log("Request Login supossedly successful.");
+                    return res.send('Login successful');
+                });
     })(req, res, next);
 });
 router.get('/login/facebook', passport.authenticate('facebook', { scope : 'email' }));
