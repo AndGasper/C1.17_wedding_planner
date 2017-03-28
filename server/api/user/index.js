@@ -47,7 +47,14 @@ router.get('/facebook/callback', (req, res, next) => {
   passport.authenticate('facebook', (err, user) => {
       if (err) { return next(err) }
       if (!user) { return res.json('Credentials are wrong') }
-      res.json(user);
+      req.login(user, (error) => {
+                    if (error) {
+                      console.log(err);
+                      return next(error);
+                    }
+                    console.log("Request Login supossedly successful.");
+                    return res.send('Login successful');
+                });
     })(req, res, next);
 });
 router.get('/login/facebook', passport.authenticate('facebook', { scope : 'email' }));
