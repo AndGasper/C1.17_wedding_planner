@@ -63,3 +63,7 @@ export function isLoggedIn(req, res, next) {
   }
   res.redirect('/');
 }
+
+export function loggedIn(req, res, next) {
+  res.json(res.user);
+}
