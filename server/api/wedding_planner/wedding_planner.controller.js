@@ -75,8 +75,11 @@ export function logout(req, res) {
 }
 
 export function isLoggedIn(req, res, next) {
-  if(req.isAuthenticated()) {
+  console.log(req.session);
+  if(req.user) {
+    console.log('authenticated');
     return next();
   }
+  console.log('not authenticated');
   res.redirect('/');
 }

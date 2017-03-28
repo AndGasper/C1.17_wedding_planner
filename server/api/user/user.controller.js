@@ -56,6 +56,7 @@ export function logout(req, res) {
 }
 
 export function isLoggedIn(req, res, next) {
+  console.log(req);
   if(req.isAuthenticated()) {
     console.log('is authenticated');
     return next();

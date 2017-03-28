@@ -30,7 +30,7 @@ router.post('/login', (req, res, next) => {
                     }
                     return res.json(user);
                 });
-    })(req, res, next)
+    })(req, res, next);
 });
 router.get('/logout', isLoggedIn, logout)
 router.put('/me', isLoggedIn, updateWeddingPlanner);
