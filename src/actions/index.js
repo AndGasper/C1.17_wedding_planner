@@ -31,7 +31,7 @@ export function ClientSignin(values){
             if(response.data === 'Credentials are wrong'){
                 window.alert('Email or Password is incorrect, Try Again');
             } else {
-                console.log('user that logged in: ', response);
+                console.log('user that logged in: ', response.data);
                 localStorage.setItem('id', response);
                 browserHistory.push('/client_login_page');
             }
@@ -78,7 +78,6 @@ export function signupPlanner({email, password}){
   }
 
 export function updateClient(values){
-    debugger;
     return function(dispatch){
         let email = values.email;
         let name = values.name;
@@ -86,7 +85,6 @@ export function updateClient(values){
         console.log(values);
         axios.put(`${BASE_URL}user/me`, {name,email, phoneNumber}).then(response => {
             dispatch({type: CHANGE_CLIENT_INFO});
-            browserHistory.push('/');
         }).catch((err) => {
             dispatch("error");
         });
@@ -120,13 +118,31 @@ export function updateClient(values){
         let description = values.description;
         axios.put(`${BASE_URL}wedding_planner/me`, {name, website, description}).then(response => {
             dispatch({type: CHANGE_PLANNER_INFO});
-            browserHistory.push('/planner_profile');
+            browserHistory.push('/');
         }).catch((err) => {
             dispatch("error");
         });
     }
   }
 
+  /*export function getCookie(cname) {
+      return function(dispatch){
+          var name = cname + "=";
+          var decodedCookie = decodeURIComponent(document.cookie);
+          var ca = decodedCookie.split(';');
+          for(var i = 0; i <ca.length; i++) {
+              var c = ca[i];
+              while (c.charAt(0) == ' ') {
+                  c = c.substring(1);
+              }
+              if (c.indexOf(name) == 0) {
+                  return c.substring(name.length, c.length);
+              }
+          }
+          return "";
+      }
+
+}*/
 
 //post api/user/login {email, password}
 //resp > user info

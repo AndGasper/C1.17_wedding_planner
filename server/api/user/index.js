@@ -12,6 +12,7 @@ let router = express.Router();
 // all routes are relative to /api/couple
 
 router.get('/', index);
+router.get('/status', loggedIn);
 router.get('/me', isLoggedIn, user);
 router.get('/logout', isLoggedIn, logout);
 router.post('/', (req, res, next) => {

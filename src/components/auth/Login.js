@@ -3,14 +3,25 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { Link } from 'react-router';
+import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
+
+const style = {
+    margin: 12,
+};
+
+const paperStyle = {
+    width: 500,
+    backgroundColor: 'white',
+    color: 'gray',
+    padding: '10px',
+    fontSize: '.9em',
+    marginTop: '4%'
+};
 
 const createInput = function(input, type, error){
     const inputClass = `form-control ${error ? 'form-control-danger' : ''}`;
     switch (type){
-        case 'textarea':
-            return (
-                <textarea {...input} className={inputClass}></textarea>
-            );
         default:
             return (
                 <input {...input} className={inputClass} type={type} />
@@ -31,6 +42,9 @@ const renderInput = function ({input, label, type, meta: {touched, error } }){
     )
 }
 
+
+
+
 class ClientSignin extends Component {
     handleFormSubmit(values){
         this.props.ClientSignin(values);
@@ -40,12 +54,14 @@ class ClientSignin extends Component {
         const {  handleSubmit } = this.props;
 
         return (
-            <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+        <Paper zDepth={2} style={paperStyle}>
+            <form>
                 <Field name='email' component={renderInput} label='Email' type='text' />
                 <Field name='password' component={renderInput} label='Password' type='password' />
-                <button className="btn btn-primary">Sign In</button>
-                <button className="btn btn-primary"><Link to="/createAccount">Create Account</Link></button>
+                <RaisedButton label="Sign In" secondary={true} style={style} onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))}/>
+                <Link to="/createAccount"><RaisedButton label="Create Account" secondary={true} style={style}/></Link>
             </form>
+        </Paper>
         );
     }
 }

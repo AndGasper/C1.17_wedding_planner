@@ -51,8 +51,15 @@ export function deleteUser(req, res) { // TODO
 }
 
 export function logout(req, res) {
-  req.logout();
-  res.redirect('/');
+  console.log('logout called');
+  req.logOut();
+  req.session.destroy((err) => {
+    if(err){
+      console.log(err);
+    }
+    res.clearCookie('connect.sid');
+    res.redirect('/');
+  });
 }
 
 export function isLoggedIn(req, res, next) {
@@ -65,5 +72,7 @@ export function isLoggedIn(req, res, next) {
 }
 
 export function loggedIn(req, res, next) {
-  res.json(res.user);
+  if(req.user) {
+    res.json(req.user);
+  }
 }

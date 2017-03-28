@@ -25,8 +25,24 @@ class Home extends Component {
         super(props);
     }
 
+    getCookie = function(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    console.log('this is document.cookie:', ca);
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
     handleProfile(){
-        console.log('yo this is props', this.props);
+        console.log('Profile Button Clicked: ', this.props);
+        console.log('getCookie function returns:', this.getCookie());
         this.props.handleProfileClick();
     }
 
@@ -46,7 +62,7 @@ class Home extends Component {
                                     Don't want a wedding planner? No problem.
                                     You can still use our site to help plan your needs.
                                 </p>
-                                <p>
+                                <p onClick={this.getCookie.bind(this)}>
                                     How does it work? Instead of answering a bunch of forms we will show you an arrangement of pictures
                                     and you decided which picture best represents how you imagine your wedding. No longer do you need to
                                     browse multiple sites, searching for multiple wedding planners, and answering multiple boring forms,

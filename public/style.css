@@ -20,7 +20,6 @@ h1 {
     color: darkred;
     font-size: 4.0em;
     font-family: 'Perpetua', 'sans-serif';
-    margin-bottom: 3.3em;
 }
 h2 {
     color: darkred;
@@ -30,6 +29,13 @@ h2 {
 h3 {
     text-align: center;
 }
+h4 {
+    color: deeppink;
+    font-size: 2.0em;
+    font-family: 'Perpetua', 'sans-serif';
+    text-align: center;
+}
+
 
 .homePage, .loginPage {
     height: 100vh;
@@ -48,10 +54,6 @@ a{
     height: 70%;
     background: rgba(230, 161, 161, .5);
     width: 100%;
-}
-
-input {
-    margin-left: 1em;
 }
 
 label {
@@ -203,3 +205,9 @@ a:hover {
 
     }
 }
+
+.form-control {
+    width: 90%;
+}
+
+
