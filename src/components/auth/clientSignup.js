@@ -11,21 +11,18 @@ const style = {
 };
 
 const paperStyle = {
-    width: 300,
+    width: 500,
     backgroundColor: 'white',
     color: 'gray',
     padding: '10px',
-    fontSize: '.9em'
+    fontSize: '.9em',
+    marginTop: '3%'
 };
 
 
 const createInput = function(input, type, error){
     const inputClass = `form-control ${error ? 'form-control-danger' : ''}`;
     switch (type){
-        case 'textarea':
-            return (
-                <textarea {...input} className={inputClass}></textarea>
-            );
         default:
             return (
                 <input {...input} className={inputClass} type={type} />
@@ -56,12 +53,14 @@ class ClientSignup extends Component {
         const {  handleSubmit } = this.props;
 
         return (
-            <form>
-                <Field name='email' component={renderInput} label='Email' type='text' />
-                <Field name='password' component={renderInput} label='Password' type='password' />
-                <Field name='confirmPassword' component={renderInput} label='Confirm Password' type='password' />
-                <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Sign Up" secondary={true} style={style}/>
-            </form>
+            <Paper zDepth={2} style={paperStyle}>
+                <form>
+                    <Field name='email' component={renderInput} label='Email' type='text' />
+                    <Field name='password' component={renderInput} label='Password' type='password' />
+                    <Field name='confirmPassword' component={renderInput} label='Confirm Password' type='password' />
+                    <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Sign Up" secondary={true} style={style}/>
+                </form>
+            </Paper>
         );
     }
 }

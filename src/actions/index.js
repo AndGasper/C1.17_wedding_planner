@@ -31,7 +31,7 @@ export function ClientSignin(values){
             if(response.data === 'Credentials are wrong'){
                 window.alert('Email or Password is incorrect, Try Again');
             } else {
-                console.log('user that logged in: ', response);
+                console.log('user that logged in: ', response.data);
                 localStorage.setItem('id', response);
                 browserHistory.push('/client_login_page');
             }

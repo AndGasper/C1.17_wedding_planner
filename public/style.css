@@ -50,10 +50,6 @@ a{
     width: 100%;
 }
 
-input {
-    margin-left: 1em;
-}
-
 label {
     font-size: 2em;
 }
@@ -202,4 +198,8 @@ a:hover {
         background: none;
 
     }
+}
+
+.form-control {
+    width: 90%;
 }

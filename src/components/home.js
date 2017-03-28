@@ -26,7 +26,7 @@ class Home extends Component {
     }
 
     handleProfile(){
-        console.log('yo this is props', this.props);
+        console.log('Profile Button Clicked: ', this.props);
         this.props.handleProfileClick();
     }
 
