@@ -21,15 +21,13 @@ router.post('/login', (req, res, next) => {
         return next(err)
       }
       if (!user) {
-        console.log('credentials are wrong');
         return res.json('Credentials are wrong')
       }
       req.login(user, (error) => {
                     if (error) {
-                      console.log(err);
+                      console.log(error);
                       return next(error);
                     }
-                    console.log("Request Login supossedly successful.");
                     return res.json(user);
                 });
     })(req, res, next)

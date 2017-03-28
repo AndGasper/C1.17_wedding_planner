@@ -73,9 +73,8 @@ export function logout(req, res) {
 }
 
 export function isLoggedIn(req, res, next) {
-  return next();
-  // if(req.isAuthenticated()) {
-  //   return next();
-  // }
-  // res.redirect('/');
+  if(req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/');
 }

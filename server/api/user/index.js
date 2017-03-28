@@ -48,10 +48,9 @@ router.get('/facebook/callback', (req, res, next) => {
       if (!user) { return res.json('Credentials are wrong') }
       req.login(user, (error) => {
                     if (error) {
-                      console.log(err);
+                      console.log(error);
                       return next(error);
                     }
-                    console.log("Request Login supossedly successful.");
                     return res.json(user);
                 });
     })(req, res, next);
