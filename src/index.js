@@ -18,7 +18,9 @@ import CostPage from './components/cost';
 import EditClientInfo from './components/auth/edit_client_info';
 import ClientSignup from './components/auth/clientSignup';
 import Signout from './components/auth/signout';
-
+import Results from './components/results';
+import PlannerDetail from './components/plannerDetail';
+import ResultsList from './components/resultsList';
 
 ReactDOM.render(
     <Provider store={store}>
@@ -36,6 +38,10 @@ ReactDOM.render(
                 <Route path="edit_client_info" component={EditClientInfo} />
                 <Route path="createAccount" component={ClientSignup} />
                 <Route path="signout" component={Signout}/>
+                <Route path="results" component={Results} >
+                    <IndexRoute component={ResultsList} />
+                    <Route path="detail" component={PlannerDetail} />
+                </Route>
             </Route>
         </Router>
     </Provider>,
