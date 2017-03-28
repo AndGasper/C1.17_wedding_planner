@@ -46,6 +46,7 @@ const renderInput = function ({input, label, type, meta: {touched, error } }){
 
 class PlannerDetails extends Component {
     handleFormSubmit(values){
+        debugger;
         this.props.updatePlanner(values);
     }
 

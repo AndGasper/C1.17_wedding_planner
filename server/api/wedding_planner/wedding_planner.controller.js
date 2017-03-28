@@ -12,6 +12,7 @@ export function index(req, res) {
 }
 
 export function getWeddingPlanner(req, res) {
+  console.log(req);
   weddingPlannerModel.findById({
     '_id': req.user._id
   }).select('-password').exec((err, planners) => {
@@ -42,6 +43,7 @@ export function create(req, res) {
 }
 
 export function updateWeddingPlanner(req, res) {
+  console.log(req.user);
   weddingPlannerModel.findOneAndUpdate({
     '_id': req.user._id
   }, req.body, {

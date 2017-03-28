@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-class clientLogin extends Component {
+class plannerLogin extends Component {
     renderName(){
-        const { name } = this.props.active_client;
+        const { name } = this.props.active_planner;
         if(name){
             return (
-                <h4 className="client-spec">{this.props.active_client.name}</h4>
+                <h4 className="client-spec">{this.props.active_planner.name}</h4>
             )
         }
         return [
@@ -16,10 +16,10 @@ class clientLogin extends Component {
     }
 
     renderPhone(){
-        const { phoneNumber } = this.props.active_client;
+        const { phoneNumber } = this.props.active_planner;
         if(phoneNumber){
             return (
-                <h4 className="client-spec">{this.props.active_client.phoneNumber}</h4>
+                <h4 className="client-spec">{this.props.active_planner.phoneNumber}</h4>
             )
         }
         return [
@@ -28,14 +28,14 @@ class clientLogin extends Component {
     }
 
     renderHeaderName(){
-        const { name } = this.props.active_client;
+        const { name } = this.props.active_planner;
         if(name){
             return (
-                <span>Back {this.props.active_client.name}!</span>
+                <span>{this.props.active_planner.name}!</span>
             )
         }
         return [
-            <span key="client_signin">!</span>
+            <span key="planner_signin">!</span>
         ]
     }
 
@@ -48,17 +48,17 @@ class clientLogin extends Component {
 
         return (
             <div>
-                <h1 id="client-name">Welcome {this.renderHeaderName()}</h1>
+                <h1 id="client-name">Welcome Back {this.renderHeaderName()}</h1>
                 <div>
                     <div onClick={handleChange.bind(this)} id="client-info">
                         <h3 className="client-about">About You</h3>
-                        <h4 className="user-labels">Name</h4>
+                        <h4 className="user-labels">Company Name</h4>
                         {this.renderName()}
                         <h4 className="user-labels">Email</h4>
-                        <h4 className="client-spec">{this.props.active_client.email}</h4>
-                        <h4 className="user-labels">Phone Number</h4>
+                        <h4 className="client-spec">{this.props.active_planner.email}</h4>
+                        <h4 className="user-labels">Website</h4>
                         {this.renderPhone()}
-                        <h5 id="edit_client_info"><Link to="/edit_client_info">Edit Profile Info</Link></h5>
+                        <h5 id="edit_client_info"><Link to="/planner_details">Edit Profile Info</Link></h5>
                     </div>
                     <div id="client-pref">
                         <h3 className="client-about">Preferences</h3>
@@ -77,9 +77,9 @@ class clientLogin extends Component {
 
 function mapStateToProps(state){
     return {
-        active_client: state.coupleData.active_client,
-        authenticated: state.coupleData.authenticated
+        active_planner: state.plannerData.active_planner,
+        authenticated: state.plannerData.authenticated
     }
 }
 
-export default connect(mapStateToProps)(clientLogin);
+export default connect(mapStateToProps)(plannerLogin);

@@ -7,7 +7,7 @@ import store, { history } from './store';
 import App from './components/app';
 import Home from './components/home';
 import Login from './components/auth/Login';
-import PlannerProfile from './components/planner_profile';
+import PlannerProfile from './components/auth/planner_profile';
 import PlannerPageLogin from './components/auth/plannerPageLogin';
 import QuestionPage from './components/questions';
 import QuestionImages from './components/questionsImages';
@@ -18,7 +18,9 @@ import CostPage from './components/cost';
 import EditClientInfo from './components/auth/edit_client_info';
 import ClientSignup from './components/auth/clientSignup';
 import Signout from './components/auth/signout';
-
+import Results from './components/results';
+import PlannerDetail from './components/plannerDetail';
+import ResultsList from './components/resultsList';
 
 ReactDOM.render(
     <Provider store={store}>
@@ -36,6 +38,10 @@ ReactDOM.render(
                 <Route path="edit_client_info" component={EditClientInfo} />
                 <Route path="createAccount" component={ClientSignup} />
                 <Route path="signout" component={Signout}/>
+                <Route path="results" component={Results} >
+                    <IndexRoute component={ResultsList} />
+                    <Route path="detail" component={PlannerDetail} />
+                </Route>
             </Route>
         </Router>
     </Provider>,
