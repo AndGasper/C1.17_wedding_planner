@@ -17,14 +17,23 @@ module.exports = (passport) => {
 
     // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
-        done(null, user.id);
+      console.log("serializing user:", user);
+      done(null, user.id);
     });
 
     // used to deserialize the user
-    passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
-            done(err, user);
-        });
+    passport.deserializeUser(function(id, done){
+      User.findById(id, function(err, user){
+        if(err) done(err);
+        if(user){
+          done(null, user);
+        } else {
+          WeddingPlanner.findById(id, function(err, user){
+            if(err) done(err);
+            done(null, user);
+          })
+        }
+      })
     });
 
     // =========================================================================
@@ -131,8 +140,6 @@ module.exports = (passport) => {
     function(req, email, password, done) { // callback with email and password from our form
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        console.log("Email:", email);
-        console.log("Password:", password);
         User.findOne({ 'email' :  email }, function(err, user) {
             // if there are any errors, return the error before anything else
             if (err) {
@@ -143,7 +150,7 @@ module.exports = (passport) => {
             if (!user) {
                 return done(null, false); // req.flash is the way to set flashdata using connect-flash
             }
-            console.log('user:', user);
+            console.log('user id:', user.id);
             // if the user is found but the password is wrong
             if (!user.validPassword(password)) {
                 return done(null, false); // create the loginMessage and save it to session as flashdata
@@ -209,27 +216,22 @@ module.exports = (passport) => {
     function(req, email, password, done) { // callback with email and password from our form
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        WeddingPlanner.findOne({ 'email' :  email }, function(err, planner) {
+        WeddingPlanner.findOne({ 'email' :  email }, function(err, user) {
             // if there are any errors, return the error before anything else
             if (err) {
-                console.log('Error:', err);
                 return done(err);
             }
 
             // if no user is found, return the message
-            if (!planner) {
-                console.log("Wedding Planner not found");
+            if (!user) {
                 return done(null, false); // req.flash is the way to set flashdata using connect-flash
             }
-
             // if the user is found but the password is wrong
-            if (!planner.validPassword(password)) {
-                console.log("Not a valid password");
+            if (!user.validPassword(password)) {
                 return done(null, false); // create the loginMessage and save it to session as flashdata
             }
-
             // all is well, return successful user
-            return done(null, planner);
+            return done(null, user);
         });
     }));
 };
