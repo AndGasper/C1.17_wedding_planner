@@ -49,7 +49,7 @@ class Header extends Component {
         if (active_client !== undefined){
             var profile = '/client_login_page';
         } else if (active_planner !== undefined){
-            var profile = '/planner_login';
+            var profile = '/planner_profile';
         }
         if(authenticated){
             return (

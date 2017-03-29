@@ -4,24 +4,22 @@ import { browserHistory } from 'react-router';
 
 const BASE_URL = 'http://localhost:3000/api/';
 
-export function handleProfileClick(){
+export function handleProfileClick() {
     return function(dispatch){
         axios.get(`${BASE_URL}user/me`).then(response => {
-            if(response.data.name){
-                console.log('profile of active user:', response);
+            console.log(response)
+            if(response.data.name !== undefined) {
                 dispatch({
                     type: SET_CURRENT_CLIENT,
                     payload: response.data
                 });
-
                 browserHistory.push('/client_login_page');
             } else {
-                 return browserHistory.push('/');
+                browserHistory.push('/');
             }
-
-        }).catch(err => {
-            console.log('this is error ', err);
-        })
+        }).catch((err) =>{
+            return;
+        });
     }
 }
 
@@ -29,7 +27,7 @@ export function plannerProfileClick(){
     return function(dispatch){
         axios.get(`${BASE_URL}wedding_planner/me`).then(response => {
             console.log(response)
-            if(response.data.name) {
+            if(response.data.name !== undefined) {
                 dispatch({
                     type: SET_CURRENT_PLANNER,
                     payload: response.data
