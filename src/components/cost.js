@@ -7,13 +7,17 @@ import styles from './app.css';
 class Cost extends Component {
 
     handleClick() {
-        let value = document.forms.budgetForm.options.value;
-        this.props.updatePrefs('cost', Number(value));
-        if (value) {
-            console.log('sending to server: ', {preferences: this.props.coupleData});
-            this.props.sendPrefsToServer({preferences: this.props.coupleData});
-            history.push('/results')
+        if (document.querySelector('input[name="options"]:checked')) {
+            let costValue = document.querySelector('input[name="options"]:checked').value;
+            console.log('cost should be:', Number(costValue));
+            this.props.updatePrefs('cost', Number(costValue));
         }
+    }
+
+    componentDidUpdate() {
+        console.log('prefs being sent to action', this.props.coupleData);
+        this.props.sendPrefsToServer({preferences: this.props.coupleData});
+        history.push('/results');
     }
 
     render() {
