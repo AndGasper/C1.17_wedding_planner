@@ -107,13 +107,12 @@ export function logout(req, res) {
 }
 
 export function isLoggedIn(req, res, next) {
-  return next();
-  // console.log(req);
-  // if(req.isAuthenticated()) {
-  //   console.log('is authenticated');
-  //   return next();
-  // }
-  // res.redirect('/');
+  console.log(req);
+  if(req.isAuthenticated()) {
+    console.log('is authenticated');
+    return next();
+  }
+  res.redirect('/');
 }
 
 export function loggedIn(req, res, next) {
