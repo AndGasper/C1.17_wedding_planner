@@ -8,18 +8,31 @@ export function search(req, res) {
       }, req.body.preferences, {
         new: true
       })
-      .then((user) => {
-        res.json(user);
-      }).catch((err) => {
+      .catch((err) => {
         res.status(404).json(err);
+        console.log(err);
+        return;
       });
   }
   let params = fuzzyObject(req.body.preferences);
   PlannerModel.find({
     params
   }).select('-password').exec((err, planners) => {
-    if(err) res.send(err);
-    if(!planners) res.send('No planners match your search');
+    if(err) {
+      console.log('there was an error');
+      res.send(err);
+      return;
+    }
+    else if(planners.length == 0) {
+      console.log('no planners');
+      res.send('No planners match your search');
+      return;
+    }
+    else {
+      console.log(planners);
+      res.status(200).json(planners);
+    }
+    console.log(planners);
     res.status(200).json(planners);
   })
 }
@@ -28,9 +41,9 @@ function fuzzyObject(params) {
   return {
     cost: {$lte: params.cost,
       $gte: params.cost - 1},
-      attendance: {
+    attendance: {
         $gte: params.cost - 1,
         $lte: params.cost + 1
-      }
     }
   }
+}

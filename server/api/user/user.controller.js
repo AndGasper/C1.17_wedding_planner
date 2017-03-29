@@ -19,6 +19,28 @@ export function user(req, res) {
     if (err) {
       res.status(404).json(err);
     } else {
+      let fullPlanners = [];
+      if(user.planners.length > 0) {
+        if(user.planners.length = 1) {
+          plannerModel.findById({
+            '_id': user.planners
+          }).select('-password').exec((err, planner) => {
+            fullPlanners.push(planner);
+            console.log('fp in if statement: ', fullPlanners);
+          })
+        } else {
+          for(let i in user.planners) {
+            plannerModel.findById({
+              '_id': user.planners[i]
+            }).select('-password').exec((err, planner) => {
+              console.log("planner inside for in loop", planner);
+              fullPlanners.push(planner);
+            })
+          }
+        }
+      }
+      console.log('full planners:', fullPlanners)
+      user.planners = fullPlanners;
       res.status(200).json(user);
     }
   });
@@ -50,6 +72,19 @@ export function deleteUser(req, res) { // TODO
     });
 }
 
+export function addPlanner(req, res) {
+    userModel.findOneAndUpdate({
+      '_id': req.user._id
+    }, { $push: { 'planners': req.body.planner }}, {
+      new: true
+    })
+    .then((user) => {
+      res.json(user);
+    }).catch((err) => {
+      res.status(404).json(err);
+    });
+}
+
 export function logout(req, res) {
   console.log('logout called');
   req.logOut();
@@ -63,12 +98,13 @@ export function logout(req, res) {
 }
 
 export function isLoggedIn(req, res, next) {
-  console.log(req);
-  if(req.isAuthenticated()) {
-    console.log('is authenticated');
-    return next();
-  }
-  res.redirect('/');
+  return next();
+  // console.log(req);
+  // if(req.isAuthenticated()) {
+  //   console.log('is authenticated');
+  //   return next();
+  // }
+  // res.redirect('/');
 }
 
 export function loggedIn(req, res, next) {

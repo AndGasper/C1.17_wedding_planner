@@ -10,7 +10,7 @@ import session from 'express-session';
 import path from 'path';
 
 const app = express();
-
+let hour = 3600000;
 mongoose.Promise = bluebird;
 mongoose.connect('localhost:27017/wedding-planner');
 
@@ -19,7 +19,7 @@ mongoose.connect('localhost:27017/wedding-planner');
 require('./config/passport.config')(passport);
 app.use(logger('dev'));
 app.use(cookieParser());
-app.use(session({ secret: secret }));
+app.use(session({ secret: secret, cookie: { maxAge: 14 * 24 * hour }}));
 app.use(passport.initialize());
 app.use(passport.session());
 
