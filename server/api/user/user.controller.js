@@ -1,5 +1,6 @@
 import userModel from './user.model';
 import plannerModel from '../wedding_planner/wedding_planner.model';
+let Promise = require('bluebird');
 
 export function index(req, res) {
   console.log(userModel.find().exec((err, user) => {
@@ -13,37 +14,44 @@ export function index(req, res) {
 }
 
 export function user(req, res) {
+  let fullPlanners = [];
   userModel.findById({
     '_id': req.user._id
   }).select('-password').exec((err, user) => {
     if (err) {
+      console.log(err);
       res.status(404).json(err);
     } else {
-      let fullPlanners = [];
-      if(user.planners.length > 0) {
-        if(user.planners.length = 1) {
-          plannerModel.findById({
-            '_id': user.planners
-          }).select('-password').exec((err, planner) => {
-            fullPlanners.push(planner);
-            console.log(fullPlanners);
-          })
-        } else {
-          for(let i in user.planners) {
-            plannerModel.findById({
-              '_id': user.planners[i]
-            }).select('-password').exec((err, planner) => {
-              console.log("planner inside for in loop", planner);
-              fullPlanners.push(planner);
-            })
+      console.log('above plannermodel.find');
+      if(user.planners > 0) {
+        plannerModel.find({
+          '_id': user.planners
+        }).select('-password').exec((err, planners) => {
+          console.log(planners);
+          if(!planners) {
+            res.status(304).send('No planners match search');
+            return;
           }
-        }
+          user.planners = planners;
+          console.log(user);
+          res.status(200).json(user);
+        })
+      } else {
+        plannerModel.find({
+          '_id': { $in: user.planners}
+        }).select('-password').exec((err, planners) => {
+          console.log(planners);
+          if(!planners) {
+            res.status(304).send('No planners match search');
+            return;
+          }
+          user.planners = planners;
+          console.log(user);
+          res.status(200).json(user);
+        })
       }
-      console.log(fullPlanners);
-      user.planners = fullPlanners;
-      res.status(200).json(user);
     }
-  });
+  })
 }
 
 export function updateUser(req, res) {
