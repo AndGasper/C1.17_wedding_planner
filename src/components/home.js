@@ -3,6 +3,8 @@ import styles from './app.css';
 import { Link } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 
 const style = {
@@ -22,10 +24,64 @@ class Home extends Component {
     constructor(props){
         super(props);
     }
-    render(){
-        return (
-            <div className="home">
-                <div className={`${styles.homePage}`} >
+
+    getCookie = function(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    console.log('this is document.cookie:', ca);
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+    handleProfile(){
+        console.log('Profile Button Clicked: ', this.props);
+        console.log('getCookie function returns:', this.getCookie());
+        this.props.handleProfileClick();
+    }
+
+    renderHomePage(){
+        const { authenticated } = this.props;
+        if(authenticated){
+            return (
+                <div key='home1' className={`${styles.homePage}`} >
+                    <div>
+                        <div className={`${styles.homeText}`}>
+                            <Paper zDepth={2} style={paperStyle}>
+                                <p>
+                                    Here at Matchromonie we aim to simplify planning your ideal wedding.
+                                    All it takes is five minutes of your time and we will find your wedding planner.
+                                </p>
+                                <p>
+                                    Don't want a wedding planner? No problem.
+                                    You can still use our site to help plan your needs.
+                                </p>
+                                <p onClick={this.getCookie.bind(this)}>
+                                    How does it work? Instead of answering a bunch of forms we will show you an arrangement of pictures
+                                    and you decided which picture best represents how you imagine your wedding. No longer do you need to
+                                    browse multiple sites, searching for multiple wedding planners, and answering multiple boring forms,
+                                    trying to put dreams into words.
+                                </p>
+                            </Paper>
+                            <div>
+                                <Link to="/questions"><RaisedButton label='Retake Questionnaire' secondary={true} style={style}/></Link>
+                                <br />
+                                <RaisedButton onClick={this.handleProfile.bind(this)} label="Profile" secondary={true} style={style}/>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            )
+        } else {
+            return (
+                <div key='home2' className={`${styles.homePage}`} >
                     <div>
                         <div className={`${styles.homeText}`}>
                             <Paper zDepth={2} style={paperStyle}>
@@ -46,14 +102,32 @@ class Home extends Component {
                             </Paper>
                             <div>
                                 <Link to="/questions"><RaisedButton label="Get Started" secondary={true} style={style}/></Link>
+                                <br />
+                                <Link to="/planner_login"><RaisedButton label="Wedding Planner?" secondary={true} style={style}/></Link>
                             </div>
                         </div>
 
                     </div>
                 </div>
+                )
+        }
+    }
+
+    render(){
+
+        return (
+            <div className="home">
+                {this.renderHomePage()}
             </div>
         )
     }
 }
 
-export default Home;
+function mapStateToProps(state){
+    return {
+        active_client: state.coupleData.active_client,
+        authenticated: state.coupleData.authenticated
+    }
+}
+
+export default connect(mapStateToProps, actions)(Home);

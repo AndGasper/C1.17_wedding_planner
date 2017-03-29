@@ -20,7 +20,6 @@ h1 {
     color: darkred;
     font-size: 4.0em;
     font-family: 'Perpetua', 'sans-serif';
-    margin-bottom: 3.3em;
 }
 h2 {
     color: darkred;
@@ -30,6 +29,13 @@ h2 {
 h3 {
     text-align: center;
 }
+h4 {
+    color: deeppink;
+    font-size: 2.0em;
+    font-family: 'Perpetua', 'sans-serif';
+    text-align: center;
+}
+
 
 .homePage, .loginPage {
     height: 100vh;
@@ -48,10 +54,6 @@ a{
     height: 70%;
     background: rgba(230, 161, 161, .5);
     width: 100%;
-}
-
-input {
-    margin-left: 1em;
 }
 
 label {
@@ -104,47 +106,53 @@ a:hover {
 }
 
 #client-name {
-    color: white;
+    color: #336699;
     margin: auto;
 }
 
 #client-info {
-    height: 70vh;
-    width: 40%;
+    width: 48%;
     display: inline-block;
-    border: 2px dashed #336699;
-    box-shadow: inset 0 -1px 0 0 #336699, inset 0 1px 0 0 #336699, 0 1px 0 0 #336699, 0 -1px 0 0 #336699;
+   /* border: 2px dashed #336699;
+    box-shadow: inset 0 -1px 0 0 #336699, inset 0 1px 0 0 #336699, 0 1px 0 0 #336699, 0 -1px 0 0 #336699;*/
     background-color: rgba(255,255,255,0.3);
+    font-family: "Clicker Script";
 }
 
 #client-pref {
-    height: 70vh;
     display: inline-block;
-    width: 40%;
-    border: 2px dashed #336699;
-    box-shadow: inset 0 -1px 0 0 #336699, inset 0 1px 0 0 #336699, 0 1px 0 0 #336699, 0 -1px 0 0 #336699;
+    width: 48%;
+    /*border: 2px dashed #336699;
+    box-shadow: inset 0 -1px 0 0 #336699, inset 0 1px 0 0 #336699, 0 1px 0 0 #336699, 0 -1px 0 0 #336699;*/
     background-color: rgba(255,255,255,0.3);
+    font-family: "Clicker Script";
 }
 
 .client-about {
     color: black;
-    font-size: 3em;
     text-align: center;
+    font-family: "Clicker Script";
+    font-size: 4em;
 }
 
 .user-labels {
     text-decoration: underline;
-}
-.info-holder {
-    height: 70%;
+    font-size: 3em;
 }
 
 .client-spec {
     color: black;
+    font-size: 2em;
+    font-weight: 800;
 }
 
 .client-hide {
     visibility: hidden;
+}
+
+
+#edit_client_info {
+    text-decoration: underline;
 }
 
 .home {
@@ -197,4 +205,9 @@ a:hover {
 
     }
 }
+
+.form-control {
+    width: 90%;
+}
+
 
