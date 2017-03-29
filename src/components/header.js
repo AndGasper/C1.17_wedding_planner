@@ -52,6 +52,7 @@ class Header extends Component {
 
     renderAuthLinks1(){
         const { authenticated } = this.props;
+        console.log(this.props);
         if(authenticated){
             return (
                 <div key='signin3' className={styles.headerToolbarWide}>
@@ -87,6 +88,7 @@ class Header extends Component {
 
     renderAuthLinks2() {
         const {authenticated} = this.props;
+        console.log(this.props);
         if (authenticated) {
             return (
                 <div key='signin1' className={styles.headerToolbarShort}>
@@ -145,9 +147,16 @@ class Header extends Component {
 }
 
 function mapStateToProps(state){
-    return {
+    if(state.coupleData.authenticated){
+        return {
             authenticated: state.coupleData.authenticated
+        }
+    } else {
+        return {
+            authenticated: state.plannerData.authenticated
+        }
     }
+    
 }
 
 export default connect(mapStateToProps)(Header);

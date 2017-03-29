@@ -26,8 +26,13 @@ class Home extends Component {
     }
 
     handleProfile(){
-        console.log('yo this is props', this.props);
-        this.props.handleProfileClick();
+        if(this.props.active_client){
+            console.log('yo this is props', this.props);
+            this.props.handleProfileClick();
+        } else {
+            console.log('planner props: ',)
+            this.props.plannerProfileClick();
+        }
     }
 
     renderHomePage(){
@@ -98,7 +103,7 @@ class Home extends Component {
     }
 
     render(){
-
+        console.log(this.props);
         return (
             <div className="home">
                 {this.renderHomePage()}
@@ -108,9 +113,16 @@ class Home extends Component {
 }
 
 function mapStateToProps(state){
-    return {
-        active_client: state.coupleData.active_client,
-        authenticated: state.coupleData.authenticated
+    if (state.coupleData.authenticated) {
+        return{
+            active_client: state.coupleData.active_client,
+            authenticated: state.coupleData.authenticated
+        }
+    } else {
+        return {
+            active_planner: state.plannerData.active_planner,
+            authenticated: state.plannerData.authenticated
+        }
     }
 }
 

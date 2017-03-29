@@ -45,7 +45,6 @@ class plannerLogin extends Component {
             console.log('Props are:', this.props);
         }
 
-
         return (
             <div>
                 <h1 id="client-name">Welcome Back {this.renderHeaderName()}</h1>

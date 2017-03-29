@@ -22,7 +22,13 @@ const WeddingPlannerSchema = new mongoose.Schema({
   name: String,
   password: String,
   website: String,
-  address: String,
+  address: {
+    street: String,
+    suite: String,
+    city: String,
+    state: String,
+    zip: String
+  },
   email: String,
   description: String,
   status: {
