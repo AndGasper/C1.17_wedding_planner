@@ -11,13 +11,18 @@ const style = {
 };
 
 const paperStyle = {
-    width: 500,
-    backgroundColor: 'white',
-    color: 'gray',
+    width: 385,
     padding: '10px',
     fontSize: '.9em',
-    marginTop: '4%'
+    marginTop: '5%',
+    height: '400px',
+    backgroundColor: 'rgba(255,255,255 ,0.9)',
+    textAlign: 'center',
+    margin: 'auto',
+    marginTop: '3%'
 };
+
+
 
 const createInput = function(input, type, error){
     const inputClass = `form-control ${error ? 'form-control-danger' : ''}`;
@@ -33,7 +38,7 @@ const createInput = function(input, type, error){
 const renderInput = function ({input, label, type, meta: {touched, error } }){
     return(
         <div className={'form-group row'}>
-            <label className='col-sm-3 col-form-label'>{ label }</label>
+            <label className='col-form-label'>{ label }</label>
             <div className='col-sm-9'>
                 {createInput(input, type)}
                 <div className='form-control-feedback'></div>
@@ -54,14 +59,19 @@ class ClientSignin extends Component {
         const {  handleSubmit } = this.props;
 
         return (
-        <Paper zDepth={2} style={paperStyle}>
-            <form>
-                <Field name='email' component={renderInput} label='Email' type='text' />
-                <Field name='password' component={renderInput} label='Password' type='password' />
-                <RaisedButton label="Sign In" secondary={true} style={style} onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))}/>
-                <Link to="/createAccount"><RaisedButton label="Create Account" secondary={true} style={style}/></Link>
-            </form>
-        </Paper>
+        <div className="home">
+            <Paper zDepth={2} style={paperStyle}>
+                <form>
+                    <Field name='email' component={renderInput} label='Email' type='text' />
+                    <br/>
+                    <br/>
+                    <Field name='password' component={renderInput} label='Password' type='password' />
+                    <RaisedButton label="Sign In" secondary={true} style={style} onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))}/>
+                    <br/>
+                    <Link to="/createAccount"><RaisedButton label="Create Account" secondary={true} style={style}/></Link>
+                </form>
+            </Paper>
+        </div>
         );
     }
 }

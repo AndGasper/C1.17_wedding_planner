@@ -7,12 +7,18 @@ const BASE_URL = 'http://localhost:3000/api/';
 export function handleProfileClick(){
     return function(dispatch){
         axios.get(`${BASE_URL}user/me`).then(response => {
-            console.log('profile of active user:', response);
-            dispatch({
-                type: SET_CURRENT_CLIENT,
-                payload: response.data
-            });
-            browserHistory.push('/client_login_page');
+            if(response.data.name){
+                console.log('profile of active user:', response);
+                dispatch({
+                    type: SET_CURRENT_CLIENT,
+                    payload: response.data
+                });
+
+                browserHistory.push('/client_login_page');
+            } else {
+                 return browserHistory.push('/');
+            }
+
         }).catch(err => {
             console.log('this is error ', err);
         })
@@ -57,6 +63,10 @@ export function signoutClient(){
     return function(dispatch){
         axios.get(`${BASE_URL}user/logout`).then(response => {
             dispatch({type: LOGOUT_CLIENT});
+            let delete_cookie = function(name) {
+                document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            };
+            delete_cookie('connect.sid');
             console.log('user has been logged out.', response)
         }).catch(err => {
             console.log('Error logging out', err)
@@ -125,25 +135,15 @@ export function updateClient(values){
     }
   }
 
-  /*export function getCookie(cname) {
+  export function isLoggedIn(){
       return function(dispatch){
-          var name = cname + "=";
-          var decodedCookie = decodeURIComponent(document.cookie);
-          var ca = decodedCookie.split(';');
-          for(var i = 0; i <ca.length; i++) {
-              var c = ca[i];
-              while (c.charAt(0) == ' ') {
-                  c = c.substring(1);
-              }
-              if (c.indexOf(name) == 0) {
-                  return c.substring(name.length, c.length);
-              }
-          }
-          return "";
+          axios.get(`${BASE_URL}user/me`)
       }
+  }
 
-}*/
 
-//post api/user/login {email, password}
-//resp > user info
+
+//get/status to see if user is logged in. if so render home page that has profile button
+// check for planner attribute in response
+
 

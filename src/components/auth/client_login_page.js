@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import RaisedButton from 'material-ui/RaisedButton';
+import { Link } from 'react-router'
 import Paper from 'material-ui/Paper';
 
 const style = {
@@ -10,30 +9,33 @@ const style = {
 
 const paperStyleHeader = {
     width: 380,
-    backgroundColor: 'white',
-    color: 'gray',
+    backgroundColor: 'rgba(236,240,241 ,0.0)',
     padding: '10px',
-    fontSize: '1em',
+    fontSize: '1.2em',
     marginTop: '3%',
-    height: '170px',
-    textAlign: 'center'
+    height: '188px',
+    textAlign: 'center',
+    display: 'inline-block'
 };
 const paperStyleAbout = {
     width: 380,
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(236,240,241 ,0.5)',
     color: 'gray',
     padding: '10px',
     fontSize: '1em',
-    marginTop: '3%',
-    height: '300px',
-    textAlign: 'center'
+    height: '370px',
+    textAlign: 'center',
+    float: 'right'
 };
 const paperStylePref= {
-    width: 500,
-    backgroundColor: 'white',
+    width: 380,
+    backgroundColor: 'rgba(236,240,241 ,0.5)',
     color: 'gray',
     padding: '10px',
-    fontSize: '.9em',
+    fontSize: '1em',
+    height: '350px',
+    textAlign: 'center',
+    float: 'right'
 };
 
 class clientLogin extends Component {
@@ -82,26 +84,26 @@ class clientLogin extends Component {
 
 
         return (
-            <div>
-                <Paper zDepth={4} style={paperStyleHeader}>
+            <div className="home">
+                <div style={paperStyleHeader}>
                     <h1>Welcome {this.renderHeaderName()}</h1>
+                </div>
+                <Paper zDepth={2} style={paperStylePref}>
+                    <h1>Preferences</h1>
+                    <h4 className="client-about">Planners</h4>
+                    <h4>*Insert Links Here*</h4>
+                    <h4 className="client-about">Summary</h4>
+                    <h4>*Insert Summary Here*</h4>
                 </Paper>
                 <Paper zDepth={2} style={paperStyleAbout}>
                     <h1>About You</h1>
-                    <h4>Name</h4>
+                    <h4 className="client-about">Name</h4>
                     {this.renderName()}
-                    <h4>Email</h4>
+                    <h4 className="client-about">Email</h4>
                     <h4>{this.props.active_client.email}</h4>
-                    <h4>Phone Number</h4>
+                    <h4 className="client-about">Phone Number</h4>
                     {this.renderPhone()}
-                    <h5 id="edit_client_info"><Link to="/edit_client_info">Edit Profile Info</Link></h5>
-                </Paper>
-                <Paper zDepth={2} style={paperStyleAbout}>
-                    <h1>Preferences</h1>
-                    <h4>Images</h4>
-                    <h4>*Insert Images Here*</h4>
-                    <h4>Summary</h4>
-                    <h4>*Insert Summary Here*</h4>
+                    <h5 className="client-about"><Link to="/edit_client_info">Edit Profile Info</Link></h5>
                 </Paper>
             </div>
         )

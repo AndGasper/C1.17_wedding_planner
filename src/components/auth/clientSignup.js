@@ -16,7 +16,8 @@ const paperStyle = {
     color: 'gray',
     padding: '10px',
     fontSize: '.9em',
-    marginTop: '3%'
+    marginTop: '3%',
+    height: '500px'
 };
 
 
