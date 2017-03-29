@@ -2,7 +2,7 @@ import PlannerModel from '../wedding_planner/wedding_planner.model';
 import User from '../user/user.model';
 
 export function search(req, res) {
-  if(req.isAuthenticated()) {
+  if(req.user) {
     userModel.findOneAndUpdate({
         '_id': req.user._id
       }, req.body.preferences, {
@@ -26,17 +26,11 @@ export function search(req, res) {
 
 function fuzzyObject(params) {
   return {
-    $and: [
-      {
-        cost: {$lte: params.cost,
-               $gte: params.cost - 1}
-      },
-      {
-        attendance: {
-          $gte: params.cost - 1,
-          $lte: params.cost + 1
-        }
+    cost: {$lte: params.cost,
+      $gte: params.cost - 1},
+      attendance: {
+        $gte: params.cost - 1,
+        $lte: params.cost + 1
       }
-    ]
+    }
   }
-}
