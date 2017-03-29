@@ -70,3 +70,9 @@ export function isLoggedIn(req, res, next) {
   }
   res.redirect('/');
 }
+
+export function loggedIn(req, res, next) {
+  if(req.user) {
+    res.json(req.user);
+  }
+}
