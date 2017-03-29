@@ -23,18 +23,10 @@ h2 {
     height: 80vh;
 }
 
-a{
-    color: #31708f;
-}
-
 .formDiv {
     height: 70%;
     background: rgba(230, 161, 161, .5);
     width: 100%;
-}
-
-input {
-    margin-left: 1em;
 }
 
 label {
@@ -43,10 +35,6 @@ label {
 
 .profileInfo {
     width: 50vw;
-}
-
-a {
-    color: #336699;
 }
 
 a:hover {

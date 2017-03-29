@@ -5,21 +5,48 @@ import * as actions from '../../actions';
 import { Link } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
+import Toggle from 'material-ui/Toggle';
+import { browserHistory } from 'react-router';
+
+const styles1 = {
+    block: {
+        maxWidth: 250,
+    },
+    toggle: {
+        marginBottom: 16,
+    },
+    thumbOff: {
+        backgroundColor: 'white',
+    },
+    trackOff: {
+        backgroundColor: 'rgb(156, 39, 176)',
+    },
+    thumbSwitched: {
+        backgroundColor: 'rgb(255, 64, 129)',
+    },
+    trackSwitched: {
+        backgroundColor: 'rgb(156, 39, 176)',
+    },
+    labelStyle: {
+        color: 'black',
+        fontSize: '2.0em'
+    },
+};
 
 const style = {
     margin: 12,
 };
 
 const paperStyle = {
-    width: 385,
+    width: 370,
+    backgroundColor: 'rgba(236,240,241 ,0.5)',
+    color: 'black',
     padding: '10px',
     fontSize: '.9em',
-    marginTop: '5%',
+    marginTop: '3%',
     height: '400px',
-    backgroundColor: 'rgba(255,255,255 ,0.9)',
-    textAlign: 'center',
     margin: 'auto',
-    marginTop: '3%'
+    textAlign: 'center'
 };
 
 
@@ -39,7 +66,7 @@ const renderInput = function ({input, label, type, meta: {touched, error } }){
     return(
         <div className={'form-group row'}>
             <label className='col-form-label'>{ label }</label>
-            <div className='col-sm-9'>
+            <div className='col-sm-12'>
                 {createInput(input, type)}
                 <div className='form-control-feedback'></div>
             </div>
@@ -55,6 +82,10 @@ class ClientSignin extends Component {
         this.props.ClientSignin(values);
     }
 
+    switchToPlannerLogin(){
+        browserHistory.push('/planner_login');
+    }
+
     render(){
         const {  handleSubmit } = this.props;
 
@@ -63,12 +94,20 @@ class ClientSignin extends Component {
             <Paper zDepth={2} style={paperStyle}>
                 <form>
                     <Field name='email' component={renderInput} label='Email' type='text' />
-                    <br/>
-                    <br/>
                     <Field name='password' component={renderInput} label='Password' type='password' />
                     <RaisedButton label="Sign In" secondary={true} style={style} onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))}/>
-                    <br/>
                     <Link to="/createAccount"><RaisedButton label="Create Account" secondary={true} style={style}/></Link>
+                    <br/>
+                    <br/>
+                    <Toggle
+                        label="Wedding Planner?"
+                        thumbStyle={styles1.thumbOff}
+                        trackStyle={styles1.trackOff}
+                        thumbSwitchedStyle={styles1.thumbSwitched}
+                        trackSwitchedStyle={styles1.trackSwitched}
+                        labelStyle={styles1.labelStyle}
+                        onToggle={this.switchToPlannerLogin.bind(this)}
+                    />
                 </form>
             </Paper>
         </div>

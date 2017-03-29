@@ -21,7 +21,7 @@ const toolbarStyle = {
         boxShadow: '0px 1px 9px 0px rgba(0,0,0,0.75)',
         height: '60px'
     },
-    aboutButton: {
+    homeButton: {
         color: 'black'
     },
     signinButton: {
@@ -43,13 +43,6 @@ const toolbarStyle = {
 
 class Header extends Component {
 
-    handleSignOut(){
-        let resp = window.confirm('You sure you would like to log out?');
-        if(resp == true){
-            browserHistory.push('/signout');
-        }
-    }
-
     renderAuthLinks1(){
         const { authenticated } = this.props;
         console.log(this.props);
@@ -61,9 +54,11 @@ class Header extends Component {
                             <Link to="/" ><ToolbarTitle style={toolbarStyle.titleWide} text="Planning The Date" /></Link>
                         </ToolbarGroup>
                         <ToolbarGroup>
-                            <FlatButton label="About Us" default={true} style={toolbarStyle.aboutButton}/>
+                            <Link to="/"><FlatButton label="Home" default={true} style={toolbarStyle.homeButton}/></Link>
                             <ToolbarSeparator/>
-                            <FlatButton onClick={this.handleSignOut.bind(this)} label="Sign Out" secondary={true} style={toolbarStyle.signinButton}/>
+                            <Link to="/client_login_page"><FlatButton label="Profile" default={true} style={toolbarStyle.signinButton}/></Link>
+                            <ToolbarSeparator/>
+                            <Link to='/signout'><FlatButton label="Sign Out" secondary={true} style={toolbarStyle.signinButton}/></Link>
                         </ToolbarGroup>
                     </Toolbar>
                 </div>

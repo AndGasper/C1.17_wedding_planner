@@ -96,6 +96,7 @@ export function signoutClient(){
             };
             delete_cookie('connect.sid');
             console.log('user has been logged out.', response)
+            browserHistory.push('/');
         }).catch(err => {
             console.log('Error logging out', err)
         })

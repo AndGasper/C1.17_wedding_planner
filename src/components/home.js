@@ -9,6 +9,8 @@ import * as actions from '../actions';
 
 const style = {
     margin: 12,
+    width: 275,
+    height: 50
 };
 
 const paperStyle = {
@@ -26,11 +28,8 @@ class Home extends Component {
     }
 
     componentWillMount(){
-        debugger;
-        if(this.props.authenticated === undefined){
-            this.handleProfile();
-        } else {
-            return;
+        if(this.props.active_client === undefined){
+            this.props.handleProfileClick();
         }
     }
 
@@ -69,8 +68,6 @@ class Home extends Component {
                             </Paper>
                             <div>
                                 <Link to="/questions"><RaisedButton label='Retake Questionnaire' secondary={true} style={style}/></Link>
-                                <br />
-                                <Link to="/client_login_page"><RaisedButton onClick={this.handleProfile.bind(this)} label="Profile" secondary={true} style={style}/></Link>
                             </div>
                         </div>
 
@@ -100,8 +97,6 @@ class Home extends Component {
                             </Paper>
                             <div>
                                 <Link to="/questions"><RaisedButton label="Get Started" secondary={true} style={style}/></Link>
-                                <br />
-                                <Link to="/planner_login"><RaisedButton label="Wedding Planner?" secondary={true} style={style}/></Link>
                             </div>
                         </div>
 

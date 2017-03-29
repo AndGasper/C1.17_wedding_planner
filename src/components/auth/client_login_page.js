@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router'
 import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
 
 const style = {
-    margin: 12,
+    textDecoration: 'none'
 };
 
 const paperStyleHeader = {
@@ -18,7 +19,6 @@ const paperStyleHeader = {
     display: 'inline-block'
 };
 const paperStyleAbout = {
-    width: 380,
     backgroundColor: 'rgba(236,240,241 ,0.5)',
     color: 'gray',
     padding: '10px',
@@ -28,14 +28,14 @@ const paperStyleAbout = {
     float: 'right'
 };
 const paperStylePref= {
-    width: 380,
     backgroundColor: 'rgba(236,240,241 ,0.5)',
     color: 'gray',
     padding: '10px',
     fontSize: '1em',
-    height: '350px',
+    height: '280px',
     textAlign: 'center',
-    float: 'right'
+    float: 'right',
+    clear: 'both'
 };
 
 class clientLogin extends Component {
@@ -88,14 +88,7 @@ class clientLogin extends Component {
                 <div style={paperStyleHeader}>
                     <h1>Welcome {this.renderHeaderName()}</h1>
                 </div>
-                <Paper zDepth={2} style={paperStylePref}>
-                    <h1>Preferences</h1>
-                    <h4 className="client-about">Planners</h4>
-                    <h4>*Insert Links Here*</h4>
-                    <h4 className="client-about">Summary</h4>
-                    <h4>*Insert Summary Here*</h4>
-                </Paper>
-                <Paper zDepth={2} style={paperStyleAbout}>
+                <Paper className="col-sm-12 col-md-6 col-lg-6" zDepth={2} style={paperStyleAbout}>
                     <h1>About You</h1>
                     <h4 className="client-about">Name</h4>
                     {this.renderName()}
@@ -104,6 +97,20 @@ class clientLogin extends Component {
                     <h4 className="client-about">Phone Number</h4>
                     {this.renderPhone()}
                     <h5 className="client-about"><Link to="/edit_client_info">Edit Profile Info</Link></h5>
+                </Paper>
+                <Paper className="col-sm-12 col-md-6 col-lg-6" zDepth={2} style={paperStylePref}>
+                    <h1>Preferences</h1>
+                    <div id="prefsLeft">
+                        <h4 className="client-about client-pref-links">Planners</h4>
+                        <h4 className="plannerLinks client-pref-links"><a className='pinkLink' href="http://www.eventsbykatherine.com/">Events By Katherine</a></h4>
+                        <h4 className="plannerLinks client-pref-links"><a className='pinkLink' href="http://www.http://rebeccacalagna.com/">Rebecca Calagna Wedding</a></h4>
+                        <h4 className="plannerLinks client-pref-links"><a className='pinkLink' href="http://http://www.simplysweet-weddings.com/">Simply Sweet Weddings</a></h4>
+                        <Link className="col-sm-12 col-md-4" to="/questions"><RaisedButton label="Retake Questionnaire" secondary={true} style={style}/></Link>
+                    </div>
+                    <div id="prefsRight">
+                        <h4 className="client-about client-pref-summ">Summary</h4>
+                        <h4 className="client-pref-summ">*Insert Summary Here*</h4>
+                    </div>
                 </Paper>
             </div>
         )
