@@ -34,12 +34,13 @@ const WeddingPlannerSchema = new mongoose.Schema({
     zip: String
   },
   email: String,
+  image: String,
   description: String,
   status: {
     type: String,
     default: 'active'
   },
-  preferences: [WeddingPlannerPreferencesSchema],
+  preferences: [WeddingPlannerPreferencesSchema, { '_id': false}],
   facebook: {
     id: String,
     name: String,

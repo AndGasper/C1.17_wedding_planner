@@ -17,7 +17,6 @@ module.exports = (passport) => {
 
     // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
-      console.log("serializing user:", user);
       done(null, user.id);
     });
 
@@ -150,14 +149,12 @@ module.exports = (passport) => {
             if (!user) {
                 return done(null, false); // req.flash is the way to set flashdata using connect-flash
             }
-            console.log('user id:', user.id);
             // if the user is found but the password is wrong
             if (!user.validPassword(password)) {
                 return done(null, false); // create the loginMessage and save it to session as flashdata
             }
 
             // all is well, return successful user
-            console.log('before done call');
             return done(null, user);
         });
     }));
