@@ -26,14 +26,14 @@ class Home extends Component {
     }
 
     componentWillMount(){
-        if(this.props.active_client !== undefined || this.props.active_planner !== undefined){
+        debugger;
+        if(this.props.authenticated === undefined){
+            this.handleProfile();
+        } else {
             return;
-        } else if(this.props.active_planner === undefined) {
-            this.props.plannerProfileClick();
-        } else if (this.props.active_client === undefined){
-            this.props.handleProfileClick(); 
         }
     }
+
     handleProfile(){
         if(this.props.active_client){
             console.log('clients props', this.props);
