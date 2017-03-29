@@ -130,6 +130,13 @@ export function updateClient(values){
     }
 }
 
+export function plannersToClient(plannerToAdd){
+    return function(dispatch){
+        axios.put(`${BASE_URL}user/me`, )
+        dispatch({type: CHANGE_CLIENT_INFO});
+    }
+}
+
   export function plannerLogin(values){
       const id = localStorage.getItem('id');
       return function(dispatch){
@@ -174,12 +181,7 @@ export function updateClient(values){
       }
   }
 
-  export function plannersToClient(values){
-      return function(dispatch){
-          console.log('reached action creator JAY', values);
-          dispatch({type: CHANGE_CLIENT_INFO});
-      }
-  }
+
 
 
 

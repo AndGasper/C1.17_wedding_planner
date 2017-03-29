@@ -33,7 +33,8 @@ const style = {
 class ResultsList extends Component {
 
     saveToProfile(index) {
-        console.log('need to save to profile somewhere', this.props.plannerData[index])
+        let plannerToAdd = this.props.plannerData[index];
+        this.props.plannersToClient(plannerToAdd);
     }
 
     renderPlannerList() {
@@ -73,7 +74,8 @@ class ResultsList extends Component {
 
 function mapStateToProps(state) {
     return {
-        plannerData: state.plannerData.planners
+        plannerData: state.plannerData.planners,
+        active_client: state.coupleData.active_client
     }
 }
 
