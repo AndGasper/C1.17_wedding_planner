@@ -28,11 +28,16 @@ export function handleProfileClick(){
 export function plannerProfileClick(){
     return function(dispatch){
         axios.get(`${BASE_URL}wedding_planner/me`).then(response => {
-            dispatch({
-                type: SET_CURRENT_PLANNER,
-                payload: response.data
-            });
-            browserHistory.push('/');
+            console.log(response)
+            if(response.data.name) {
+                dispatch({
+                    type: SET_CURRENT_PLANNER,
+                    payload: response.data
+                });
+                browserHistory.push('/planner_profile');
+            } else {
+                browserHistory.push('/');
+            }
         }).catch((err) =>{
             console.log(err);
         });
