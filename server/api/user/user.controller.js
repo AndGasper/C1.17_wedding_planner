@@ -38,7 +38,8 @@ export function user(req, res) {
         })
       } else {
         plannerModel.find({
-          '_id': { $in: user.planners}
+          '_id': { $in: user.planners},
+          'status': 'active'
         }).select('-password').exec((err, planners) => {
           console.log(planners);
           if(!planners) {
@@ -117,6 +118,6 @@ export function isLoggedIn(req, res, next) {
 
 export function loggedIn(req, res, next) {
   if(req.user) {
-    res.json(req.user);
+    res.json(req.user._id);
   }
 }
