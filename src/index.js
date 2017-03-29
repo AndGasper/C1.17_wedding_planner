@@ -21,6 +21,7 @@ import Signout from './components/auth/signout';
 import Results from './components/results';
 import PlannerDetail from './components/plannerDetail';
 import ResultsList from './components/resultsList';
+import WeddingPreferences from './components/auth/wedding_preferences';
 
 ReactDOM.render(
     <Provider store={store}>
@@ -38,6 +39,7 @@ ReactDOM.render(
                 <Route path="edit_client_info" component={EditClientInfo} />
                 <Route path="createAccount" component={ClientSignup} />
                 <Route path="signout" component={Signout}/>
+                <Route path='wedding_preferences' component={WeddingPreferences} />
                 <Route path="results" component={Results} >
                     <IndexRoute component={ResultsList} />
                     <Route path="detail" component={PlannerDetail} />

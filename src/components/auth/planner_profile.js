@@ -58,6 +58,7 @@ class plannerLogin extends Component {
                         <h4 className="user-labels">Website</h4>
                         {this.renderWebsite()}
                         <h5 id="edit_client_info"><Link to="/planner_details">Edit Profile Info</Link></h5>
+                        <h5 id='edit_planner_preferences'><Link to='/wedding_preferences'>Edit Client Preferences</Link></h5>
                     </div>
                     <div id="client-pref">
                         <h3 className="client-about">Preferences</h3>
