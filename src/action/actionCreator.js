@@ -1,10 +1,12 @@
 import {UPDATE_PREFS, GET_COUPLE_PROFILE} from '../action/types';
 import axios from 'axios';
+import {history} from '../store';
 
 
-const BASE_URL = 'http://localhost:8000/api';
+const BASE_URL = 'http://localhost:3000/api';
 
 export function updatePrefs(category, imageValue) {
+    console.log('action, prefs received:', category, imageValue);
     return {
         type: UPDATE_PREFS,
         payload: {category, imageValue}
@@ -14,14 +16,9 @@ export function updatePrefs(category, imageValue) {
 export function sendPrefsToServer(prefs) {
 
     return function (dispatch) {
-        axios.put(`${BASE_URL}/updatePrefs`, prefs).then(resp => {
+        axios.post(`${BASE_URL}/search`, prefs).then(resp => {
             console.log('axios update success', resp);
-            axios.get(`${BASE_URL}/getPrefs`).then(resp => {
-                console.log('axios get success', resp);
-                dispatch({type: GET_COUPLE_PROFILE, payload: resp});
-                history.push('/console');
-            });
-        }).catch(err => {
+            }).catch(err => {
             console.log('axios failure', err);
         })
     };

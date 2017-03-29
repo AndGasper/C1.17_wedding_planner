@@ -43,7 +43,7 @@ export function create(req, res) {
 }
 
 export function updateWeddingPlanner(req, res) {
-  console.log(req.user);
+  console.log(req.body);
   weddingPlannerModel.findOneAndUpdate({
     '_id': req.user._id
   }, req.body, {
@@ -75,7 +75,6 @@ export function logout(req, res) {
 }
 
 export function isLoggedIn(req, res, next) {
-  console.log(req.session);
   if(req.user) {
     return next();
   }

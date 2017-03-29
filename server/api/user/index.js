@@ -1,7 +1,7 @@
 'use strict';
 
 import express from 'express';
-import { index, user, updateUser, deleteUser, logout, isLoggedIn, searchResults, loggedIn } from './user.controller'
+import { index, user, updateUser, deleteUser, logout, isLoggedIn, searchResults, loggedIn, addPlanner } from './user.controller'
 import passport from 'passport';
 //let controller = require('./couple.controller');
 
@@ -41,6 +41,7 @@ router.post('/login', (req, res, next) => {
                 });
     })(req, res, next);
 });
+router.put('/me/planner', isLoggedIn, addPlanner);
 router.put('/me', isLoggedIn, updateUser);
 router.delete('/', isLoggedIn, deleteUser);
 router.get('/facebook/callback', (req, res, next) => {

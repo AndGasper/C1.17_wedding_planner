@@ -26,6 +26,7 @@ const UserSchema = new mongoose.Schema({
   password: String,
   phoneNumber: String,
   preferences: [PreferencesSchema],
+  planners: [String],
   admin: {
     type: Boolean,
     default: false
