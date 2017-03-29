@@ -43,7 +43,7 @@ export function create(req, res) {
 }
 
 export function updateWeddingPlanner(req, res) {
-  console.log(req.user);
+  console.log(req.body);
   weddingPlannerModel.findOneAndUpdate({
     '_id': req.user._id
   }, req.body, {

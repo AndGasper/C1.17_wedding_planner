@@ -26,7 +26,7 @@ export function user(req, res) {
             '_id': user.planners
           }).select('-password').exec((err, planner) => {
             fullPlanners.push(planner);
-            console.log('fp in if statement: ', fullPlanners);
+            console.log(fullPlanners);
           })
         } else {
           for(let i in user.planners) {
@@ -39,7 +39,7 @@ export function user(req, res) {
           }
         }
       }
-      console.log('full planners:', fullPlanners)
+      console.log(fullPlanners);
       user.planners = fullPlanners;
       res.status(200).json(user);
     }

@@ -34,7 +34,7 @@ const WeddingPlannerSchema = new mongoose.Schema({
     type: String,
     default: 'active'
   },
-  preferences: [WeddingPlannerPreferencesSchema],
+  preferences: [WeddingPlannerPreferencesSchema, { '_id': false}],
   facebook: {
     id: String,
     name: String,
