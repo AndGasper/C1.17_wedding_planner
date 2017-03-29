@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import secret from './config/express.config';
 import passport from 'passport';
 import session from 'express-session';
+import path from 'path';
 
 const app = express();
 
@@ -18,10 +19,9 @@ mongoose.connect('localhost:27017/wedding-planner');
 require('./config/passport.config')(passport);
 app.use(logger('dev'));
 app.use(cookieParser());
+app.use(session({ secret: secret }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(session({ secret: secret }));
 
 app.use(bodyParser.json({type: '*/*'}));
 

@@ -25,7 +25,6 @@ export function user(req, res) {
 }
 
 export function updateUser(req, res) {
-  console.log(req.body);
   userModel.findOneAndUpdate({
       '_id': req.user._id
     }, req.body, {
@@ -52,13 +51,28 @@ export function deleteUser(req, res) { // TODO
 }
 
 export function logout(req, res) {
-  req.logout();
-  res.redirect('/');
+  console.log('logout called');
+  req.logOut();
+  req.session.destroy((err) => {
+    if(err){
+      console.log(err);
+    }
+    res.clearCookie('connect.sid');
+    res.redirect('/');
+  });
 }
 
 export function isLoggedIn(req, res, next) {
+  console.log(req);
   if(req.isAuthenticated()) {
+    console.log('is authenticated');
     return next();
   }
   res.redirect('/');
+}
+
+export function loggedIn(req, res, next) {
+  if(req.user) {
+    res.json(req.user);
+  }
 }
