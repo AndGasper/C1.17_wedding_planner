@@ -1,11 +1,12 @@
 'use strict';
 
 import express from 'express';
-import { index, getWeddingPlanner, create, updateWeddingPlanner, deleteWeddingPlanner, isLoggedIn, logout } from './wedding_planner.controller';
+import { index, getWeddingPlanner, create, updateWeddingPlanner, deleteWeddingPlanner, isLoggedIn, logout, loggedIn } from './wedding_planner.controller';
 import passport from 'passport';
 let router = express.Router();
 
 router.get('/', index);
+router.get('/status', loggedIn);
 router.get('/me', isLoggedIn, getWeddingPlanner);
 router.post('/', (req, res, next) => {
   passport.authenticate('planner-local-signup', (err, user, info) => {
