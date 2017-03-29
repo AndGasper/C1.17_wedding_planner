@@ -174,5 +174,12 @@ export function updateClient(values){
       }
   }
 
+  export function plannersToClient(values){
+      return function(dispatch){
+          console.log('reached action creator JAY', values);
+          dispatch({type: CHANGE_CLIENT_INFO});
+      }
+  }
+
 
 

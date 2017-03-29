@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import styles from './app.css';
+import * as actions from '../actions/index';
 
 
 const style = {
@@ -32,7 +33,7 @@ const style = {
 class ResultsList extends Component {
 
     saveToProfile(index) {
-        console.log('need to save to profile somewhere', index)
+        console.log('need to save to profile somewhere', this.props.plannerData[index])
     }
 
     renderPlannerList() {
@@ -76,4 +77,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(ResultsList);
+export default connect(mapStateToProps, actions)(ResultsList);
