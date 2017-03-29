@@ -28,12 +28,21 @@ class Home extends Component {
     componentWillMount(){
         if(this.props.active_client === undefined){
             this.props.handleProfileClick();
+        }else if(this.props.active_planner === undefined){
+            this.props.plannerProfileClick();
+        } else {
+            return console.log('no one here');
         }
 
     }
     handleProfile(){
-        console.log('Profile Button Clicked: ', this.props);
-        this.props.handleProfileClick();
+        if(this.props.active_client){
+            console.log('clients props', this.props);
+            this.props.handleProfileClick();
+        } else {
+            console.log('planner props: ',this.props);
+            this.props.plannerProfileClick();
+        }
     }
 
     renderHomePage(){
@@ -104,7 +113,7 @@ class Home extends Component {
     }
 
     render(){
-
+        console.log(this.props);
         return (
             <div className="home">
                 {this.renderHomePage()}
@@ -114,9 +123,16 @@ class Home extends Component {
 }
 
 function mapStateToProps(state){
-    return {
-        active_client: state.coupleData.active_client,
-        authenticated: state.coupleData.authenticated
+    if (state.coupleData.authenticated) {
+        return{
+            active_client: state.coupleData.active_client,
+            authenticated: state.coupleData.authenticated
+        }
+    } else {
+        return {
+            active_planner: state.plannerData.active_planner,
+            authenticated: state.plannerData.authenticated
+        }
     }
 }
 

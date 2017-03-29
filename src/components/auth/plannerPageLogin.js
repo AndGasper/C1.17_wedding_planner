@@ -59,7 +59,7 @@ class PlannerPageLogin extends Component {
             <form>
                 <Field name='email' component={renderInput} label='Email' type='text' />
                 <Field name='password' component={renderInput} label='Password' type='password' />
-                <Link to="/planner_signup"><RaisedButton label="Sign Up" secondary={true} style={style}/></Link>
+                <Link to="planner_signup"><RaisedButton label="Sign Up" secondary={true} style={style}/></Link>
                 <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Login" secondary={true} style={style}/>
             </form>
         );

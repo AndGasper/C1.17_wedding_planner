@@ -15,11 +15,11 @@ class plannerLogin extends Component {
         ]
     }
 
-    renderPhone(){
-        const { phoneNumber } = this.props.active_planner;
-        if(phoneNumber){
+    renderWebsite(){
+        const { website } = this.props.active_planner;
+        if(website){
             return (
-                <h4 className="client-spec">{this.props.active_planner.phoneNumber}</h4>
+                <h4 className="client-spec">{this.props.active_planner.website}</h4>
             )
         }
         return [
@@ -45,7 +45,6 @@ class plannerLogin extends Component {
             console.log('Props are:', this.props);
         }
 
-
         return (
             <div>
                 <h1 id="client-name">Welcome Back {this.renderHeaderName()}</h1>
@@ -57,7 +56,7 @@ class plannerLogin extends Component {
                         <h4 className="user-labels">Email</h4>
                         <h4 className="client-spec">{this.props.active_planner.email}</h4>
                         <h4 className="user-labels">Website</h4>
-                        {this.renderPhone()}
+                        {this.renderWebsite()}
                         <h5 id="edit_client_info"><Link to="/planner_details">Edit Profile Info</Link></h5>
                     </div>
                     <div id="client-pref">

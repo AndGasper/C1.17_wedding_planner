@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTH_USER, SET_CURRENT_CLIENT, CHANGE_CLIENT_INFO, LOGOUT_CLIENT, SET_CURRENT_PLANNER, CHANGE_PLANNER_INFO } from './types';
+import { AUTH_USER, SET_CURRENT_CLIENT, CHANGE_CLIENT_INFO, LOGOUT_CLIENT, SET_CURRENT_PLANNER, CHANGE_PLANNER_INFO, LOGOUT_PLANNER } from './types';
 import { browserHistory } from 'react-router';
 
 const BASE_URL = 'http://localhost:3000/api/';
@@ -22,6 +22,20 @@ export function handleProfileClick(){
         }).catch(err => {
             console.log('this is error ', err);
         })
+    }
+}
+
+export function plannerProfileClick(){
+    return function(dispatch){
+        axios.get(`${BASE_URL}wedding_planner/me`).then(response => {
+            dispatch({
+                type: SET_CURRENT_PLANNER,
+                payload: response.data
+            });
+            browserHistory.push('/');
+        }).catch((err) =>{
+            console.log(err);
+        });
     }
 }
 
@@ -57,6 +71,20 @@ export function signupClient({email, password}){
             dispatch("error");
         });
     };
+}
+
+export function updatePlannerDetails() {
+    return function (dispatch){
+        axios.get(`${BASE_URL}wedding_planner/me`).then(response => {
+            dispatch({
+                type: SET_CURRENT_PLANNER,
+                payload: response.data
+            });
+            browserHistory.push('/planner_profile');
+        }).catch((err) => {
+            console.log('error:', err);
+        });
+    }
 }
 
 export function signoutClient(){
@@ -123,10 +151,7 @@ export function updateClient(values){
 
   export function updatePlanner(values){
     return function(dispatch){
-        let name = values.name;
-        let website = values.website;
-        let description = values.description;
-        axios.put(`${BASE_URL}wedding_planner/me`, {name, website, description}).then(response => {
+        axios.put(`${BASE_URL}wedding_planner/me`, values).then(response => {
             dispatch({type: CHANGE_PLANNER_INFO});
             browserHistory.push('/');
         }).catch((err) => {
@@ -135,15 +160,18 @@ export function updateClient(values){
     }
   }
 
-  export function isLoggedIn(){
-      return function(dispatch){
-          axios.get(`${BASE_URL}user/me`)
+//get/status to see if user is logged in. if so render home page that has profile button
+// check for planner attribute in response
+
+  export function signOutPlanner(){
+      return function (dispatch){
+          axios.get(`${BASE_URL}wedding_planner/logout`).then(response =>{
+            dispatch({ type:LOGOUT_PLANNER });
+          }).catch((err) =>{
+              console.log(err);
+          });
       }
   }
 
-
-
-//get/status to see if user is logged in. if so render home page that has profile button
-// check for planner attribute in response
 
 

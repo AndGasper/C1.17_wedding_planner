@@ -20,7 +20,9 @@ const paperStyle = {
 
 class Signout extends Component {
     componentWillMount(){
-        this.props.signoutClient();
+        console.log('logging out:',this.props);
+            this.props.signoutClient();
+            this.props.signOutPlanner();
     }
     render(){
         return (
