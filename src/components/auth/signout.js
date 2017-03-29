@@ -18,7 +18,8 @@ const paperStyle = {
     marginTop: '3%',
     height: '300px',
     margin: 'auto',
-    textAlign: 'center'
+    textAlign: 'center',
+    border: 'deeppink'
 };
 
 
@@ -31,8 +32,8 @@ class Signout extends Component {
     }
     render(){
         return (
-            <div className="home">
-                <Paper zDepth={4} style={paperStyle}>
+            <div className="loginBackground">
+                <Paper zDepth={5} style={paperStyle}>
                     <h1 className="boldh1">Are you sure you would like to log out?</h1>
                     <RaisedButton label="Yes" onClick={this.handleLogOut.bind(this)} secondary={true} style={style}/>
                     <Link to="/client_login_page"><RaisedButton label="No" secondary={true} style={style}/></Link>

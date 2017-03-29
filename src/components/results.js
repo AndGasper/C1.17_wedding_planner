@@ -36,7 +36,8 @@ class Results extends Component {
 
 function mapStateToProps(state) {
     return {
-        plannerData: state.plannerData.planners
+        plannerData: state.plannerData.planners,
+        active_client: state.coupleData.active_client
     }
 }
 

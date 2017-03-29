@@ -43,10 +43,8 @@ const paperStyle = {
     color: 'black',
     padding: '10px',
     fontSize: '.9em',
-    marginTop: '3%',
-    height: '400px',
     margin: 'auto',
-    textAlign: 'center'
+    textAlign: 'center',
 };
 
 
@@ -90,26 +88,29 @@ class ClientSignin extends Component {
         const {  handleSubmit } = this.props;
 
         return (
-        <div className="home">
-            <Paper zDepth={2} style={paperStyle}>
-                <form>
-                    <Field name='email' component={renderInput} label='Email' type='text' />
-                    <Field name='password' component={renderInput} label='Password' type='password' />
-                    <RaisedButton label="Sign In" secondary={true} style={style} onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))}/>
-                    <Link to="/createAccount"><RaisedButton label="Create Account" secondary={true} style={style}/></Link>
-                    <br/>
-                    <br/>
-                    <Toggle
-                        label="Wedding Planner?"
-                        thumbStyle={styles1.thumbOff}
-                        trackStyle={styles1.trackOff}
-                        thumbSwitchedStyle={styles1.thumbSwitched}
-                        trackSwitchedStyle={styles1.trackSwitched}
-                        labelStyle={styles1.labelStyle}
-                        onToggle={this.switchToPlannerLogin.bind(this)}
-                    />
-                </form>
-            </Paper>
+        <div className="pink">
+            <div className="whiteCenter">
+                <Paper zDepth={5} style={paperStyle}>
+                    <h1 className="boldh1">Sign in</h1>
+                    <form>
+                        <Field name='email' component={renderInput} label='Email' type='text' />
+                        <Field name='password' component={renderInput} label='Password' type='password' />
+                        <RaisedButton label="Sign In" secondary={true} style={style} onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))}/>
+                        <Link to="/createAccount"><RaisedButton label="Create Account" secondary={true} style={style}/></Link>
+                        <br/>
+                        <br/>
+                        <Toggle
+                            label="Wedding Planner?"
+                            thumbStyle={styles1.thumbOff}
+                            trackStyle={styles1.trackOff}
+                            thumbSwitchedStyle={styles1.thumbSwitched}
+                            trackSwitchedStyle={styles1.trackSwitched}
+                            labelStyle={styles1.labelStyle}
+                            onToggle={this.switchToPlannerLogin.bind(this)}
+                        />
+                    </form>
+                </Paper>
+            </div>
         </div>
         );
     }

@@ -94,9 +94,9 @@ class PlannerPageLogin extends Component {
         const {  handleSubmit } = this.props;
 
         return (
-        <div className="home">
+        <div className="loginBackground">
             <Paper zDepth={2} style={paperStyle}>
-                <h1 class="boldh1">Wedding Planner Login</h1>
+                <h1 className="boldh1">Wedding Planner Login</h1>
                 <form>
                     <Field name='email' component={renderInput} label='Email' type='text' />
                     <Field name='password' component={renderInput} label='Password' type='password' />

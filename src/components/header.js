@@ -71,7 +71,7 @@ class Header extends Component {
                             <Link to="/" ><ToolbarTitle style={toolbarStyle.titleWide} text="Planning The Date" /></Link>
                         </ToolbarGroup>
                         <ToolbarGroup>
-                            <FlatButton label="About Us" default={true} style={toolbarStyle.aboutButton}/>
+                            <Link to="/"><FlatButton label="Home" default={true} style={toolbarStyle.homeButton}/></Link>
                             <ToolbarSeparator/>
                             <Link to="/Login" ><FlatButton label="Sign In" secondary={true} style={toolbarStyle.signinButton}/></Link>
                         </ToolbarGroup>
@@ -97,8 +97,9 @@ class Header extends Component {
                                 anchorOrigin={{horizontal: 'right', vertical: 'top'}}
                                 targetOrigin={{horizontal: 'right', vertical: 'top'}}
                             >
-                                <MenuItem primaryText="About"/>
-                                <MenuItem primaryText="Sign Out"/>
+                                <Link to="/"><MenuItem primaryText="Home"/></Link>
+                                <Link to="/client_login_page"><MenuItem primaryText="Profile"/></Link>
+                                <Link to="/signout"><MenuItem primaryText="Sign Out"/></Link>
                             </IconMenu>
                         </ToolbarGroup>
                     </Toolbar>
@@ -119,8 +120,8 @@ class Header extends Component {
                                     anchorOrigin={{horizontal: 'right', vertical: 'top'}}
                                     targetOrigin={{horizontal: 'right', vertical: 'top'}}
                                 >
-                                    <MenuItem primaryText="About"/>
-                                    <MenuItem primaryText="Sign In"/>
+                                    <Link to="/"><MenuItem primaryText="Home"/></Link>
+                                    <Link to="/Login"><MenuItem primaryText="Sign In"/></Link>
                                 </IconMenu>
                             </ToolbarGroup>
                         </Toolbar>
