@@ -3,7 +3,7 @@ import User from '../user/user.model';
 
 export function search(req, res) {
   if(req.user) {
-    userModel.findOneAndUpdate({
+    User.findOneAndUpdate({
         '_id': req.user._id
       }, req.body.preferences, {
         new: true
@@ -39,11 +39,15 @@ export function search(req, res) {
 
 function fuzzyObject(params) {
   return {
-    cost: {$lte: params.cost,
+    cost: {$lte: params.cost + 1,
       $gte: params.cost - 1},
     attendance: {
         $gte: params.cost - 1,
         $lte: params.cost + 1
+    }, 
+    flowers: {
+      $lte: params.flowers,
+      $gte: params.flowers - 1 
     }
   }
 }
