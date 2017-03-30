@@ -108,7 +108,7 @@ export function signoutClient(){
                 document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
             };
             delete_cookie('connect.sid');
-            console.log('user has been logged out.', response)
+            console.log('user has been logged out.', response);
             browserHistory.push('/');
         }).catch(err => {
             console.log('Error logging out', err)
@@ -134,7 +134,6 @@ export function updateClient(values){
         let email = values.email;
         let name = values.name;
         let phoneNumber = values.phoneNumber;
-        console.log(values);
         axios.put(`${BASE_URL}user/me`, {name,email, phoneNumber}).then(response => {
             dispatch({type: CHANGE_CLIENT_INFO});
         }).catch((err) => {
@@ -168,7 +167,6 @@ export function updateClient(values){
                 type: SET_CURRENT_PLANNER,
                 payload: response.data
             });
-            console.log(response);
             if(response.data === 'Credentials are wrong'){
                 dispatch(authError('bad login info'))
             } else {
