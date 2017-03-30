@@ -26,7 +26,13 @@ const WeddingPlannerSchema = new mongoose.Schema({
     default: true
   },
   website: String,
-  address: String,
+  address: {
+    street: String,
+    suite: String,
+    city: String,
+    state: String,
+    zip: String
+  },
   email: String,
   image: String,
   description: String,

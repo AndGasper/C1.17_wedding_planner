@@ -9,6 +9,8 @@ import * as actions from '../actions';
 
 const style = {
     margin: 12,
+    width: 275,
+    height: 50
 };
 
 const paperStyle = {
@@ -25,25 +27,22 @@ class Home extends Component {
         super(props);
     }
 
-    getCookie = function(cname) {
-    let name = cname + "=";
-    let ca = document.cookie.split(';');
-    console.log('this is document.cookie:', ca);
-    for(let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
+    componentWillMount(){
+            if(this.props.authenticated){
+                return;
+            } else if(this.props.active_client === undefined){
+                this.props.handleProfileClick();
+            }
     }
-    return "";
-}
+
     handleProfile(){
-        console.log('Profile Button Clicked: ', this.props);
-        console.log('getCookie function returns:', this.getCookie());
-        this.props.handleProfileClick();
+        if(this.props.active_client){
+            console.log('clients props', this.props);
+            this.props.handleProfileClick();
+        } else {
+            console.log('planner props: ',this.props);
+            this.props.plannerProfileClick();
+        }
     }
 
     renderHomePage(){
@@ -62,18 +61,14 @@ class Home extends Component {
                                     Don't want a wedding planner? No problem.
                                     You can still use our site to help plan your needs.
                                 </p>
-                                <p onClick={this.getCookie.bind(this)}>
+                                <p>
                                     How does it work? Instead of answering a bunch of forms we will show you an arrangement of pictures
                                     and you decided which picture best represents how you imagine your wedding. No longer do you need to
                                     browse multiple sites, searching for multiple wedding planners, and answering multiple boring forms,
                                     trying to put dreams into words.
                                 </p>
+                                <Link/>
                             </Paper>
-                            <div>
-                                <Link to="/questions"><RaisedButton label='Retake Questionnaire' secondary={true} style={style}/></Link>
-                                <br />
-                                <RaisedButton onClick={this.handleProfile.bind(this)} label="Profile" secondary={true} style={style}/>
-                            </div>
                         </div>
 
                     </div>
@@ -102,8 +97,6 @@ class Home extends Component {
                             </Paper>
                             <div>
                                 <Link to="/questions"><RaisedButton label="Get Started" secondary={true} style={style}/></Link>
-                                <br />
-                                <Link to="/planner_login"><RaisedButton label="Wedding Planner?" secondary={true} style={style}/></Link>
                             </div>
                         </div>
 
@@ -114,7 +107,7 @@ class Home extends Component {
     }
 
     render(){
-
+        console.log(this.props);
         return (
             <div className="home">
                 {this.renderHomePage()}
@@ -124,10 +117,11 @@ class Home extends Component {
 }
 
 function mapStateToProps(state){
-    return {
-        active_client: state.coupleData.active_client,
-        authenticated: state.coupleData.authenticated
+        return{
+            active_client: state.coupleData.active_client,
+            authenticated: state.authReducer.authenticated,
+            active_planner: state.plannerData.active_planner
+        }
     }
-}
 
 export default connect(mapStateToProps, actions)(Home);

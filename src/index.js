@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory, hashHistory } from 'react-router';
 import NavLink from './components/nav_link';
 import store, { history } from './store';
 import App from './components/app';
@@ -21,6 +21,7 @@ import Signout from './components/auth/signout';
 import Results from './components/results';
 import PlannerDetail from './components/plannerDetail';
 import ResultsList from './components/resultsList';
+import WeddingPreferences from './components/auth/wedding_preferences';
 
 ReactDOM.render(
     <Provider store={store}>
@@ -38,6 +39,7 @@ ReactDOM.render(
                 <Route path="edit_client_info" component={EditClientInfo} />
                 <Route path="createAccount" component={ClientSignup} />
                 <Route path="signout" component={Signout}/>
+                <Route path='wedding_preferences' component={WeddingPreferences} />
                 <Route path="results" component={Results} >
                     <IndexRoute component={ResultsList} />
                     <Route path="detail" component={PlannerDetail} />

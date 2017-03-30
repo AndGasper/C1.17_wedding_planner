@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Field, reduxForm} from 'redux-form';
+import {Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { Link } from 'react-router';
@@ -44,18 +44,23 @@ const renderInput = function ({input, label, type, meta: {touched, error } }){
     )
 }
 
-class PlannerDetails extends Component {
+class PlannerDetails extends Component {    
     handleFormSubmit(values){
         this.props.updatePlanner(values);
+        this.props.updatePlannerDetails();
     }
 
     render(){
         const { handleSubmit } = this.props;
-
         return (
             <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                 <Field name='name' component={renderInput} label='Company Name' type='text' />
-                <Field name='website' component={renderInput} label='Website' type='text' />
+                <Field name='website' placeholder='website' component={renderInput} label='Website' type='text' />
+                <Field name='address.street' component={renderInput} label='Street' type='text' />
+                <Field name='address.suite' component={renderInput} label='Apt/Suite' type='text' />
+                <Field name='address.city' component={renderInput} label='City' type='text'/>
+                <Field name='address.zip' component={renderInput} label='Zip' type='text' />
+                <Field name='address.state' component={renderInput} label='State' type='text' />
                 <Field name='description' component={renderInput} label='Description' type='textarea' />
                 <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Update Profile" secondary={true} style={style}/>
             </form>
@@ -84,12 +89,14 @@ function validate(values){
 }
 
 function mapStateToProps(state){
-    return { errorMsg: state.auth }
+    return { 
+        errorMsg: state.auth,
+        active_planner: state.plannerData.active_planner
+     }
 }
 
 const componentWithForm = reduxForm({
-    form: 'form',
-    fields: ['name', 'website', 'description'],
+    form: 'planner_details',
     validate
 })(PlannerDetails)
 
