@@ -28,11 +28,11 @@ class Home extends Component {
     }
 
     componentWillMount(){
-            if(this.props.authenticated){
-                return
-            } else if(this.props.active_client === undefined){
-                this.props.handleProfileClick();
-            }
+        if(this.props.authenticated){
+            return
+        } else if(this.props.active_client === undefined){
+            this.props.handleProfileClick();
+        }
     }
 
     handleProfile(){

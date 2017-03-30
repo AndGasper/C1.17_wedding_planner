@@ -5,7 +5,6 @@ import { SET_CURRENT_CLIENT, CHANGE_CLIENT_INFO, LOGOUT_CLIENT } from '../action
 function coupleData(state = [], action) {
     switch(action.type) {
         case UPDATE_PREFS:
-            console.log('action', action);
             let newState1 = JSON.parse(JSON.stringify(state));
             newState1[action.payload.category] = action.payload.imageValue;
             return newState1;

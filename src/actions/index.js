@@ -47,18 +47,15 @@ export function ClientSignin(values){
         let email = values.email;
         let password = values.password;
         axios.post(`${BASE_URL}user/login`, {email, password}).then(response => {
+            if(response.data === 'Credentials are wrong'){
+                return false;
+            } else {
             dispatch({
                 type: SET_CURRENT_CLIENT,
                 payload: response.data
             });
-            if(response.data === 'Credentials are wrong'){
-                window.alert('Email or Password is incorrect, Try Again');
-            } else {
-                console.log('user that logged in: ', response.data);
-                localStorage.setItem('id', response);
                 browserHistory.push('/client_login_page');
             }
-
         }).catch(err => {
             console.log('this is error ', err);
         })
@@ -133,18 +130,34 @@ export function updateClient(values){
     }
 }
 
+export function plannersToClient(plannerToAdd){
+    console.log('hi');
+    /*return function(dispatch){
+        let id ={
+            'planner': '58dc57728ad5402a449b791d'
+        } ;
+        axios.put(`${BASE_URL}user/me/planner`, id).then(response => {
+            console.log('planner has been added to clients planners');
+            console.log(response);
+            dispatch({type: CHANGE_CLIENT_INFO});
+        }).catch((err) => {
+            dispatch('error');
+        })
+
+    }*/
+}
+
   export function plannerLogin(values){
       const id = localStorage.getItem('id');
       return function(dispatch){
         axios.post(`${BASE_URL}wedding_planner/login`, values).then(response => {
+            if(response.data === 'Credentials are wrong'){
+                return false;
+            } else {
             dispatch({
                 type: SET_CURRENT_PLANNER,
                 payload: response.data
             });
-            console.log(response);
-            if(response.data === "Credentials are wrong"){
-                return false;
-            } else {
                 browserHistory.push('/planner_profile');
             }
         }).catch(err => {
@@ -177,6 +190,8 @@ export function updateClient(values){
           });
       }
   }
+
+
 
 
 

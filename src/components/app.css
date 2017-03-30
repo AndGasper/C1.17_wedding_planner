@@ -189,18 +189,16 @@ a:hover {
 .app {
     color: #336699;
     width: 100vw;
-    height: 90vh;
+    height: 92vh;
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
 }
 
 .header {
     opacity: 0.5;
     width: 100%;
     height: 8vh;
-    margin-bottom: 10px;
-
 }
 
 .zoom {
@@ -238,17 +236,17 @@ a:hover {
 
 @media only screen and (max-width: 760px) {
 
-    .app {
+    /*.app {
         margin-top: 20px;
-    }
+    }*/
 
 }
 
 @media only screen and (max-width: 590px) {
 
-    .app {
+    /*.app {
         margin-top: 30px;
-    }
+    }*/
 
     .headerToolbarWide {
         display: none;

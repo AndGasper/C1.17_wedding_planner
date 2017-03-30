@@ -43,10 +43,8 @@ const paperStyle = {
     color: 'black',
     padding: '10px',
     fontSize: '.9em',
-    marginTop: '3%',
-    height: 500,
     margin: 'auto',
-    textAlign: 'center'
+    textAlign: 'center',
 };
 
 
@@ -54,10 +52,6 @@ const paperStyle = {
 const createInput = function(input, type, error){
     const inputClass = `form-control ${error ? 'form-control-danger' : ''}`;
     switch (type){
-        case 'textarea':
-            return (
-                <textarea {...input} className={inputClass}></textarea>
-            );
         default:
             return (
                 <input {...input} className={inputClass} type={type} />
@@ -94,29 +88,31 @@ class PlannerPageLogin extends Component {
         const {  handleSubmit } = this.props;
 
         return (
-        <div className="home">
-            <Paper zDepth={2} style={paperStyle}>
-                <h1 className="boldh1">Wedding Planner Login</h1>
-                <form>
-                    <Field name='email' component={renderInput} label='Email' type='text' />
-                    <Field name='password' component={renderInput} label='Password' type='password' />
-                    <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Sign in" secondary={true} style={style}/>
-                    <Link to="planner_signup"><RaisedButton label="Create Account" secondary={true} style={style}/></Link>
-                    <br/>
-                    <br/>
-                    <Toggle
-                        label="Wedding Planner?"
-                        thumbStyle={styles1.thumbOff}
-                        trackStyle={styles1.trackOff}
-                        thumbSwitchedStyle={styles1.thumbSwitched}
-                        trackSwitchedStyle={styles1.trackSwitched}
-                        labelStyle={styles1.labelStyle}
-                        onToggle={this.switchToClientLogin.bind(this)}
-                        toggled
-                    />
-                </form>
-            </Paper>
-        </div>
+            <div className="pink">
+                <div className="whiteCenter">
+                    <Paper zDepth={5} style={paperStyle}>
+                        <h1 className="boldh1">Wedding Planner Login</h1>
+                        <form>
+                            <Field name='email' component={renderInput} label='Email' type='text' />
+                            <Field name='password' component={renderInput} label='Password' type='password' />
+                            <RaisedButton label="Sign In" secondary={true} style={style} onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))}/>
+                            <Link to="/planner_signup"><RaisedButton label="Create Account" secondary={true} style={style}/></Link>
+                            <br/>
+                            <br/>
+                            <Toggle
+                                label="Wedding Planner?"
+                                thumbStyle={styles1.thumbOff}
+                                trackStyle={styles1.trackOff}
+                                thumbSwitchedStyle={styles1.thumbSwitched}
+                                trackSwitchedStyle={styles1.trackSwitched}
+                                labelStyle={styles1.labelStyle}
+                                onToggle={this.switchToClientLogin.bind(this)}
+                                toggled
+                            />
+                        </form>
+                    </Paper>
+                </div>
+            </div>
         );
     }
 }

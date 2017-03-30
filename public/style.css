@@ -32,7 +32,7 @@ h3 {
 h4 {
     color: deeppink;
     font-size: 2.0em;
-    font-family: 'Clicker Script', 'Perpetua', 'sans-serif';
+    font-family: 'Roboto', 'Perpetua', 'sans-serif';
     text-align: center;
 }
 
@@ -130,6 +130,18 @@ a:hover {
     width: 100vw;
 }
 
+.loginBackground {
+    background: url('../assets/images/home/bg.jpg') no-repeat;
+    height: 100%;
+    width: 100vw;
+}
+
+.pink {
+    background: url('../assets/images/home/pink3.jpg') no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+
 .label-form {
     display: list-item;
     list-style-type: none;
@@ -155,24 +167,6 @@ a:hover {
     color: #9C27B0
 }
 
-@media only screen and (max-width: 760px) {
-    h4 {
-        font-size: 1em;
-    }
-}
-
-@media only screen and (max-width: 590px) {
-    h4 {
-        font-size: 1.5em;
-    }
-}
-
-@media only screen and (max-width: 590px) {
-    .home {
-        background: none;
-    }
-}
-
 .form-control {
     width: 90%;
 }
@@ -191,7 +185,7 @@ boldh1 {
 
 .client-pref-links {
     text-align: center;
-    font-family: 'Clicker Script', 'Perpetua', 'sans-serif';
+    font-family: 'Roboto', 'Perpetua', 'sans-serif';
     text-decoration: underline;
 }
 .client-pref-summ {
@@ -214,4 +208,41 @@ boldh1 {
 .pinkLink {
     color: deeppink;
 }
+.whiteCenter {
+    height: 100%;
+    background-color: rgba(255,255,255, 0.6);
+    width: 900px;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+    border-radius: 2px;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    box-sizing: border-box;
+}
+@media only screen and (max-width: 760px) {
+    h4 {
+        font-size: 1em;
+    }
+}
 
+@media only screen and (max-width: 590px) {
+    h4 {
+        font-size: 1.5em;
+    }
+}
+
+@media only screen and (max-width: 590px) {
+    .home {
+        background: none;
+    }
+    .loginBackground {
+        background: none;
+    }
+    .pink {
+        background: none;
+    }
+    .whiteCenter {
+        width: inherit;
+        height: inherit;
+        margin-top: 2%;
+    }
+}
