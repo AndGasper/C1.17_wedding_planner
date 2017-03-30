@@ -1,4 +1,3 @@
-'use strict';
 
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
@@ -7,10 +6,17 @@ const Schema = mongoose.Schema;
 
 const PreferencesSchema = new mongoose.Schema({
   cost: Number,
-  style: Number,
+  size: Number,
+  food: Number,
   flowers: Number,
-  alcohol: Number
-  //location: String
+  music: Number,
+  alcohol: Number,
+  attendance: Number,
+  photography: Number,
+  time_of_year: Number,
+  venue_reception: Number,
+  venue_ceremony: Number,
+  reception_vibe: Number
 });
 
 const UserSchema = new mongoose.Schema({
@@ -20,6 +26,7 @@ const UserSchema = new mongoose.Schema({
   password: String,
   phoneNumber: String,
   preferences: [PreferencesSchema],
+  planners: [String],
   admin: {
     type: Boolean,
     default: false
@@ -45,10 +52,11 @@ UserSchema.methods.generateHash = function(password) {
 
 // checking if password is valid
 UserSchema.methods.validPassword = function(password) {
-  if(this.password) {
-    return bcrypt.compareSync(password, this.password);
+  if(!this.password) {
+    return false;
   }
-  return false;
-};
+  return bcrypt.compareSync(password, this.password);
+}
 
 export default mongoose.model('User', UserSchema);
+
