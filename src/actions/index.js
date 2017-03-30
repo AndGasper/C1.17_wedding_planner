@@ -2,7 +2,7 @@ import axios from 'axios';
 import { AUTH_USER, SET_CURRENT_CLIENT, CHANGE_CLIENT_INFO, LOGOUT_CLIENT, SET_CURRENT_PLANNER, CHANGE_PLANNER_INFO } from './types';
 import { browserHistory } from 'react-router';
 
-const BASE_URL = 'http://localhost:3000/api/';
+const BASE_URL = '/api/';
 
 export function handleProfileClick(){
     return function(dispatch){
