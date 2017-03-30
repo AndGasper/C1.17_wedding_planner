@@ -48,7 +48,7 @@ export function user(req, res) {
           }
           user.planners = planners;
           console.log(user);
-          res.status(200).json(user);
+          res.status(200).json(JSON.stringify(user));
         })
       }
     }
