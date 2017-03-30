@@ -21,7 +21,7 @@ const toolbarStyle = {
         boxShadow: '0px 1px 9px 0px rgba(0,0,0,0.75)',
         height: '60px'
     },
-    aboutButton: {
+    homeButton: {
         color: 'black'
     },
     signinButton: {
@@ -43,15 +43,13 @@ const toolbarStyle = {
 
 class Header extends Component {
 
-    handleSignOut(){
-        let resp = window.confirm('You sure you would like to log out?');
-        if(resp == true){
-            browserHistory.push('/signout');
-        }
-    }
-
     renderAuthLinks1(){
-        const { authenticated } = this.props;
+        const { authenticated, active_client } = this.props;
+        if (active_client !== undefined){
+            var profile = '/client_login_page';
+        } else {
+            var profile = '/planner_profile';
+        }
         if(authenticated){
             return (
                 <div key='signin3' className={styles.headerToolbarWide}>
@@ -60,9 +58,11 @@ class Header extends Component {
                             <Link to="/" ><ToolbarTitle style={toolbarStyle.titleWide} text="Planning The Date" /></Link>
                         </ToolbarGroup>
                         <ToolbarGroup>
-                            <FlatButton label="About Us" default={true} style={toolbarStyle.aboutButton}/>
+                            <Link to="/"><FlatButton label="Home" default={true} style={toolbarStyle.homeButton}/></Link>
                             <ToolbarSeparator/>
-                            <FlatButton onClick={this.handleSignOut.bind(this)} label="Sign Out" secondary={true} style={toolbarStyle.signinButton}/>
+                            <Link to={profile}><FlatButton label="Profile" default={true} style={toolbarStyle.signinButton}/></Link>
+                            <ToolbarSeparator/>
+                            <Link to='/signout'><FlatButton label="Sign Out" secondary={true} style={toolbarStyle.signinButton}/></Link>
                         </ToolbarGroup>
                     </Toolbar>
                 </div>
@@ -75,7 +75,7 @@ class Header extends Component {
                             <Link to="/" ><ToolbarTitle style={toolbarStyle.titleWide} text="Planning The Date" /></Link>
                         </ToolbarGroup>
                         <ToolbarGroup>
-                            <FlatButton label="About Us" default={true} style={toolbarStyle.aboutButton}/>
+                            <Link to="/"><FlatButton label="Home" default={true} style={toolbarStyle.homeButton}/></Link>
                             <ToolbarSeparator/>
                             <Link to="/Login" ><FlatButton label="Sign In" secondary={true} style={toolbarStyle.signinButton}/></Link>
                         </ToolbarGroup>
@@ -100,8 +100,9 @@ class Header extends Component {
                                 anchorOrigin={{horizontal: 'right', vertical: 'top'}}
                                 targetOrigin={{horizontal: 'right', vertical: 'top'}}
                             >
-                                <MenuItem primaryText="About"/>
-                                <MenuItem primaryText="Sign Out"/>
+                                <Link to="/"><MenuItem primaryText="Home"/></Link>
+                                <Link to="/client_login_page"><MenuItem primaryText="Profile"/></Link>
+                                <Link to="/signout"><MenuItem primaryText="Sign Out"/></Link>
                             </IconMenu>
                         </ToolbarGroup>
                     </Toolbar>
@@ -122,8 +123,8 @@ class Header extends Component {
                                     anchorOrigin={{horizontal: 'right', vertical: 'top'}}
                                     targetOrigin={{horizontal: 'right', vertical: 'top'}}
                                 >
-                                    <MenuItem primaryText="About"/>
-                                    <MenuItem primaryText="Sign In"/>
+                                    <Link to="/"><MenuItem primaryText="Home"/></Link>
+                                    <Link to="/Login"><MenuItem primaryText="Sign In"/></Link>
                                 </IconMenu>
                             </ToolbarGroup>
                         </Toolbar>
@@ -145,9 +146,12 @@ class Header extends Component {
 }
 
 function mapStateToProps(state){
-    return {
-            authenticated: state.coupleData.authenticated
+        return {
+            authenticated: state.authReducer.authenticated,
+            active_client: state.coupleData.active_client,
+            active_planner: state.plannerData
+        }
     }
-}
+
 
 export default connect(mapStateToProps)(Header);

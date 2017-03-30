@@ -1,42 +1,52 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import RaisedButton from 'material-ui/RaisedButton';
+import { Link } from 'react-router'
 import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
 
 const style = {
-    margin: 12,
+    textDecoration: 'none'
 };
 
 const paperStyleHeader = {
-    width: 380,
-    backgroundColor: 'white',
-    color: 'gray',
+    width: '100%',
+    backgroundColor: 'rgba(236,240,241 ,0.0)',
     padding: '10px',
-    fontSize: '1em',
-    marginTop: '3%',
-    height: '170px',
-    textAlign: 'center'
+    fontSize: '1.2em',
+    marginTop: '2%',
+    textAlign: 'center',
 };
 const paperStyleAbout = {
-    width: 380,
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(236,240,241 ,0.5)',
     color: 'gray',
     padding: '10px',
     fontSize: '1em',
-    marginTop: '3%',
-    height: '300px',
-    textAlign: 'center'
+    textAlign: 'center',
+    display: 'inline-block'
 };
 const paperStylePref= {
-    width: 500,
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(236,240,241 ,0.5)',
     color: 'gray',
+    height: '387px',
     padding: '10px',
-    fontSize: '.9em',
+    textAlign: 'center',
+    fontSize: '1em',
+    float: 'right',
 };
 
 class clientLogin extends Component {
+
+   /* showPlanners(){
+        let array_length = this.props.active_client.planners.length;
+
+        for(let i = 0; i < array_length; i++){
+            let tn = document.createTextNode(this.props.active_client.planners[i].name);
+            let h4 = document.createElement("h4").appendChild(tn);
+            console.log(h4);
+            document.getElementById('prefs-left').append(h4);
+        }
+
+    }*/
 
     renderName(){
         const { name } = this.props.active_client;
@@ -74,34 +84,77 @@ class clientLogin extends Component {
         ]
     }
 
+    renderPlanners1(){
+    const { planners } = this.props.active_client;
+    if(planners.length > 0){
+        return (
+            <h4><a href="">{this.props.active_client.planners[0].name}</a></h4>
+        )
+    }
 
-    render() {
-        function handleChange() {
-            console.log('Props are:', this.props);
+}
+
+    renderPlanners2(){
+        const { planners } = this.props.active_client;
+        if(planners.length > 1){
+            return (
+                <h4><a href="">{this.props.active_client.planners[1].name}</a></h4>
+            )
         }
 
+    }
+    renderPlanners3(){
+        const { planners } = this.props.active_client;
+        if(planners.length > 2){
+            return (
+                <h4><a href="">{this.props.active_client.planners[2].name}</a></h4>
+            )
+        }
+
+    }
+    renderButton(){
+        if(this.props.active_client.planners < 1){
+            return (
+                <Link className="col-sm-12 col-md-4 profileRetake" to="/questions"><RaisedButton label="Take Questionnaire" secondary={true} style={style}/></Link>
+            )
+        } else {
+            return (
+                <Link className="col-sm-12 col-md-4 profileRetake" to="/questions"><RaisedButton label="Retake Questionnaire" secondary={true} style={style}/></Link>
+            )
+        }
+    }
+
+
+    render() {
 
         return (
-            <div>
-                <Paper zDepth={4} style={paperStyleHeader}>
+            <div className="pink">
+                <div style={paperStyleHeader}>
                     <h1>Welcome {this.renderHeaderName()}</h1>
-                </Paper>
-                <Paper zDepth={2} style={paperStyleAbout}>
+                </div>
+                <Paper className="col-sm-12 col-md-6 col-lg-6" zDepth={5} style={paperStyleAbout}>
                     <h1>About You</h1>
-                    <h4>Name</h4>
+                    <h4 className="client-about">Name</h4>
                     {this.renderName()}
-                    <h4>Email</h4>
+                    <h4 className="client-about">Email</h4>
                     <h4>{this.props.active_client.email}</h4>
-                    <h4>Phone Number</h4>
+                    <h4 className="client-about">Phone Number</h4>
                     {this.renderPhone()}
-                    <h5 id="edit_client_info"><Link to="/edit_client_info">Edit Profile Info</Link></h5>
+                    <h5 className="client-about"><Link to="/edit_client_info">Edit Profile Info</Link></h5>
                 </Paper>
-                <Paper zDepth={2} style={paperStyleAbout}>
+                <Paper className="col-sm-12 col-md-6 col-lg-6" zDepth={5} style={paperStylePref}>
                     <h1>Preferences</h1>
-                    <h4>Images</h4>
-                    <h4>*Insert Images Here*</h4>
-                    <h4>Summary</h4>
-                    <h4>*Insert Summary Here*</h4>
+                    <div id="prefs-left">
+                        <h4 className="client-about plannersGenerated">Planners</h4>
+                        {this.renderPlanners1()}
+                        {this.renderPlanners2()}
+                        {this.renderPlanners3()}
+                        {this.renderButton()}
+                    </div>
+                   {/* <div id="prefsRight">
+                        <h4 className="client-about client-pref-summ">Summary</h4>
+                        <h4 className="client-pref-summ">*Insert Summary Here*</h4>
+                    </div>*/}
                 </Paper>
             </div>
         )

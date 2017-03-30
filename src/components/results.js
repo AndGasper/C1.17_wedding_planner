@@ -22,6 +22,15 @@ class Results extends Component {
     }
 
     render() {
+
+        if (!this.props.plannerData) {
+            return (
+                <div>
+                    Loading....
+                </div>
+                )
+        }
+
         return (
             <div>
                 { React.Children.map(this.props.children, child => React.cloneElement(child, {
@@ -36,7 +45,8 @@ class Results extends Component {
 
 function mapStateToProps(state) {
     return {
-        plannerData: state.plannerData.planners
+        plannerData: state.plannerData.planners,
+        active_client: state.coupleData.active_client
     }
 }
 
