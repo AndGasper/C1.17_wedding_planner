@@ -21,33 +21,20 @@ export function user(req, res) {
       console.log(err);
       res.status(404).json(err);
     } else {
-      console.log('above plannermodel.find');
-      if(user.planners <= 1) {
-        plannerModel.find({
-          '_id': user.planners
-        }).select('-password').exec((err, planners) => {
-          console.log(planners);
-          if(!planners) {
-            res.status(304).send('No planners match search');
-            return;
-          }
-          user.planners = planners;
-          res.status(200).json(user);
-        })
-      } else {
-        plannerModel.find({
-          '_id': { $in: user.planners},
-          'status': 'active'
-        }).select('-password').exec((err, planners) => {
-          console.log('planners: ', planners);
-          if(!planners) {
-            res.status(304).send('No planners match search');
-            return;
-          }
-          user.planners = planners;
-          res.status(200).json(user);
-        })
-      }
+      res.status(200).json(user)
+    }
+  })
+}
+
+export function getUserPlanner(req, res) {
+  plannerModel.findById({
+    '_id': req.params.id
+  }).select('-password').exec((err, planner) => {
+    if (err) {
+      console.log(err);
+      res.status(404).json(err);
+    } else {
+      res.status(200).json(planner)
     }
   })
 }
