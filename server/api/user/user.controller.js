@@ -14,7 +14,6 @@ export function index(req, res) {
 }
 
 export function user(req, res) {
-  let fullPlanners = [];
   userModel.findById({
     '_id': req.user._id
   }).select('-password').exec((err, user) => {
@@ -23,7 +22,7 @@ export function user(req, res) {
       res.status(404).json(err);
     } else {
       console.log('above plannermodel.find');
-      if(user.planners > 0) {
+      if(user.planners <= 1) {
         plannerModel.find({
           '_id': user.planners
         }).select('-password').exec((err, planners) => {
@@ -33,7 +32,6 @@ export function user(req, res) {
             return;
           }
           user.planners = planners;
-          console.log(user);
           res.status(200).json(user);
         })
       } else {
@@ -41,14 +39,13 @@ export function user(req, res) {
           '_id': { $in: user.planners},
           'status': 'active'
         }).select('-password').exec((err, planners) => {
-          console.log(planners);
+          console.log('planners: ', planners);
           if(!planners) {
             res.status(304).send('No planners match search');
             return;
           }
           user.planners = planners;
-          console.log(user);
-          res.status(200).json(JSON.stringify(user));
+          res.status(200).json(user);
         })
       }
     }
@@ -107,9 +104,8 @@ export function logout(req, res) {
 }
 
 export function isLoggedIn(req, res, next) {
-  console.log(req);
   if(req.isAuthenticated()) {
-    console.log('is authenticated');
+    console.log('is logged in');
     return next();
   }
   res.redirect('/');
