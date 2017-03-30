@@ -131,10 +131,20 @@ export function updateClient(values){
 }
 
 export function plannersToClient(plannerToAdd){
-    return function(dispatch){
-        axios.put(`${BASE_URL}user/me`, )
-        dispatch({type: CHANGE_CLIENT_INFO});
-    }
+    console.log('hi');
+    /*return function(dispatch){
+        let id ={
+            'planner': '58dc57728ad5402a449b791d'
+        } ;
+        axios.put(`${BASE_URL}user/me/planner`, id).then(response => {
+            console.log('planner has been added to clients planners');
+            console.log(response);
+            dispatch({type: CHANGE_CLIENT_INFO});
+        }).catch((err) => {
+            dispatch('error');
+        })
+
+    }*/
 }
 
   export function plannerLogin(values){

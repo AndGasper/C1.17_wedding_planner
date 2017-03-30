@@ -63,7 +63,7 @@ class ClientSignup extends Component {
             <div className="pink">
                 <div className="whiteCenter">
                     <Paper zDepth={2} style={paperStyle}>
-                        <h1 class="boldh1">Create Account</h1>
+                        <h1 className="boldh1">Create Account</h1>
                         <form>
                             <Field name='email' component={renderInput} label='Email' type='text' />
                             <Field name='password' component={renderInput} label='Password' type='password' />
