@@ -1,5 +1,5 @@
 
-import {UPDATE_PREFS, SEND_PREFS_TO_SERVER, GET_COUPLE_PROFILE} from '../action/types'
+import {UPDATE_PREFS, SEND_PREFS_TO_SERVER, GET_COUPLE_PROFILE } from '../action/types'
 import { SET_CURRENT_CLIENT, CHANGE_CLIENT_INFO, LOGOUT_CLIENT } from '../actions/types';
 
 function coupleData(state = [], action) {

@@ -13,7 +13,6 @@ import rootReducer from './reducers/index';
 
 const defaultState = {
     coupleData,
-    plannerData,
     imageData: images
     
 };
