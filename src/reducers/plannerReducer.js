@@ -26,7 +26,7 @@ function PlannerData(state = [], action) {
             return {
                 ...state,
                 active_planner: '',
-            }
+            };
         case GET_PLANNERS_FROM_SERVER:
             return {
                 ...state,

@@ -142,23 +142,6 @@ export function updateClient(values){
     }
 }
 
-/*export function plannersToClient(plannerToAdd){
-    console.log('this is planner to add: ', plannerToAdd);
-    return function(dispatch){
-        let id ={
-            'planner': '58dc57728ad5402a449b791d'
-        } ;
-        axios.put(`${BASE_URL}user/me/planner`, id).then(response => {
-            console.log('planner has been added to clients planners');
-            console.log(response);
-            dispatch({type: CHANGE_CLIENT_INFO});
-        }).catch((err) => {
-            dispatch('error');
-        })
-
-    }
-}*/
-
   export function plannerLogin(values){
       const id = localStorage.getItem('id');
       return function(dispatch){
@@ -193,8 +176,6 @@ export function updateClient(values){
     }
   }
 
-//get/status to see if user is logged in. if so render home page that has profile button
-// check for planner attribute in response
 
   export function signOutPlanner(){
       return function (dispatch){
@@ -206,9 +187,41 @@ export function updateClient(values){
           });
       }
   }
-  //build out component results page with info from api/weddingplanner/
 
-  //send id to api/user/me/:id
+  export function addPlannersToClient(plannerToAdd){
+      return function(dispatch){
+          let id = {
+              planner: plannerToAdd._id
+          };
+          axios.put(`${BASE_URL}user/me/planner`, id).then(response => {
+              dispatch({CHANGE_CLIENT_INFO});
+          }).catch((err) => {
+              dispatch('error');
+          })
+      }
+  }
+
+ /* export function retrievePlannersForProf{
+      return function(dispatch){
+          axios.
+      }
+  }*/
+/*export function plannersToClient(plannerToAdd){
+ console.log('this is planner to add: ', plannerToAdd);
+ return function(dispatch){
+ let id ={
+ 'planner': '58dc57728ad5402a449b791d'
+ } ;
+ axios.put(`${BASE_URL}user/me/planner`, id).then(response => {
+ console.log('planner has been added to clients planners');
+ console.log(response);
+ dispatch({type: CHANGE_CLIENT_INFO});
+ }).catch((err) => {
+ dispatch('error');
+ })
+
+ }
+ }*/
 
 
 

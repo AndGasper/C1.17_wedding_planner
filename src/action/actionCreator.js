@@ -32,6 +32,7 @@ export function getPlannersFromServer() {
                 type: GET_PLANNERS_FROM_SERVER,
                 payload: resp
             })
+            console.log('this is planners from server: ', resp);
         })
     }
 }
