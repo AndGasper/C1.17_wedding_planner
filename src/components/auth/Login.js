@@ -45,6 +45,7 @@ const paperStyle = {
     fontSize: '.9em',
     margin: 'auto',
     textAlign: 'center',
+    height: 500
 };
 
 
@@ -81,6 +82,13 @@ class ClientSignin extends Component {
         browserHistory.push('/planner_login');
     }
 
+    renderError(){
+        if(this.props.errorMsg){
+            return (
+                <span className="alert alert-danger">Oops! Email or Password was incorrect</span>
+            )
+        }
+    }
     render(){
         const {  handleSubmit } = this.props;
         return (
@@ -95,6 +103,8 @@ class ClientSignin extends Component {
                         <Link to="/createAccount"><RaisedButton label="Create Account" secondary={true} style={style}/></Link>
                         <br/>
                         <br/>
+                        <div>
+                        </div>
                         <Toggle
                             label="Wedding Planner?"
                             thumbStyle={styles1.thumbOff}
@@ -104,6 +114,8 @@ class ClientSignin extends Component {
                             labelStyle={styles1.labelStyle}
                             onToggle={this.switchToPlannerLogin.bind(this)}
                         />
+                        <br/>
+                        {this.renderError()}
                     </form>
                 </Paper>
             </div>
@@ -113,7 +125,9 @@ class ClientSignin extends Component {
 }
 
 function mapStateToProps(state){
-    return { errorMsg: state.auth }
+    return {
+        errorMsg: state.authReducer.error
+    }
 }
 
 const componentWithForm = reduxForm({

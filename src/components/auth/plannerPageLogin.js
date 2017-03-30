@@ -45,6 +45,7 @@ const paperStyle = {
     fontSize: '.9em',
     margin: 'auto',
     textAlign: 'center',
+    height: 550
 };
 
 
@@ -83,6 +84,13 @@ class PlannerPageLogin extends Component {
     switchToClientLogin(){
         browserHistory.push('/Login');
     }
+    renderError(){
+        if(this.props.errorMsg){
+            return (
+                <span className="alert alert-danger">Oops! Email or Password was incorrect</span>
+            )
+        }
+    }
 
     render(){
         const {  handleSubmit } = this.props;
@@ -109,6 +117,8 @@ class PlannerPageLogin extends Component {
                                 onToggle={this.switchToClientLogin.bind(this)}
                                 toggled
                             />
+                            <br/>
+                            {this.renderError()}
                         </form>
                     </Paper>
                 </div>
@@ -137,8 +147,10 @@ function validate(values){
     return error;
 }
 
-function mapStateToProps(state){
-    return { errorMsg: state.auth }
+function mapStateToProps(state) {
+    return {
+        errorMsg: state.authReducer.error
+    }
 }
 
 const componentWithForm = reduxForm({

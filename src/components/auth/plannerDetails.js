@@ -33,13 +33,14 @@ const createInput = function(input, type, error){
     }
 }
 
-const renderInput = function ({input, label, type, meta: {touched, error } }){
+const renderInput = function ({input, label, type, meta: { error } }){
+    const hasError = error;
     return(
-        <div className={'form-group row'}>
+        <div className={`'form-group row' ${hasError ? 'has-danger' : ''}`}>
             <label className='col-sm-4 col-form-label'>{ label }</label>
             <div className='col-sm-7'>
-                {createInput(input, type)}
-                <div className='form-control-feedback'></div>
+                {createInput(input, type, hasError)}
+                <div className='form-control-feedback'>{hasError ? error : ''}</div>
             </div>
         </div>
     )
@@ -79,18 +80,10 @@ class PlannerDetails extends Component {
 function validate(values){
     const error = {};
 
-    if (!values.email){
-        error.email = 'Please enter an email';
-    }
-    if(!values.password){
-        error.password = 'Please enter a password';
-    }
-    if(!values.passwordConfirm){
-        error.passwordConfirm = 'Please confirm password';
-    }
+    var validWebsite = /^(http:\/\/|https:\/\/)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[‌​a-z]{3}\.([a-z]+)?$/;
 
-    if(values.password !== values.passwordConfirm){
-        error.passwordConfirm = 'Passwords don\'t match';
+    if (!values.website || !validWebsite.test(values.website)){
+        error.website = 'Please enter a valid website address';
     }
 
     return error;

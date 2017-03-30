@@ -3,9 +3,9 @@ import User from '../user/user.model';
 
 export function search(req, res) {
   if(req.user) {
-    userModel.findOneAndUpdate({
+    User.findOneAndUpdate({
         '_id': req.user._id
-      }, req.body.preferences, {
+      }, req.body, {
         new: true
       })
       .catch((err) => {
@@ -14,9 +14,11 @@ export function search(req, res) {
         return;
       });
   }
-  let params = fuzzyObject(req.body.preferences);
+  let preferences = {
+    "cost": req.body.preferences.cost
+  };
   PlannerModel.find({
-    params
+    "preferences": preferences
   }).select('-password').exec((err, planners) => {
     if(err) {
       console.log('there was an error');
@@ -37,13 +39,9 @@ export function search(req, res) {
   })
 }
 
-function fuzzyObject(params) {
-  return {
-    cost: {$lte: params.cost,
-      $gte: params.cost - 1},
-    attendance: {
-        $gte: params.cost - 1,
-        $lte: params.cost + 1
-    }
-  }
-}
+// function fuzzyObject(params) {
+//   return {
+//     cost: {$lte: params.cost + 1,
+//       $gte: params.cost - 1}
+//   }
+// }

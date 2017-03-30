@@ -1,17 +1,50 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link } from 'react-router'
+import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
+
+const style = {
+    textDecoration: 'none'
+};
+
+const paperStyleHeader = {
+    width: '100%',
+    backgroundColor: 'rgba(236,240,241 ,0.0)',
+    padding: '10px',
+    fontSize: '1.2em',
+    marginTop: '2%',
+    textAlign: 'center',
+};
+const paperStyleAbout = {
+    backgroundColor: 'rgba(236,240,241 ,0.5)',
+    color: 'gray',
+    padding: '10px',
+    fontSize: '1em',
+    textAlign: 'center',
+    display: 'inline-block'
+};
+const paperStylePref= {
+    backgroundColor: 'rgba(236,240,241 ,0.5)',
+    color: 'gray',
+    height: '417px',
+    padding: '10px',
+    textAlign: 'center',
+    fontSize: '1em',
+    float: 'right',
+};
 
 class plannerLogin extends Component {
+
     renderName(){
         const { name } = this.props.active_planner;
         if(name){
             return (
-                <h4 className="client-spec">{this.props.active_planner.name}</h4>
+                <h4>{this.props.active_planner.name}</h4>
             )
         }
         return [
-            <h2 key='client_signin' className="client-spec">*Click Edit Profile Info to insert name*</h2>
+            <h4 key='client_signin'>*Click Edit Profile Info to insert name*</h4>
         ]
     }
 
@@ -19,11 +52,11 @@ class plannerLogin extends Component {
         const { website } = this.props.active_planner;
         if(website){
             return (
-                <h4 className="client-spec">{this.props.active_planner.website}</h4>
+                <h4><a href={`http://${this.props.active_planner.website}`} target='_blank'>{this.props.active_planner.website}</a></h4>
             )
         }
         return [
-            <h2 key='client_signin' className="client-spec">*Click Edit Profile Info to insert phone number*</h2>
+            <h4 key='planner_signin'>*Click Edit Profile Info to insert email*</h4>
         ]
     }
 
@@ -31,7 +64,7 @@ class plannerLogin extends Component {
         const { name } = this.props.active_planner;
         if(name){
             return (
-                <span>{this.props.active_planner.name}!</span>
+                <span>Back {this.props.active_planner.name}!</span>
             )
         }
         return [
@@ -41,35 +74,36 @@ class plannerLogin extends Component {
 
 
     render() {
-        function handleChange() {
-            console.log('Props are:', this.props);
-        }
 
         return (
-            <div>
-                <h1 id="client-name">Welcome Back {this.renderHeaderName()}</h1>
-                <div>
-                    <div onClick={handleChange.bind(this)} id="client-info">
-                        <h3 className="client-about">About You</h3>
-                        <h4 className="user-labels">Company Name</h4>
-                        {this.renderName()}
-                        <h4 className="user-labels">Email</h4>
-                        <h4 className="client-spec">{this.props.active_planner.email}</h4>
-                        <h4 className="user-labels">Website</h4>
-                        {this.renderWebsite()}
-                        <h5 id="edit_client_info"><Link to="/planner_details">Edit Profile Info</Link></h5>
-                        <h5 id='edit_planner_preferences'><Link to='/wedding_preferences'>Edit Client Preferences</Link></h5>
-                    </div>
-                    <div id="client-pref">
-                        <h3 className="client-about">Preferences</h3>
-                        <h4 className="user-labels">Images</h4>
-                        <h4 className="client-spec">*Insert Images Here*</h4>
-                        <h4 className="user-labels client-hide">Email</h4>
-                        <h4 className="client-spec client-hide">e</h4>
-                        <h4 className="user-labels">Summary</h4>
-                        <h4 className="client-spec">*Insert Summary Here*</h4>
-                    </div>
+            <div className="pink">
+                <div style={paperStyleHeader}>
+                    <h1>Welcome {this.renderHeaderName()}</h1>
                 </div>
+                <Paper className="col-sm-12 col-md-6 col-lg-6" zDepth={5} style={paperStyleAbout}>
+                    <h1>About You</h1>
+                    <h4 className="client-about">Company Name</h4>
+                    {this.renderName()}
+                    <h4 className="client-about">Email</h4>
+                    <h4>{this.props.active_planner.email}</h4>
+                    <h4 className="client-about">Website</h4>
+                    {this.renderWebsite()}
+                    <h5 className="client-about"><Link to="/planner_details">Edit Profile Info</Link></h5>
+                    <h5 className="client-about"><Link to='/wedding_preferences'>Edit Client Preferences</Link></h5>
+                </Paper>
+                <Paper className="col-sm-12 col-md-6 col-lg-6" zDepth={5} style={paperStylePref}>
+                    <h1>Potential Clients and Preferences</h1>
+                    <div id="prefsLeft">
+                        <h4 className="client-about">Clients Matched</h4>
+                        <h4 className="plannerLinks client-pref-links"><a className='pinkLink' href="#">John Yosas</a></h4>
+                        <h4 className="plannerLinks client-pref-links"><a className='pinkLink' href="#">Derrick Sebesta</a></h4>
+                        <h4 className="plannerLinks client-pref-links"><a className='pinkLink' href="#">Dan and Darin</a></h4>
+                    </div>
+                    <div id="prefsRight">
+                        <h4 className="client-about">Preferences</h4>
+                        <h4 className="plannerLinks client-pref-links">*Insert Preferences Here*</h4>
+                    </div>
+                </Paper>
             </div>
         )
     }

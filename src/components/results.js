@@ -22,6 +22,15 @@ class Results extends Component {
     }
 
     render() {
+
+        if (!this.props.plannerData) {
+            return (
+                <div>
+                    Loading....
+                </div>
+                )
+        }
+
         return (
             <div>
                 { React.Children.map(this.props.children, child => React.cloneElement(child, {
