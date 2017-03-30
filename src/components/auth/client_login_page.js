@@ -32,10 +32,21 @@ const paperStylePref= {
     textAlign: 'center',
     fontSize: '1em',
     float: 'right',
-    height: 387,
 };
 
 class clientLogin extends Component {
+
+   /* showPlanners(){
+        let array_length = this.props.active_client.planners.length;
+
+        for(let i = 0; i < array_length; i++){
+            let tn = document.createTextNode(this.props.active_client.planners[i].name);
+            let h4 = document.createElement("h4").appendChild(tn);
+            console.log(h4);
+            document.getElementById('prefs-left').append(h4);
+        }
+
+    }*/
 
     renderName(){
         const { name } = this.props.active_client;
@@ -73,12 +84,48 @@ class clientLogin extends Component {
         ]
     }
 
+    renderPlanners1(){
+    const { planners } = this.props.active_client;
+    if(planners.length > 0){
+        return (
+            <h4><a href="">{this.props.active_client.planners[0].name}</a></h4>
+        )
+    }
 
-    render() {
-        function handleChange() {
-            console.log('Props are:', this.props);
+}
+
+    renderPlanners2(){
+        const { planners } = this.props.active_client;
+        if(planners.length > 1){
+            return (
+                <h4><a href="">{this.props.active_client.planners[1].name}</a></h4>
+            )
         }
 
+    }
+    renderPlanners3(){
+        const { planners } = this.props.active_client;
+        if(planners.length > 2){
+            return (
+                <h4><a href="">{this.props.active_client.planners[2].name}</a></h4>
+            )
+        }
+
+    }
+    renderButton(){
+        if(this.props.active_client.planners < 1){
+            return (
+                <Link className="col-sm-12 col-md-4 profileRetake" to="/questions"><RaisedButton label="Take Questionnaire" secondary={true} style={style}/></Link>
+            )
+        } else {
+            return (
+                <Link className="col-sm-12 col-md-4 profileRetake" to="/questions"><RaisedButton label="Retake Questionnaire" secondary={true} style={style}/></Link>
+            )
+        }
+    }
+
+
+    render() {
 
         return (
             <div className="pink">
@@ -97,17 +144,17 @@ class clientLogin extends Component {
                 </Paper>
                 <Paper className="col-sm-12 col-md-6 col-lg-6" zDepth={5} style={paperStylePref}>
                     <h1>Preferences</h1>
-                    <div id="prefsLeft">
-                        <h4 className="client-about">Planners</h4>
-                        <h4 className="plannerLinks client-pref-links"><a className='pinkLink' href="http://www.eventsbykatherine.com/">Events By Katherine</a></h4>
-                        <h4 className="plannerLinks client-pref-links"><a className='pinkLink' href="http://www.http://rebeccacalagna.com/">Rebecca Calagna Wedding</a></h4>
-                        <h4 className="plannerLinks client-pref-links"><a className='pinkLink' href="http://http://www.simplysweet-weddings.com/">Simply Sweet Weddings</a></h4>
-                        <Link className="col-sm-12 col-md-4 profileRetake" to="/questions"><RaisedButton label="Retake Questionnaire" secondary={true} style={style}/></Link>
+                    <div id="prefs-left">
+                        <h4 className="client-about plannersGenerated">Planners</h4>
+                        {this.renderPlanners1()}
+                        {this.renderPlanners2()}
+                        {this.renderPlanners3()}
+                        {this.renderButton()}
                     </div>
-                    <div id="prefsRight">
+                   {/* <div id="prefsRight">
                         <h4 className="client-about client-pref-summ">Summary</h4>
                         <h4 className="client-pref-summ">*Insert Summary Here*</h4>
-                    </div>
+                    </div>*/}
                 </Paper>
             </div>
         )

@@ -65,7 +65,7 @@ class ClientInfo extends Component {
             <div className="pink">
                 <div className="whiteCenter">
                     <Paper zDepth={2} style={paperStyle}>
-                        <h1 class="boldh1">Edit Profile Information</h1>
+                        <h1 className="boldh1">Edit Profile Information</h1>
                         <form onClick={this.handleProps.bind(this)} onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                             <Field name='name' component={renderInput} label='Name' type='text'/>
                             <Field name='email' component={renderInput} label='Email' type='text' />

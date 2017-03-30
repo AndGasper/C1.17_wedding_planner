@@ -17,7 +17,7 @@ li img {
 }
 
 h1 {
-    color: darkred;
+    color: rgb(156, 39, 176);
     font-size: 4.0em;
     font-family: 'Perpetua', 'sans-serif';
 }
@@ -188,6 +188,13 @@ boldh1 {
     font-family: 'Roboto', 'Perpetua', 'sans-serif';
     text-decoration: underline;
 }
+
+.planner-pref-links{
+    text-align: center;
+    font-family: 'Roboto', 'Perpetua', 'sans-serif';
+    text-decoration: underline;
+}
+
 .client-pref-summ {
     text-align: center;
 }
@@ -225,12 +232,6 @@ boldh1 {
 }
 
 @media only screen and (max-width: 590px) {
-    h4 {
-        font-size: 1.5em;
-    }
-}
-
-@media only screen and (max-width: 590px) {
     .home {
         background: none;
     }
@@ -245,4 +246,19 @@ boldh1 {
         height: inherit;
         margin-top: 2%;
     }
+    h4 {
+        font-size: 1.5em;
+    }
+}
+
+#blownUp {
+    height: 4px;
+    width: 4px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: 2px solid blue;
+}
+a{
+    color: rgb(156, 39, 176);
 }

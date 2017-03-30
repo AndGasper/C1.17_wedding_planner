@@ -44,11 +44,10 @@ const toolbarStyle = {
 class Header extends Component {
 
     renderAuthLinks1(){
-        console.log(this.props);
-        const { authenticated, active_client, active_planner } = this.props;
+        const { authenticated, active_client } = this.props;
         if (active_client !== undefined){
             var profile = '/client_login_page';
-        } else if (active_planner !== undefined){
+        } else {
             var profile = '/planner_profile';
         }
         if(authenticated){
@@ -147,18 +146,12 @@ class Header extends Component {
 }
 
 function mapStateToProps(state){
-    if(state.coupleData.authenticated){
         return {
-            authenticated: state.coupleData.authenticated,
-            active_client: state.coupleData
-        }
-    } else {
-        return {
-            authenticated: state.plannerData.authenticated,
+            authenticated: state.authReducer.authenticated,
+            active_client: state.coupleData.active_client,
             active_planner: state.plannerData
         }
     }
-    
-}
+
 
 export default connect(mapStateToProps)(Header);

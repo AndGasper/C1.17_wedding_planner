@@ -15,11 +15,18 @@ function coupleData(state = [], action) {
             newState2.settings = action.payload.data;
             return newState2;
         case SET_CURRENT_CLIENT:
-            return {
+            if(state.active_client = 'Credentials are Wrong'){
+                return {
                     ...state,
                     active_client: action.payload,
-                    authenticated: true
+                }
+            } else {
+                return {
+                    ...state,
+                    active_client: action.payload,
                 };
+            }
+
         case CHANGE_CLIENT_INFO:
             return {
                 ...state
@@ -27,8 +34,7 @@ function coupleData(state = [], action) {
         case LOGOUT_CLIENT:
             return {
                 ...state,
-                active_client: '',
-                authenticated: false
+                active_client: undefined
             }
     }
     return state;

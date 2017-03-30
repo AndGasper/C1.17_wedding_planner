@@ -34,7 +34,7 @@ class ResultsList extends Component {
 
     saveToProfile(index) {
         let plannerToAdd = this.props.plannerData[index];
-        this.props.plannersToClient(plannerToAdd);
+        this.props.active_client.planners.push(plannerToAdd);
     }
 
     renderPlannerList() {

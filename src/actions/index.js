@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTH_USER, SET_CURRENT_CLIENT, CHANGE_CLIENT_INFO, LOGOUT_CLIENT, SET_CURRENT_PLANNER, CHANGE_PLANNER_INFO, LOGOUT_PLANNER } from './types';
+import { UNAUTH_USER, AUTH_ERROR, AUTH_USER, SET_CURRENT_CLIENT, CHANGE_CLIENT_INFO, LOGOUT_CLIENT, SET_CURRENT_PLANNER, CHANGE_PLANNER_INFO, LOGOUT_PLANNER } from './types';
 import { browserHistory } from 'react-router';
 
 const BASE_URL = 'http://localhost:3000/api/';
@@ -41,6 +41,12 @@ export function plannerProfileClick(){
         });
     }
 }
+export function authError(err){
+    return {
+        type: AUTH_ERROR,
+        payload: err
+    }
+}
 
 export function ClientSignin(values){
     return function(dispatch){
@@ -52,8 +58,11 @@ export function ClientSignin(values){
                 payload: response.data
             });
             if(response.data === 'Credentials are wrong'){
-                window.alert('Email or Password is incorrect, Try Again');
+                dispatch(authError('bad login info'))
             } else {
+                dispatch({
+                    type: AUTH_USER
+                });
                 console.log('user that logged in: ', response.data);
                 localStorage.setItem('id', response);
                 browserHistory.push('/client_login_page');
@@ -93,7 +102,8 @@ export function updatePlannerDetails() {
 export function signoutClient(){
     return function(dispatch){
         axios.get(`${BASE_URL}user/logout`).then(response => {
-            dispatch({type: LOGOUT_CLIENT});
+            dispatch({ type: LOGOUT_CLIENT });
+            dispatch({ type: UNAUTH_USER });
             let delete_cookie = function(name) {
                 document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
             };
@@ -133,9 +143,9 @@ export function updateClient(values){
     }
 }
 
-export function plannersToClient(plannerToAdd){
-    console.log('hi');
-    /*return function(dispatch){
+/*export function plannersToClient(plannerToAdd){
+    console.log('this is planner to add: ', plannerToAdd);
+    return function(dispatch){
         let id ={
             'planner': '58dc57728ad5402a449b791d'
         } ;
@@ -147,8 +157,8 @@ export function plannersToClient(plannerToAdd){
             dispatch('error');
         })
 
-    }*/
-}
+    }
+}*/
 
   export function plannerLogin(values){
       const id = localStorage.getItem('id');
@@ -160,8 +170,11 @@ export function plannersToClient(plannerToAdd){
             });
             console.log(response);
             if(response.data === 'Credentials are wrong'){
-                window.alert('Email or Password is incorrect, Try Again');
+                dispatch(authError('bad login info'))
             } else {
+                dispatch({
+                    type: AUTH_USER
+                });
                 browserHistory.push('/planner_profile');
             }
         }).catch(err => {
@@ -188,13 +201,16 @@ export function plannersToClient(plannerToAdd){
   export function signOutPlanner(){
       return function (dispatch){
           axios.get(`${BASE_URL}wedding_planner/logout`).then(response =>{
-            dispatch({ type:LOGOUT_PLANNER });
+            dispatch({ type: LOGOUT_PLANNER });
+            dispatch({ type: UNAUTH_USER });
           }).catch((err) =>{
               console.log(err);
           });
       }
   }
+  //build out component results page with info from api/weddingplanner/
 
+  //send id to api/user/me/:id
 
 
 

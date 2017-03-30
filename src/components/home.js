@@ -29,7 +29,7 @@ class Home extends Component {
 
     componentWillMount(){
             if(this.props.authenticated){
-                return
+                return;
             } else if(this.props.active_client === undefined){
                 this.props.handleProfileClick();
             }
@@ -67,6 +67,7 @@ class Home extends Component {
                                     browse multiple sites, searching for multiple wedding planners, and answering multiple boring forms,
                                     trying to put dreams into words.
                                 </p>
+                                <Link/>
                             </Paper>
                         </div>
 
@@ -116,17 +117,11 @@ class Home extends Component {
 }
 
 function mapStateToProps(state){
-    if (state.coupleData.authenticated) {
         return{
             active_client: state.coupleData.active_client,
-            authenticated: state.coupleData.authenticated
-        }
-    } else {
-        return {
-            active_planner: state.plannerData.active_planner,
-            authenticated: state.plannerData.authenticated
+            authenticated: state.authReducer.authenticated,
+            active_planner: state.plannerData.active_planner
         }
     }
-}
 
 export default connect(mapStateToProps, actions)(Home);
