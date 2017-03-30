@@ -11,7 +11,7 @@ const style = {
 };
 
 const paperStyle = {
-    width: '70vw',
+    width: '80%',
     backgroundColor: 'white',
     color: 'gray',
     padding: '10px',
@@ -77,9 +77,9 @@ class WeddingPreferences extends Component {
                             </div>
                             <h2>Music</h2>
                             <div>
-                                <Field name='preferences.music' component={renderInput} type='radio' value='1' label='DJ' ></Field>>
+                                <Field name='preferences.music' component={renderInput} type='radio' value='1' label='DJ' ></Field>
                                 <Field name='preferences.music' component={renderInput} type='radio' value='2' label='Band' ></Field>
-                                <Field name='preferences.music' component={renderInput} type='radio' value='3' lable='Orchestra'></Field>
+                                <Field name='preferences.music' component={renderInput} type='radio' value='3' label='Orchestra'></Field>
                             </div>
                             <h2>Alcohol</h2>
                             <div>

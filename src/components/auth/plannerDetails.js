@@ -11,7 +11,7 @@ const style = {
 };
 
 const paperStyle = {
-    width: '70vw',
+    width: '80%',
     backgroundColor: 'white',
     color: 'gray',
     padding: '10px',
