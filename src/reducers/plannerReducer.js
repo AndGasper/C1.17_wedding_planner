@@ -17,7 +17,6 @@ function PlannerData(state = [], action) {
             return {
                     ...state,
                     active_planner: action.payload,
-                    authenticated: true
                 };
         case CHANGE_PLANNER_INFO:
             return {
@@ -26,7 +25,7 @@ function PlannerData(state = [], action) {
         case LOGOUT_PLANNER:
             return {
                 ...state,
-                authenticated: false
+                active_planner: '',
             }
     }
     return state;

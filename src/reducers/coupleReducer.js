@@ -3,10 +3,8 @@ import {UPDATE_PREFS, SEND_PREFS_TO_SERVER, GET_COUPLE_PROFILE} from '../action/
 import { SET_CURRENT_CLIENT, CHANGE_CLIENT_INFO, LOGOUT_CLIENT } from '../actions/types';
 
 function coupleData(state = [], action) {
-    console.log('reducer reached');
     switch(action.type) {
         case UPDATE_PREFS:
-            console.log('action', action);
             let newState1 = JSON.parse(JSON.stringify(state));
             newState1[action.payload.category] = action.payload.imageValue;
             return newState1;
@@ -17,11 +15,18 @@ function coupleData(state = [], action) {
             newState2.settings = action.payload.data;
             return newState2;
         case SET_CURRENT_CLIENT:
-            return {
+            if(state.active_client = 'Credentials are Wrong'){
+                return {
                     ...state,
                     active_client: action.payload,
-                    authenticated: true
+                }
+            } else {
+                return {
+                    ...state,
+                    active_client: action.payload,
                 };
+            }
+
         case CHANGE_CLIENT_INFO:
             return {
                 ...state
@@ -29,8 +34,7 @@ function coupleData(state = [], action) {
         case LOGOUT_CLIENT:
             return {
                 ...state,
-                active_client: '',
-                authenticated: false
+                active_client: undefined
             }
     }
     return state;
