@@ -28,12 +28,13 @@ class Home extends Component {
     }
 
     componentWillMount(){
-        if(this.props.active_client === undefined){
-            this.props.handleProfileClick();
-        }
-
-
+            if(this.props.authenticated){
+                return
+            } else if(this.props.active_client === undefined){
+                this.props.handleProfileClick();
+            }
     }
+
     handleProfile(){
         if(this.props.active_client){
             console.log('clients props', this.props);
@@ -67,9 +68,6 @@ class Home extends Component {
                                     trying to put dreams into words.
                                 </p>
                             </Paper>
-                            <div>
-                                <Link to="/questions"><RaisedButton label='Retake Questionnaire' secondary={true} style={style}/></Link>
-                            </div>
                         </div>
 
                     </div>

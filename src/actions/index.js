@@ -4,35 +4,38 @@ import { browserHistory } from 'react-router';
 
 const BASE_URL = 'http://localhost:3000/api/';
 
-export function handleProfileClick(){
+export function handleProfileClick() {
     return function(dispatch){
         axios.get(`${BASE_URL}user/me`).then(response => {
-            if(response.data.name){
-                console.log('profile of active user:', response);
+            console.log(response)
+            if(response.data.name !== undefined) {
                 dispatch({
                     type: SET_CURRENT_CLIENT,
                     payload: response.data
                 });
-
                 browserHistory.push('/client_login_page');
             } else {
-                 return browserHistory.push('/');
+                browserHistory.push('/');
             }
-
-        }).catch(err => {
-            console.log('this is error ', err);
-        })
+        }).catch((err) =>{
+            return;
+        });
     }
 }
 
 export function plannerProfileClick(){
     return function(dispatch){
         axios.get(`${BASE_URL}wedding_planner/me`).then(response => {
-            dispatch({
-                type: SET_CURRENT_PLANNER,
-                payload: response.data
-            });
-            browserHistory.push('/');
+            console.log(response)
+            if(response.data.name !== undefined) {
+                dispatch({
+                    type: SET_CURRENT_PLANNER,
+                    payload: response.data
+                });
+                browserHistory.push('/planner_profile');
+            } else {
+                browserHistory.push('/');
+            }
         }).catch((err) =>{
             console.log(err);
         });
@@ -168,6 +171,7 @@ export function plannersToClient(plannerToAdd){
   }
 
   export function updatePlanner(values){
+    debugger;
     return function(dispatch){
         axios.put(`${BASE_URL}wedding_planner/me`, values).then(response => {
             dispatch({type: CHANGE_PLANNER_INFO});

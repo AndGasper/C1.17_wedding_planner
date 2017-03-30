@@ -44,8 +44,13 @@ const toolbarStyle = {
 class Header extends Component {
 
     renderAuthLinks1(){
-        const { authenticated } = this.props;
         console.log(this.props);
+        const { authenticated, active_client, active_planner } = this.props;
+        if (active_client !== undefined){
+            var profile = '/client_login_page';
+        } else if (active_planner !== undefined){
+            var profile = '/planner_profile';
+        }
         if(authenticated){
             return (
                 <div key='signin3' className={styles.headerToolbarWide}>
@@ -56,7 +61,7 @@ class Header extends Component {
                         <ToolbarGroup>
                             <Link to="/"><FlatButton label="Home" default={true} style={toolbarStyle.homeButton}/></Link>
                             <ToolbarSeparator/>
-                            <Link to="/client_login_page"><FlatButton label="Profile" default={true} style={toolbarStyle.signinButton}/></Link>
+                            <Link to={profile}><FlatButton label="Profile" default={true} style={toolbarStyle.signinButton}/></Link>
                             <ToolbarSeparator/>
                             <Link to='/signout'><FlatButton label="Sign Out" secondary={true} style={toolbarStyle.signinButton}/></Link>
                         </ToolbarGroup>
@@ -83,7 +88,6 @@ class Header extends Component {
 
     renderAuthLinks2() {
         const {authenticated} = this.props;
-        console.log(this.props);
         if (authenticated) {
             return (
                 <div key='signin1' className={styles.headerToolbarShort}>
@@ -145,11 +149,13 @@ class Header extends Component {
 function mapStateToProps(state){
     if(state.coupleData.authenticated){
         return {
-            authenticated: state.coupleData.authenticated
+            authenticated: state.coupleData.authenticated,
+            active_client: state.coupleData
         }
     } else {
         return {
-            authenticated: state.plannerData.authenticated
+            authenticated: state.plannerData.authenticated,
+            active_planner: state.plannerData
         }
     }
     
