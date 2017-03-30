@@ -1,12 +1,11 @@
 
-import {UPDATE_PREFS, SEND_PREFS_TO_SERVER, GET_COUPLE_PROFILE} from '../action/types'
+import {UPDATE_PREFS, SEND_PREFS_TO_SERVER, GET_COUPLE_PROFILE } from '../action/types'
 import { SET_CURRENT_CLIENT, CHANGE_CLIENT_INFO, LOGOUT_CLIENT } from '../actions/types';
 
 function coupleData(state = [], action) {
-    console.log('reducer reached');
     switch(action.type) {
         case UPDATE_PREFS:
-            console.log('action', action);
+            // console.log('action', action);
             let newState1 = JSON.parse(JSON.stringify(state));
             newState1[action.payload.category] = action.payload.imageValue;
             return newState1;
