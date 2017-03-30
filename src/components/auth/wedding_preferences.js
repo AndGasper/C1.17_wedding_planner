@@ -83,6 +83,14 @@ class WeddingPreferences extends Component {
                         <br/>
                         <label><Field name='preferences.flowers' component={renderInput} type='radio' value='3' ></Field>Overpowering</label>
                     </div>
+                    <label>Music</label>
+                    <div>
+                        <label><Field name='preferences.music' component={renderInput} type='radio' value='1' ></Field>DJ</label>
+                        <br/>
+                        <label><Field name='preferences.music' component={renderInput} type='radio' value='2' ></Field>Band</label>
+                        <br/>
+                        <label><Field name='preferences.music' component={renderInput} type='radio' value='3' ></Field>Orchestra</label>
+                    </div>
                     <label>Alcohol</label>
                     <div>
                         <label><Field name='preferences.alcohol' component={renderInput} type='radio' value='1' ></Field>Dry</label>
@@ -98,6 +106,44 @@ class WeddingPreferences extends Component {
                         <label><Field name='preferences.attendance' component={renderInput} type='radio' value='2' ></Field>51-100</label>
                         <br/>
                         <label><Field name='preferences.attendance' component={renderInput} type='radio' value='3' ></Field>100+</label>
+                    </div>
+                    <label>Photography</label>
+                    <div>
+                        <label><Field name='preferences.photography' component={renderInput} type='radio' value='1' ></Field>Disposable</label>
+                        <br/>
+                        <label><Field name='preferences.photography' component={renderInput} type='radio' value='2' ></Field>Photo</label>
+                        <br/>
+                        <label><Field name='preferences.photography' component={renderInput} type='radio' value='3' ></Field>Full Photo + Video</label>
+                    </div>
+                    <label>Time of the Year</label>
+                    <div>
+                        <label><Field name='preferences.time_of_year' component={renderInput} type='radio' value='1' ></Field>Winter</label>
+                        <br/>
+                        <label><Field name='preferences.time_of_year' component={renderInput} type='radio' value='2' ></Field>Spring</label>
+                        <br/>
+                        <label><Field name='preferences.time_of_year' component={renderInput} type='radio' value='3' ></Field>Summer</label>
+                        <br/>
+                        <label><Field name='preferences.time_of_year' component={renderInput} type='radio' value='4' ></Field>Autumn</label>
+                    </div>
+                    <label>Reception Venue</label>
+                    <div>
+                        <label><Field name='preferences.venue_reception' component={renderInput} type='radio' value='1' ></Field>Indoor</label>
+                        <br/>
+                        <label><Field name='preferences.venue_reception' component={renderInput} type='radio' value='2' ></Field>Outdoor</label>
+                    </div>
+                    <label>Ceremony Venue</label>
+                    <div>
+                        <label><Field name='preferences.venue_ceremony' component={renderInput} type='radio' value='1' ></Field>Indoor</label>
+                        <br/>
+                        <label><Field name='preferences.venue_ceremony' component={renderInput} type='radio' value='2' ></Field>Outdoor</label>
+                    </div>
+                    <label>Reception Vibe</label>
+                    <div>
+                        <label><Field name='preferences.reception_vibe' component={renderInput} type='radio' value='1' ></Field>Slow</label>
+                        <br/>
+                        <label><Field name='preferences.reception_vibe' component={renderInput} type='radio' value='2' ></Field>OK</label>
+                        <br/>
+                        <label><Field name='preferences.reception_vibe' component={renderInput} type='radio' value='3' ></Field>Hype</label>
                     </div>
                     <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Update Preferences" secondary={true} style={style}/>
                 </form>

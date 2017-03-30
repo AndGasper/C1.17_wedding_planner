@@ -3,7 +3,6 @@ import {UPDATE_PREFS, SEND_PREFS_TO_SERVER, GET_COUPLE_PROFILE} from '../action/
 import { SET_CURRENT_CLIENT, CHANGE_CLIENT_INFO, LOGOUT_CLIENT } from '../actions/types';
 
 function coupleData(state = [], action) {
-    console.log('reducer reached');
     switch(action.type) {
         case UPDATE_PREFS:
             console.log('action', action);

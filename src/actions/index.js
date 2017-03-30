@@ -154,6 +154,7 @@ export function updateClient(values){
   }
 
   export function updatePlanner(values){
+    debugger;
     return function(dispatch){
         axios.put(`${BASE_URL}wedding_planner/me`, values).then(response => {
             dispatch({type: CHANGE_PLANNER_INFO});
