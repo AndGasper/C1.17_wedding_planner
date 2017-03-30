@@ -159,8 +159,8 @@ export function plannersToClient(plannerToAdd){
                 payload: response.data
             });
             console.log(response);
-            if(response.data === "Credentials are wrong"){
-                return false;
+            if(response.data === 'Credentials are wrong'){
+                window.alert('Email or Password is incorrect, Try Again');
             } else {
                 browserHistory.push('/planner_profile');
             }
