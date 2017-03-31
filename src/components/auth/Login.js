@@ -60,21 +60,18 @@ const createInput = function(input, type, error){
     }
 }
 
-
-const renderInput = function ({input, label, type, meta: {touched, error } }){
+const renderInput = function ({input, label, type, meta: { error } }){
+    const hasError = error;
     return(
-        <div className={'form-group row'}>
+        <div className={`'form-group row' ${hasError ? 'has-danger' : ''}`}>
             <label className='col-form-label'>{ label }</label>
             <div className='col-sm-12'>
-                {createInput(input, type)}
+                {createInput(input, type, hasError)}
                 <div className='form-control-feedback'></div>
             </div>
         </div>
     )
 }
-
-
-
 
 class ClientSignin extends Component {
     handleFormSubmit(values){
@@ -94,7 +91,6 @@ class ClientSignin extends Component {
     }
     render(){
         const {  handleSubmit } = this.props;
-
         return (
         <div className="pink">
             <div className="whiteCenter">
@@ -128,26 +124,6 @@ class ClientSignin extends Component {
     }
 }
 
-function validate(values){
-    const error = {};
-
-    if (!values.email){
-        error.email = 'Please enter an email';
-    }
-    if(!values.password){
-        error.password = 'Please enter a password';
-    }
-    if(!values.passwordConfirm){
-        error.passwordConfirm = 'Please confirm password';
-    }
-
-    if(values.password !== values.passwordConfirm){
-        error.passwordConfirm = 'Passwords don\'t match';
-    }
-
-    return error;
-}
-
 function mapStateToProps(state){
     return {
         errorMsg: state.authReducer.error
@@ -156,7 +132,5 @@ function mapStateToProps(state){
 
 const componentWithForm = reduxForm({
     form: 'form',
-    fields: ['email', 'password', 'passwordConfirm'],
-    validate
 })(ClientSignin)
 export default connect(mapStateToProps, actions)(componentWithForm) ;

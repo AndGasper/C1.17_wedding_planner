@@ -11,11 +11,12 @@ const style = {
 };
 
 const paperStyle = {
-    width: 300,
+    width: '80%',
     backgroundColor: 'white',
     color: 'gray',
     padding: '10px',
-    fontSize: '.9em'
+    fontSize: '.9em',
+    margin: 'auto'
 };
 
 const createInput = function(input, type, error){
@@ -32,13 +33,14 @@ const createInput = function(input, type, error){
     }
 }
 
-const renderInput = function ({input, label, type, meta: {touched, error } }){
+const renderInput = function ({input, label, type, meta: { error } }){
+    const hasError = error;
     return(
-        <div className={'form-group row'}>
-            <label className='col-sm-3 col-form-label'>{ label }</label>
-            <div className='col-sm-9'>
-                {createInput(input, type)}
-                <div className='form-control-feedback'></div>
+        <div className={`'form-group row' ${hasError ? 'has-danger' : ''}`}>
+            <label className='col-sm-4 col-form-label'>{ label }</label>
+            <div className='col-sm-7'>
+                {createInput(input, type, hasError)}
+                <div className='form-control-feedback'>{hasError ? error : ''}</div>
             </div>
         </div>
     )
@@ -53,17 +55,25 @@ class PlannerDetails extends Component {
     render(){
         const { handleSubmit } = this.props;
         return (
-            <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-                <Field name='name' component={renderInput} label='Company Name' type='text' />
-                <Field name='website' placeholder='website' component={renderInput} label='Website' type='text' />
-                <Field name='address.street' component={renderInput} label='Street' type='text' />
-                <Field name='address.suite' component={renderInput} label='Apt/Suite' type='text' />
-                <Field name='address.city' component={renderInput} label='City' type='text'/>
-                <Field name='address.zip' component={renderInput} label='Zip' type='text' />
-                <Field name='address.state' component={renderInput} label='State' type='text' />
-                <Field name='description' component={renderInput} label='Description' type='textarea' />
-                <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Update Profile" secondary={true} style={style}/>
-            </form>
+            <div className='pink'>
+                <div className='WhiteCenter'>
+                    <Paper zDepth={2} style={paperStyle}>
+                        <h1 className='boldh1'>Edit Profile Information</h1>
+                        <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+                            <Field name='name' component={renderInput} label='Company Name' type='text' />
+                            <Field name='website' placeholder='website' component={renderInput} label='Website' type='text' />
+                            <Field name='address.street' component={renderInput} label='Street' type='text' />
+                            <Field name='address.suite' component={renderInput} label='Apt/Suite' type='text' />
+                            <Field name='address.city' component={renderInput} label='City' type='text'/>
+                            <Field name='address.zip' component={renderInput} label='Zip' type='text' />
+                            <Field name='address.state' component={renderInput} label='State' type='text' />
+                            <Field name='description' component={renderInput} label='Description' type='textarea' />
+                            <Field name='image' component={renderInput} label='Image URL' type='text' />
+                            <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Update Profile" secondary={true} style={style}/>
+                        </form>
+                    </Paper>
+                </div>
+            </div>
         );
     }
 }
@@ -71,18 +81,10 @@ class PlannerDetails extends Component {
 function validate(values){
     const error = {};
 
-    if (!values.email){
-        error.email = 'Please enter an email';
-    }
-    if(!values.password){
-        error.password = 'Please enter a password';
-    }
-    if(!values.passwordConfirm){
-        error.passwordConfirm = 'Please confirm password';
-    }
+    var validWebsite = /^(http:\/\/|https:\/\/)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[‌​a-z]{3}\.([a-z]+)?$/;
 
-    if(values.password !== values.passwordConfirm){
-        error.passwordConfirm = 'Passwords don\'t match';
+    if (!values.website || !validWebsite.test(values.website)){
+        error.website = 'Please enter a valid website address';
     }
 
     return error;
@@ -91,7 +93,8 @@ function validate(values){
 function mapStateToProps(state){
     return { 
         errorMsg: state.auth,
-        active_planner: state.plannerData.active_planner
+        active_planner: state.plannerData.active_planner,
+        initialValues: state.plannerData.active_planner
      }
 }
 

@@ -11,35 +11,29 @@ const style = {
 };
 
 const paperStyle = {
-    width: 300,
+    width: '80%',
     backgroundColor: 'white',
     color: 'gray',
     padding: '10px',
-    fontSize: '.9em'
+    fontSize: '.9em',
+    margin: 'auto',
+    height: 'auto'
 };
 
 const createInput = function(input, type, error){
     const inputClass = `form-control ${error ? 'form-control-danger' : ''}`;
     switch (type){
-        case 'textarea':
-            return (
-                <textarea {...input} className={inputClass}></textarea>
-            );
         default:
             return (
-                <input {...input} className={inputClass} type={type} />
+                <input {...input} className='radio-button' type={type} />
             );
     }
 }
 
 const renderInput = function ({input, label, type, meta: {touched, error } }){
     return(
-        <div className={'form-group row'}>
-            <label className='col-sm-3 col-form-label'>{ label }</label>
-            <div className='col-sm-9'>
-                {createInput(input, type)}
-                <div className='form-control-feedback'></div>
-            </div>
+        <div className={'planner-preferences'}>
+            <label className='col-md-6 col-sm-12 text-center'>{ label }{createInput(input, type)}</label>
         </div>
     )
 }
@@ -54,124 +48,85 @@ class WeddingPreferences extends Component {
         const { handleSubmit } = this.props;
         return(
             <div>
-                <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-                    <label>Prefered Expected Cost</label>
-                    <div>
-                        <label><Field name='preferences.cost' component={renderInput} type='radio' value='1' ></Field>Less than $5,000</label>
-                        <br/>
-                        <label><Field name='preferences.cost' component={renderInput} type='radio' value='2' ></Field>$5,000 - $10,000</label>
-                        <br/>
-                        <label><Field name='preferences.cost' component={renderInput} type='radio' value='3' ></Field>$10,000 - $25,000</label>
-                        <br/>
-                        <label><Field name='preferences.cost' component={renderInput} type='radio' value='4' ></Field>$25,000 - $50,000</label>
-                        <br/>
-                        <label><Field name='preferences.cost' component={renderInput} type='radio' value='5' ></Field>More than $50,000</label>
-                    </div>
-                    <label>Prefered Food</label>
-                    <div>
-                        <label><Field name='preferences.food' component={renderInput} type='radio' value='1' ></Field>Finger Foods</label>
-                        <br/>
-                        <label><Field name='preferences.food' component={renderInput} type='radio' value='2' ></Field>Buffet Style</label>
-                        <br/>
-                        <label><Field name='preferences.food' component={renderInput} type='radio' value='3' ></Field>Fancy</label>
-                    </div>
-                    <label>Flower</label>
-                    <div>
-                        <label><Field name='preferences.flowers' component={renderInput} type='radio' value='1' ></Field>Minimal</label>
-                        <br/>
-                        <label><Field name='preferences.flowers' component={renderInput} type='radio' value='2' ></Field>Average</label>
-                        <br/>
-                        <label><Field name='preferences.flowers' component={renderInput} type='radio' value='3' ></Field>Overpowering</label>
-                    </div>
-                    <label>Music</label>
-                    <div>
-                        <label><Field name='preferences.music' component={renderInput} type='radio' value='1' ></Field>DJ</label>
-                        <br/>
-                        <label><Field name='preferences.music' component={renderInput} type='radio' value='2' ></Field>Band</label>
-                        <br/>
-                        <label><Field name='preferences.music' component={renderInput} type='radio' value='3' ></Field>Orchestra</label>
-                    </div>
-                    <label>Alcohol</label>
-                    <div>
-                        <label><Field name='preferences.alcohol' component={renderInput} type='radio' value='1' ></Field>Dry</label>
-                        <br/>
-                        <label><Field name='preferences.alcohol' component={renderInput} type='radio' value='2' ></Field>Serve toasting alcohol</label>
-                        <br/>
-                        <label><Field name='preferences.alcohol' component={renderInput} type='radio' value='3' ></Field>Bar</label>
-                    </div>
-                    <label>Attendance</label>
-                    <div>
-                        <label><Field name='preferences.attendance' component={renderInput} type='radio' value='1' ></Field>Less than 50</label>
-                        <br/>
-                        <label><Field name='preferences.attendance' component={renderInput} type='radio' value='2' ></Field>51-100</label>
-                        <br/>
-                        <label><Field name='preferences.attendance' component={renderInput} type='radio' value='3' ></Field>100+</label>
-                    </div>
-                    <label>Photography</label>
-                    <div>
-                        <label><Field name='preferences.photography' component={renderInput} type='radio' value='1' ></Field>Disposable</label>
-                        <br/>
-                        <label><Field name='preferences.photography' component={renderInput} type='radio' value='2' ></Field>Photo</label>
-                        <br/>
-                        <label><Field name='preferences.photography' component={renderInput} type='radio' value='3' ></Field>Full Photo + Video</label>
-                    </div>
-                    <label>Time of the Year</label>
-                    <div>
-                        <label><Field name='preferences.time_of_year' component={renderInput} type='radio' value='1' ></Field>Winter</label>
-                        <br/>
-                        <label><Field name='preferences.time_of_year' component={renderInput} type='radio' value='2' ></Field>Spring</label>
-                        <br/>
-                        <label><Field name='preferences.time_of_year' component={renderInput} type='radio' value='3' ></Field>Summer</label>
-                        <br/>
-                        <label><Field name='preferences.time_of_year' component={renderInput} type='radio' value='4' ></Field>Autumn</label>
-                    </div>
-                    <label>Reception Venue</label>
-                    <div>
-                        <label><Field name='preferences.venue_reception' component={renderInput} type='radio' value='1' ></Field>Indoor</label>
-                        <br/>
-                        <label><Field name='preferences.venue_reception' component={renderInput} type='radio' value='2' ></Field>Outdoor</label>
-                    </div>
-                    <label>Ceremony Venue</label>
-                    <div>
-                        <label><Field name='preferences.venue_ceremony' component={renderInput} type='radio' value='1' ></Field>Indoor</label>
-                        <br/>
-                        <label><Field name='preferences.venue_ceremony' component={renderInput} type='radio' value='2' ></Field>Outdoor</label>
-                    </div>
-                    <label>Reception Vibe</label>
-                    <div>
-                        <label><Field name='preferences.reception_vibe' component={renderInput} type='radio' value='1' ></Field>Slow</label>
-                        <br/>
-                        <label><Field name='preferences.reception_vibe' component={renderInput} type='radio' value='2' ></Field>OK</label>
-                        <br/>
-                        <label><Field name='preferences.reception_vibe' component={renderInput} type='radio' value='3' ></Field>Hype</label>
-                    </div>
-                    <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Update Preferences" secondary={true} style={style}/>
-                </form>
+                <div>
+                    <Paper zDepth={2} style={paperStyle}>
+                        <h1 className="boldh1">Edit Client Preferences</h1>
+                        <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+                            <h2 className='preference-header'>Prefered Expected Cost</h2>
+                            <div className='form-group-row'>
+                                <Field name='preferences.cost' component={renderInput} type='radio' value='1' label='Less than $5,000' ></Field>
+                                <Field name='preferences.cost' component={renderInput} type='radio' value='2' label='$5,000 - $10,000' ></Field>
+                                <Field name='preferences.cost' component={renderInput} type='radio' value='3'  label='$10,000 - $25,000' ></Field>
+                                <Field name='preferences.cost' component={renderInput} type='radio' value='4' label='$25,000 - $50,000'></Field>
+                                <Field name='preferences.cost' component={renderInput} type='radio' value='5' label='More than $50,000'></Field>
+                            </div>
+                            <h2 className='preference-header'>Catering Budget</h2>
+                            <div className='form-group-row'>
+                                <Field name='preferences.food' component={renderInput} type='radio' value='1' label='Appetizers' ></Field>
+                                <Field name='preferences.food' component={renderInput} type='radio' value='2' label='Buffet' ></Field>
+                                <Field name='preferences.food' component={renderInput} type='radio' value='3' label='Gourmet' ></Field>
+                            </div>
+                            <h2 className='preference-header'>Flower Budget</h2>
+                            <div className='form-group-row'>
+                                <Field name='preferences.flowers' component={renderInput} type='radio' value='1' label='Minimal' ></Field>
+                                <Field name='preferences.flowers' label='Moderate' component={renderInput} type='radio' value='2' ></Field>
+                                <Field name='preferences.flowers' component={renderInput} type='radio' value='3' label='High' ></Field>
+                            </div>
+                            <h2 className='preference-header'>Music Budget</h2>
+                            <div className='form-group-row'>
+                                <Field name='preferences.music' component={renderInput} type='radio' value='1' label='DJ' ></Field>
+                                <Field name='preferences.music' component={renderInput} type='radio' value='2' label='Band' ></Field>
+                                <Field name='preferences.music' component={renderInput} type='radio' value='3' label='Orchestra'></Field>
+                            </div>
+                            <h2 className='preference-header'>Alcohol Budget</h2>
+                            <div className='form-group-row'>
+                                <Field name='preferences.alcohol' component={renderInput} type='radio' value='1' label='Cash bar' ></Field>
+                                <Field name='preferences.alcohol' component={renderInput} type='radio' value='2' label='Champagne'></Field>
+                                <Field name='preferences.alcohol' component={renderInput} type='radio' value='3' label='Open Bar'></Field>
+                            </div>
+                            <h2 className='preference-header'>Attendance</h2>
+                            <div className='form-group-row'>
+                                <Field name='preferences.attendance' component={renderInput} type='radio' value='1' label='Less than 50'></Field>
+                                <Field name='preferences.attendance' component={renderInput} type='radio' value='2' label='51-100' ></Field>
+                                <Field name='preferences.attendance' component={renderInput} type='radio' value='3' label='100+' ></Field>
+                            </div>
+                            <h2 className='preference-header'>Photography Budget</h2>
+                            <div className='form-group-row'>
+                                <Field name='preferences.photography' component={renderInput} type='radio' value='1' label="Disposable" ></Field>
+                                <Field name='preferences.photography' component={renderInput} type='radio' value='2' label='Photo' ></Field>
+                                <Field name='preferences.photography' component={renderInput} type='radio' value='3'  label='Full Photo + Video'></Field>
+                            </div>
+                            <h2 className='preference-header'>Time of the Year</h2>
+                            <div className='form-group-row'>
+                                <Field name='preferences.time_of_year' component={renderInput} type='radio' value='1' label='Winter'></Field>
+                                <Field name='preferences.time_of_year' component={renderInput} type='radio' value='2' label='Spring' ></Field>
+                                <Field name='preferences.time_of_year' component={renderInput} type='radio' value='3' label='Summer' ></Field>
+                                <Field name='preferences.time_of_year' component={renderInput} type='radio' value='4' label='Autumn' ></Field>
+                            </div>
+                            <h2 className='preference-header'>Reception Venue</h2>
+                            <div className='form-group-row'>
+                                <Field name='preferences.venue_reception' component={renderInput} type='radio' value='1' label='Indoor' ></Field>
+                                <Field name='preferences.venue_reception' component={renderInput} type='radio' value='2' label='Outdoor' ></Field>
+                            </div>
+                            <h2 className='preference-header'>Ceremony Venue</h2>
+                            <div className='form-group-row'>
+                                <Field name='preferences.venue_ceremony' component={renderInput} type='radio' value='1' label='Indoor' ></Field>
+                                <Field name='preferences.venue_ceremony' component={renderInput} type='radio' value='2' label='Outdoor' ></Field>
+                            </div>
+                            <h2 className='preference-header'>Reception Atmosphere</h2>
+                            <div className='form-group-row'>
+                                <Field name='preferences.reception_vibe' component={renderInput} type='radio' value='1' label='Relaxed/Calm' ></Field>
+                                <Field name='preferences.reception_vibe' component={renderInput} type='radio' value='2' label='Dancing' ></Field>
+                                <Field name='preferences.reception_vibe' component={renderInput} type='radio' value='3' label='Party of the Year' ></Field>
+                            </div>
+                            <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Update Preferences" secondary={true} style={style}/>
+                        </form>
+                    </Paper>
+                </div>
             </div>
         )
     }
 }
-
-function validate(values){
-    const error = {};
-
-    if (!values.email){
-        error.email = 'Please enter an email';
-    }
-    if(!values.password){
-        error.password = 'Please enter a password';
-    }
-    if(!values.passwordConfirm){
-        error.passwordConfirm = 'Please confirm password';
-    }
-
-    if(values.password !== values.passwordConfirm){
-        error.passwordConfirm = 'Passwords don\'t match';
-    }
-
-    return error;
-}
-
 function mapStateToProps(state){
     return { 
         errorMsg: state.auth,
@@ -180,8 +135,7 @@ function mapStateToProps(state){
 }
 
 const componentWithForm = reduxForm({
-    form: 'planner_details',
-    validate
+    form: 'planner_details'
 })(WeddingPreferences)
 
 export default connect(mapStateToProps, actions)(componentWithForm) ;

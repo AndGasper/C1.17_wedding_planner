@@ -36,12 +36,13 @@ const createInput = function(input, type, error){
 };
 
 const renderInput = function ({input, label, type, meta: {touched, error } }){
+    const hasError = touched && error;
     return(
-        <div className={'form-group row'}>
+        <div className={`'form-group row' ${hasError ? 'has-danger' : ''}`}>
             <label className='col-sm-12 col-form-label'>{ label }</label>
             <div className='col-sm-12'>
-                {createInput(input, type)}
-                <div className='form-control-feedback'></div>
+                {createInput(input, type, hasError)}
+                <div className='form-control-feedback'>{hasError ? error : ''}</div>
             </div>
         </div>
     )
@@ -49,13 +50,13 @@ const renderInput = function ({input, label, type, meta: {touched, error } }){
 
 class ClientInfo extends Component {
     handleFormSubmit(values) {
-        console.log('client info being changed: ', values);
+        
         this.props.updateClient(values);
         this.props.handleProfileClick();
     }
 
     handleProps() {
-        console.log('this is initial values:', this.props.initialValues)
+        
     }
 
     render(){
@@ -67,8 +68,8 @@ class ClientInfo extends Component {
                     <Paper zDepth={2} style={paperStyle}>
                         <h1 className="boldh1">Edit Profile Information</h1>
                         <form onClick={this.handleProps.bind(this)} onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-                            <Field name='name' component={renderInput} label='Name' type='text'/>
-                            <Field name='email' component={renderInput} label='Email' type='text' />
+                            <Field name='name' component={renderInput} label='Name *' type='text'/>
+                            <Field name='email' component={renderInput} label='Email *' type='text' />
                             <Field name='phoneNumber' component={renderInput} label='Phone Number' type='text' />
                             <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Update Profile" secondary={true} style={style}/>
                             <Link to="/client_login_page"><RaisedButton label="Cancel" secondary={true} style={style}/></Link>
@@ -83,18 +84,18 @@ class ClientInfo extends Component {
 function validate(values){
     const error = {};
 
-    if (!values.email){
-        error.email = 'Please enter an email';
-    }
-    if(!values.password){
-        error.password = 'Please enter a password';
-    }
-    if(!values.passwordConfirm){
-        error.passwordConfirm = 'Please confirm password';
-    }
+    var validateEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    if(values.password !== values.passwordConfirm){
-        error.passwordConfirm = 'Passwords don\'t match';
+    var phoneNumber = /1?\(?([0-9]{3}\)?[ -.]*([0-9]){3}[ -.]*([0-9]){4})/g;
+
+    if (!values.name){
+        error.name = 'Please enter a name';
+    }
+    if(!values.email || !validateEmail.test(values.email)){
+        error.email = 'Please enter a valid email';
+    }
+    if(!phoneNumber.test(values.phoneNumber) && values.phoneNumber !== ''){
+        error.phoneNumber = "Please enter a valid phone number";
     }
 
     return error;

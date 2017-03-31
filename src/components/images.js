@@ -34,8 +34,8 @@ class PictureGridList extends Component {
 
         const {pageIndex} = this.props;
         const {imageIndex} = this.props;
-        console.log('props on picture grid', this.props);
-        console.log('pageIndex', pageIndex);
+        
+        
 
         return (
             <div style={styles.root}>
