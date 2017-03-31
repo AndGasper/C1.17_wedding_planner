@@ -16,6 +16,11 @@ function PlannerData(state = [], action) {
                 ...state,
                 active_planner: '',
             };
+        case GET_PLANNERS_FROM_SERVER:
+            return {
+                ...state,
+                planners: action.payload.data
+            }
     }
     return state;
 }
