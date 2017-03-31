@@ -17,9 +17,9 @@ export function sendPrefsToServer(prefs) {
 
     return function (dispatch) {
         axios.post(`${BASE_URL}/search`, prefs).then(resp => {
-            // 
+            //
             }).catch(err => {
-            // 
+            //
         })
     };
 
@@ -28,7 +28,6 @@ export function sendPrefsToServer(prefs) {
 export function getPlannersFromServer() {
     return function (dispatch) {
         axios.get(`${BASE_URL}/wedding_planner/predetermined`).then((resp) => {
-	console.log(resp);
 	dispatch({
                 type: GET_PLANNERS_FROM_SERVER,
                 payload: resp
