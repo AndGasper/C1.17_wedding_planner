@@ -191,7 +191,7 @@ export function updateClient(values){
               planner: plannerToAdd._id
           };
           axios.put(`${BASE_URL}user/me/planner`, id).then(response => {
-              dispatch({CHANGE_CLIENT_INFO});
+              dispatch({type: CHANGE_CLIENT_INFO});
           }).catch((err) => {
               dispatch('error');
           })
