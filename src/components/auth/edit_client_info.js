@@ -68,8 +68,8 @@ class ClientInfo extends Component {
                     <Paper zDepth={2} style={paperStyle}>
                         <h1 className="boldh1">Edit Profile Information</h1>
                         <form onClick={this.handleProps.bind(this)} onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-                            <Field name='name' component={renderInput} label='Name' type='text'/>
-                            <Field name='email' component={renderInput} label='Email' type='text' />
+                            <Field name='name' component={renderInput} label='Name *' type='text'/>
+                            <Field name='email' component={renderInput} label='Email *' type='text' />
                             <Field name='phoneNumber' component={renderInput} label='Phone Number' type='text' />
                             <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Update Profile" secondary={true} style={style}/>
                             <Link to="/client_login_page"><RaisedButton label="Cancel" secondary={true} style={style}/></Link>
@@ -86,13 +86,16 @@ function validate(values){
 
     var validateEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-
+    var phoneNumber = /1?\(?([0-9]{3}\)?[ -.]*([0-9]){3}[ -.]*([0-9]){4})/g;
 
     if (!values.name){
         error.name = 'Please enter a name';
     }
     if(!values.email || !validateEmail.test(values.email)){
         error.email = 'Please enter a valid email';
+    }
+    if(!phoneNumber.test(values.phoneNumber) && values.phoneNumber !== ''){
+        error.phoneNumber = "Please enter a valid phone number";
     }
 
     return error;
