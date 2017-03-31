@@ -1,6 +1,7 @@
 
-import {UPDATE_PREFS, SEND_PREFS_TO_SERVER, GET_COUPLE_PROFILE} from '../action/types'
-import { SET_CURRENT_CLIENT, CHANGE_CLIENT_INFO, LOGOUT_CLIENT } from '../actions/types';
+import {UPDATE_PREFS, SEND_PREFS_TO_SERVER, GET_COUPLE_PROFILE } from '../action/types'
+import { SET_CURRENT_CLIENT, CHANGE_CLIENT_INFO, LOGOUT_CLIENT, FETCH_PLANNER1, FETCH_PLANNER2, FETCH_PLANNER3,
+         FETCH_PLANNER4, FETCH_PLANNER5, FETCH_PLANNER6} from '../actions/types';
 
 function coupleData(state = [], action) {
     switch(action.type) {
@@ -35,6 +36,36 @@ function coupleData(state = [], action) {
             return {
                 ...state,
                 active_client: undefined
+            };
+        case FETCH_PLANNER1:
+            return {
+                ...state,
+                planner1: action.payload
+            };
+        case FETCH_PLANNER2:
+            return {
+                ...state,
+                planner2: action.payload
+            };
+        case FETCH_PLANNER3:
+            return {
+                ...state,
+                planner3: action.payload
+            };
+        case FETCH_PLANNER4:
+            return {
+                ...state,
+                planner4: action.payload
+            };
+        case FETCH_PLANNER5:
+            return {
+                ...state,
+                planner5: action.payload
+            };
+        case FETCH_PLANNER6:
+            return {
+                ...state,
+                planner6: action.payload
             }
     }
     return state;

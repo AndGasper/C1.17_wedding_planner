@@ -5,6 +5,10 @@ import {history} from '../store';
 
 
 class Results extends Component {
+    componentWillMount(){
+        console.log('Props on results page: ', this.props);
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -22,6 +26,15 @@ class Results extends Component {
     }
 
     render() {
+
+        if (!this.props.plannerData) {
+            return (
+                <div>
+                    Loading....
+                </div>
+                )
+        }
+
         return (
             <div>
                 { React.Children.map(this.props.children, child => React.cloneElement(child, {

@@ -1,5 +1,5 @@
-import {UPDATE_PREFS, SEND_PREFS_TO_SERVER, GET_PLANNER_PROFILE} from '../actions/types'
-import { SET_CURRENT_PLANNER, CHANGE_PLANNER_INFO, LOGOUT_PLANNER } from '../actions/types';
+import {UPDATE_PREFS, SEND_PREFS_TO_SERVER, GET_PLANNERS_FROM_SERVER} from '../action/types'
+import { SET_CURRENT_PLANNER, CHANGE_PLANNER_INFO, LOGOUT_PLANNER, GET_PLANNER_PROFILE } from '../actions/types';
 
 function PlannerData(state = [], action) {
     switch(action.type) {
@@ -26,6 +26,11 @@ function PlannerData(state = [], action) {
             return {
                 ...state,
                 active_planner: '',
+            };
+        case GET_PLANNERS_FROM_SERVER:
+            return {
+                ...state,
+                planners: action.payload.data
             }
     }
     return state;
