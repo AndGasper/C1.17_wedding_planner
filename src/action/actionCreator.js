@@ -27,7 +27,7 @@ export function sendPrefsToServer(prefs) {
 
 export function getPlannersFromServer() {
     return function (dispatch) {
-        axios.get('http://planningthedate.com/api/wedding_planner/predetermined').then((resp) => {
+        axios.get(`${BASE_URL}/wedding_planner/predetermined`).then((resp) => {
             dispatch({
                 type: GET_PLANNERS_FROM_SERVER,
                 payload: resp
