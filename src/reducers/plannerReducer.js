@@ -1,4 +1,4 @@
-import { SET_CURRENT_PLANNER, CHANGE_PLANNER_INFO, LOGOUT_PLANNER } from '../actions/types';
+import { SET_CURRENT_PLANNER, CHANGE_PLANNER_INFO, LOGOUT_PLANNER, GET_PLANNERS_FROM_SERVER } from '../actions/types';
 
 function PlannerData(state = [], action) {
     switch(action.type) {
