@@ -62,7 +62,7 @@ class plannerLogin extends Component {
 
     renderHeaderName(){
         const { name } = this.props.active_planner;
-        console.log(this.props);
+        
         if(name){
             return (
                 <span>Back {this.props.active_planner.name}!</span>
