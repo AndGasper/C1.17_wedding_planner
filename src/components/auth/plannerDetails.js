@@ -68,6 +68,7 @@ class PlannerDetails extends Component {
                             <Field name='address.zip' component={renderInput} label='Zip' type='text' />
                             <Field name='address.state' component={renderInput} label='State' type='text' />
                             <Field name='description' component={renderInput} label='Description' type='textarea' />
+                            <Field name='image' component={renderInput} label='Image URL' type='text' />
                             <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Update Profile" secondary={true} style={style}/>
                         </form>
                     </Paper>

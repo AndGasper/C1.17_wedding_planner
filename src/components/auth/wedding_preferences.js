@@ -130,7 +130,8 @@ class WeddingPreferences extends Component {
 function mapStateToProps(state){
     return { 
         errorMsg: state.auth,
-        active_planner: state.plannerData.active_planner
+        active_planner: state.plannerData.active_planner,
+        initialValues: state.plannerData.active_planner
      }
 }
 

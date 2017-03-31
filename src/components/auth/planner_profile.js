@@ -62,6 +62,7 @@ class plannerLogin extends Component {
 
     renderHeaderName(){
         const { name } = this.props.active_planner;
+        console.log(this.props);
         if(name){
             return (
                 <span>Back {this.props.active_planner.name}!</span>
@@ -70,6 +71,15 @@ class plannerLogin extends Component {
         return [
             <span key="planner_signin">!</span>
         ]
+    }
+
+    renderImage(){
+        const { image } = this.props.active_planner;
+        if(image){
+            return(
+                <img src={this.props.active_planner.image} />
+            );
+        }
     }
 
 
@@ -100,8 +110,7 @@ class plannerLogin extends Component {
                         <h4 className="plannerLinks client-pref-links"><a className='pinkLink' href="#">Dan and Darin</a></h4>
                     </div>
                     <div id="prefsRight">
-                        <h4 className="client-about">Preferences</h4>
-                        <h4 className="plannerLinks client-pref-links">*Insert Preferences Here*</h4>
+                        {this.renderImage()}
                     </div>
                 </Paper>
             </div>
