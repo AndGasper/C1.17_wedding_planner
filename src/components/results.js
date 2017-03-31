@@ -5,9 +5,6 @@ import {history} from '../store';
 
 
 class Results extends Component {
-    componentWillMount(){
-        console.log('Props on results page: ', this.props);
-    }
 
     constructor(props) {
         super(props);

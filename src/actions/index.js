@@ -38,7 +38,7 @@ export function plannerProfileClick(){
                 browserHistory.push('/');
             }
         }).catch((err) =>{
-            console.log(err);
+            dispatch('error');
         });
     }
 }
@@ -67,9 +67,8 @@ export function ClientSignin(values){
                 localStorage.setItem('id', response);
                 browserHistory.push('/client_login_page');
             }
-
         }).catch(err => {
-            console.log('this is error ', err);
+            dispatch('error');
         })
     }
 }
@@ -94,7 +93,7 @@ export function updatePlannerDetails() {
             });
             browserHistory.push('/planner_profile');
         }).catch((err) => {
-            console.log('error:', err);
+            dispatch('error');
         });
     }
 }
@@ -108,10 +107,9 @@ export function signoutClient(){
                 document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
             };
             delete_cookie('connect.sid');
-            console.log('User has been logged out.');
             browserHistory.push('/');
         }).catch(err => {
-            console.log('Error logging out', err)
+            dispatch("error");
         })
     }
 
@@ -159,13 +157,12 @@ export function updateClient(values){
                 browserHistory.push('/planner_profile');
             }
         }).catch(err => {
-            console.log(err);
+            dispatch('error');
         });
     };
   }
 
   export function updatePlanner(values){
-    debugger;
     return function(dispatch){
         axios.put(`${BASE_URL}wedding_planner/me`, values).then(response => {
             dispatch({type: CHANGE_PLANNER_INFO});
@@ -183,7 +180,7 @@ export function updateClient(values){
             dispatch({ type: LOGOUT_PLANNER });
             dispatch({ type: UNAUTH_USER });
           }).catch((err) =>{
-              console.log(err);
+              dispatch('error');
           });
       }
   }
@@ -270,8 +267,3 @@ export function fetchPlanner3(id){
         })
     }
 }
-
-
-
-
-

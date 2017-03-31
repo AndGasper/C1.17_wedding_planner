@@ -52,7 +52,7 @@ class Home extends Component {
                         <div className={`${styles.homeText}`}>
                             <Paper zDepth={2} style={paperStyle}>
                                 <p>
-                                    Here at Matchromonie we aim to simplify planning your ideal wedding.
+                                    Here at Planningthedate we aim to simplify planning your ideal wedding.
                                     All it takes is five minutes of your time and we will find your wedding planner.
                                 </p>
                                 <p>
@@ -79,7 +79,7 @@ class Home extends Component {
                         <div className={`${styles.homeText}`}>
                             <Paper zDepth={2} style={paperStyle}>
                                 <p>
-                                    Here at Matchromonie we aim to simplify planning your ideal wedding.
+                                    Here at Planningthedate we aim to simplify planning your ideal wedding.
                                     All it takes is five minutes of your time and we will find your wedding planner.
                                 </p>
                                 <p>
@@ -105,6 +105,7 @@ class Home extends Component {
     }
 
     render(){
+
         return (
             <div className="home">
                 {this.renderHomePage()}

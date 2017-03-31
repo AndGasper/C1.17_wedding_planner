@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router'
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
-import * as actions from '../../actions/index';
+import * as actions from '../../actions';
 
 const style = {
     textDecoration: 'none'
@@ -39,7 +39,9 @@ let firstPlanner = false;
 let secondPlanner = false;
 let thirdPlanner = false;
 
+
 class clientLogin extends Component {
+
 
    componentWillMount(){
        const { planners } = this.props.active_client;

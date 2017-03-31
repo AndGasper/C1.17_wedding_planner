@@ -52,7 +52,7 @@ class plannerLogin extends Component {
         const { website } = this.props.active_planner;
         if(website){
             return (
-                <h4 >{this.props.active_planner.website}</h4>
+                <h4><a href={`http://${this.props.active_planner.website}`} target='_blank'>{this.props.active_planner.website}</a></h4>
             )
         }
         return [
@@ -62,6 +62,7 @@ class plannerLogin extends Component {
 
     renderHeaderName(){
         const { name } = this.props.active_planner;
+        
         if(name){
             return (
                 <span>Back {this.props.active_planner.name}!</span>
@@ -70,6 +71,15 @@ class plannerLogin extends Component {
         return [
             <span key="planner_signin">!</span>
         ]
+    }
+
+    renderImage(){
+        const { image } = this.props.active_planner;
+        if(image){
+            return(
+                <img src={this.props.active_planner.image} />
+            );
+        }
     }
 
 
@@ -100,8 +110,7 @@ class plannerLogin extends Component {
                         <h4 className="plannerLinks client-pref-links"><a className='pinkLink' href="#">Dan and Darin</a></h4>
                     </div>
                     <div id="prefsRight">
-                        <h4 className="client-about">Preferences</h4>
-                        <h4 className="plannerLinks client-pref-links">*Insert Preferences Here*</h4>
+                        {this.renderImage()}
                     </div>
                 </Paper>
             </div>
