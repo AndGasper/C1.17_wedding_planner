@@ -50,13 +50,13 @@ const renderInput = function ({input, label, type, meta: {touched, error } }){
 
 class ClientInfo extends Component {
     handleFormSubmit(values) {
-        console.log('client info being changed: ', values);
+        
         this.props.updateClient(values);
         this.props.handleProfileClick();
     }
 
     handleProps() {
-        console.log('this is initial values:', this.props.initialValues)
+        
     }
 
     render(){

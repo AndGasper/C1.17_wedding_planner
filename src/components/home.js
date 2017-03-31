@@ -37,10 +37,10 @@ class Home extends Component {
 
     handleProfile(){
         if(this.props.active_client){
-            console.log('clients props', this.props);
+            
             this.props.handleProfileClick();
         } else {
-            console.log('planner props: ',this.props);
+            
             this.props.plannerProfileClick();
         }
     }
@@ -107,7 +107,7 @@ class Home extends Component {
     }
 
     render(){
-        console.log(this.props);
+        
         return (
             <div className="home">
                 {this.renderHomePage()}

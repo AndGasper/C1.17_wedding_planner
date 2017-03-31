@@ -42,7 +42,7 @@ class clientLogin extends Component {
         for(let i = 0; i < array_length; i++){
             let tn = document.createTextNode(this.props.active_client.planners[i].name);
             let h4 = document.createElement("h4").appendChild(tn);
-            console.log(h4);
+            
             document.getElementById('prefs-left').append(h4);
         }
 

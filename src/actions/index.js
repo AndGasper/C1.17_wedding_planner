@@ -7,7 +7,6 @@ const BASE_URL = 'http://localhost:3000/api/';
 export function handleProfileClick() {
     return function(dispatch){
         axios.get(`${BASE_URL}user/me`).then(response => {
-            console.log(response)
             if(response.data.name !== undefined) {
                 dispatch({
                     type: SET_CURRENT_CLIENT,
@@ -26,7 +25,6 @@ export function handleProfileClick() {
 export function plannerProfileClick(){
     return function(dispatch){
         axios.get(`${BASE_URL}wedding_planner/me`).then(response => {
-            console.log(response)
             if(response.data.name !== undefined) {
                 dispatch({
                     type: SET_CURRENT_PLANNER,
@@ -37,7 +35,7 @@ export function plannerProfileClick(){
                 browserHistory.push('/');
             }
         }).catch((err) =>{
-            console.log(err);
+            dispatch('error');
         });
     }
 }
@@ -63,13 +61,11 @@ export function ClientSignin(values){
                 dispatch({
                     type: AUTH_USER
                 });
-                console.log('user that logged in: ', response.data);
                 localStorage.setItem('id', response);
                 browserHistory.push('/client_login_page');
             }
-
         }).catch(err => {
-            console.log('this is error ', err);
+            dispatch('error');
         })
     }
 }
@@ -94,7 +90,7 @@ export function updatePlannerDetails() {
             });
             browserHistory.push('/planner_profile');
         }).catch((err) => {
-            console.log('error:', err);
+            dispatch('error');
         });
     }
 }
@@ -108,10 +104,9 @@ export function signoutClient(){
                 document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
             };
             delete_cookie('connect.sid');
-            console.log('user has been logged out.', response);
             browserHistory.push('/');
         }).catch(err => {
-            console.log('Error logging out', err)
+            dispatch("error");
         })
     }
 
@@ -143,14 +138,14 @@ export function updateClient(values){
 }
 
 /*export function plannersToClient(plannerToAdd){
-    console.log('this is planner to add: ', plannerToAdd);
+    
     return function(dispatch){
         let id ={
             'planner': '58dc57728ad5402a449b791d'
         } ;
         axios.put(`${BASE_URL}user/me/planner`, id).then(response => {
-            console.log('planner has been added to clients planners');
-            console.log(response);
+            
+            
             dispatch({type: CHANGE_CLIENT_INFO});
         }).catch((err) => {
             dispatch('error');
@@ -175,7 +170,7 @@ export function updateClient(values){
                 browserHistory.push('/planner_profile');
             }
         }).catch(err => {
-            console.log(err);
+            dispatch('error');
         });
     };
   }
@@ -200,7 +195,7 @@ export function updateClient(values){
             dispatch({ type: LOGOUT_PLANNER });
             dispatch({ type: UNAUTH_USER });
           }).catch((err) =>{
-              console.log(err);
+              dispatch('error');
           });
       }
   }

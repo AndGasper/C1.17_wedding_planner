@@ -49,7 +49,7 @@ const renderInput = function ({input, label, type, meta: {touched, error } }){
 
 class ClientSignup extends Component {
     handleFormSubmit(values){
-        console.log(values);
+        
         this.props.signupClient(values);
     }
 

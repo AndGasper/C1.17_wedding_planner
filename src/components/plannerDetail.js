@@ -35,7 +35,7 @@ class PlannerDetail extends Component {
     }
 
     saveToProfile(index) {
-        console.log('need to save to profile somewhere', index)
+        
     }
 
     render() {
