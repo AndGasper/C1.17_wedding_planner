@@ -9,13 +9,13 @@ class Cost extends Component {
     handleClick() {
         if (document.querySelector('input[name="options"]:checked')) {
             let costValue = document.querySelector('input[name="options"]:checked').value;
-            // console.log('cost should be:', Number(costValue));
+            // 
             this.props.updatePrefs('cost', Number(costValue));
         }
     }
 
     componentDidUpdate() {
-        // console.log('prefs being sent to action', this.props.coupleData);
+        // 
         // this.props.sendPrefsToServer({preferences: this.props.coupleData});
 
         this.props.getPlannersFromServer();

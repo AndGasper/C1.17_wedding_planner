@@ -11,6 +11,7 @@ import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import Menu from 'material-ui/svg-icons/navigation/menu';
+import * as actions from '../actions';
 
 
 
@@ -42,6 +43,14 @@ const toolbarStyle = {
 };
 
 class Header extends Component {
+
+    componentWillMount(){
+        if(this.props.authenticated){
+            return;
+        } else if(this.props.active_client === undefined){
+            this.props.handleProfileClick();
+        }
+    }
 
     renderAuthLinks1(){
         const { authenticated, active_client } = this.props;
@@ -154,4 +163,4 @@ function mapStateToProps(state){
     }
 
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, actions)(Header);

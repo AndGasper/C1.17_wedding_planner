@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router'
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+import * as actions from '../../actions';
 
 const style = {
     textDecoration: 'none'
@@ -34,19 +35,41 @@ const paperStylePref= {
     float: 'right',
 };
 
+let firstPlanner = false;
+let secondPlanner = false;
+let thirdPlanner = false;
+
+
 class clientLogin extends Component {
 
-   /* showPlanners(){
-        let array_length = this.props.active_client.planners.length;
 
-        for(let i = 0; i < array_length; i++){
-            let tn = document.createTextNode(this.props.active_client.planners[i].name);
-            let h4 = document.createElement("h4").appendChild(tn);
-            console.log(h4);
-            document.getElementById('prefs-left').append(h4);
-        }
-
-    }*/
+   componentWillMount(){
+       const { planners } = this.props.active_client;
+       if(planners[0]){
+           let id1 = this.props.active_client.planners[0];
+           this.props.fetchPlanner1(id1);
+       }
+       if(planners[1]){
+           let id2 = this.props.active_client.planners[1];
+           this.props.fetchPlanner2(id2);
+       }
+       if(planners[2]){
+           let id3 = this.props.active_client.planners[2];
+           this.props.fetchPlanner3(id3);
+       }
+       if(planners[3]){
+           let id4 = this.props.active_client.planners[3];
+           this.props.fetchPlanner4(id4);
+       }
+       if(planners[4]){
+           let id5 = this.props.active_client.planners[4];
+           this.props.fetchPlanner5(id5);
+       }
+       if(planners[5]){
+           let id6 = this.props.active_client.planners[5];
+           this.props.fetchPlanner6(id6);
+       }
+   }
 
     renderName(){
         const { name } = this.props.active_client;
@@ -85,32 +108,66 @@ class clientLogin extends Component {
     }
 
     renderPlanners1(){
-    const { planners } = this.props.active_client;
-    if(planners.length > 0){
+    const { planner1 } = this.props;
+    if(planner1){
+        firstPlanner = true;
         return (
-            <h4><a href="">{this.props.active_client.planners[0].name}</a></h4>
+            <h4><a href="">{planner1.name}</a></h4>
+        )
+    } else {
+        return (
+            <h4>*Add planners from questionnaire*</h4>
         )
     }
 
 }
 
     renderPlanners2(){
-        const { planners } = this.props.active_client;
-        if(planners.length > 1){
-            return (
-                <h4><a href="">{this.props.active_client.planners[1].name}</a></h4>
-            )
+        const { planner2 } = this.props;
+        if(firstPlanner === true){
+            if(planner2){
+                secondPlanner = true;
+                return (
+                    <h4><a href="">{planner2.name}</a></h4>
+                )
+            } else {
+                return (
+                    <h4>*Add more planners from questionnaire*</h4>
+                )
+            }
         }
+
 
     }
     renderPlanners3(){
-        const { planners } = this.props.active_client;
-        if(planners.length > 2){
-            return (
-                <h4><a href="">{this.props.active_client.planners[2].name}</a></h4>
-            )
+        const { planner3 } = this.props;
+        if(secondPlanner === true){
+            if(planner3){
+                thirdPlanner = true;
+                return (
+                    <h4><a href="">{planner3.name}</a></h4>
+                )
+            } else {
+                return (
+                    <h4>*Add more planners from questionnaire*</h4>
+                )
+            }
         }
 
+    }
+    renderPlanners4(){
+        const { planner4 } = this.props;
+        if(thirdPlanner === true){
+            if(planner4){
+                return (
+                    <h4><a href="">{planner4.name}</a></h4>
+                )
+            } else {
+                return (
+                    <h4>*Add more planners from questionnaire*</h4>
+                )
+            }
+        }
     }
     renderButton(){
         if(this.props.active_client.planners < 1){
@@ -149,6 +206,7 @@ class clientLogin extends Component {
                         {this.renderPlanners1()}
                         {this.renderPlanners2()}
                         {this.renderPlanners3()}
+                        {this.renderPlanners4()}
                         {this.renderButton()}
                     </div>
                    {/* <div id="prefsRight">
@@ -164,8 +222,14 @@ class clientLogin extends Component {
 function mapStateToProps(state){
     return {
         active_client: state.coupleData.active_client,
-        authenticated: state.coupleData.authenticated
+        authenticated: state.coupleData.authenticated,
+        planner1: state.coupleData.planner1,
+        planner2: state.coupleData.planner2,
+        planner3: state.coupleData.planner3,
+        planner4: state.coupleData.planner4,
+        planner5: state.coupleData.planner5,
+        planner6: state.coupleData.planner6,
     }
 }
 
-export default connect(mapStateToProps)(clientLogin);
+export default connect(mapStateToProps, actions)(clientLogin);

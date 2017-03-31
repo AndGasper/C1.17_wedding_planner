@@ -35,12 +35,13 @@ const createInput = function(input, type, error){
 
 
 const renderInput = function ({input, label, type, meta: {touched, error } }){
+    const hasError = touched && error;
     return(
-        <div className={'form-group row'}>
+        <div className={`'form-group row' ${hasError ? 'has-danger' : ''}`}>
             <label className='col-sm-12 col-form-label'>{ label }</label>
             <div className='col-sm-12'>
-                {createInput(input, type)}
-                <div className='form-control-feedback'></div>
+                {createInput(input, type, hasError)}
+                <div className='form-control-feedback'>{hasError ? error : ''}</div>
             </div>
         </div>
     )
@@ -48,7 +49,7 @@ const renderInput = function ({input, label, type, meta: {touched, error } }){
 
 class ClientSignup extends Component {
     handleFormSubmit(values){
-        console.log(values);
+        
         this.props.signupClient(values);
     }
 
@@ -67,7 +68,7 @@ class ClientSignup extends Component {
                         <form>
                             <Field name='email' component={renderInput} label='Email' type='text' />
                             <Field name='password' component={renderInput} label='Password' type='password' />
-                            <Field name='confirmPassword' component={renderInput} label='Confirm Password' type='password' />
+                            <Field name='passwordConfirm' component={renderInput} label='Confirm Password' type='password' />
                             <RaisedButton onTouchTap={handleSubmit(this.handleFormSubmit.bind(this))} label="Sign Up" secondary={true} style={style}/>
                             <RaisedButton onTouchTap={this.backToLogin.bind(this)} label="Cancel" style={style}/>
                         </form>
@@ -81,8 +82,11 @@ class ClientSignup extends Component {
 function validate(values){
     const error = {};
 
-    if (!values.email){
-        error.email = 'Please enter an email';
+    var validateEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+
+    if (!values.email || !validateEmail.test(values.email)){
+        error.email = 'Please enter a valid email';
     }
     if(!values.password){
         error.password = 'Please enter a password';

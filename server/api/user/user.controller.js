@@ -27,13 +27,17 @@ export function user(req, res) {
 }
 
 export function getUserPlanner(req, res) {
+  console.log('in get user planner');
   plannerModel.findById({
     '_id': req.params.id
   }).select('-password').exec((err, planner) => {
     if (err) {
       console.log(err);
       res.status(404).json(err);
+    } else if (!planner) {
+      res.status(200).json('no planner matches that id');
     } else {
+      console.log(planner);
       res.status(200).json(planner)
     }
   })
@@ -95,6 +99,7 @@ export function isLoggedIn(req, res, next) {
     console.log('is logged in');
     return next();
   }
+  console.log('not logged in');
   res.redirect('/');
 }
 
