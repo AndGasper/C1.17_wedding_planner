@@ -1,0 +1,288 @@
+body {
+    width: 100vw;
+    box-sizing: border-box;
+}
+
+.app {
+    text-align: center;
+    color: #336699;
+}
+
+.nav-pills {
+    color: red;
+}
+
+li img {
+    height: 5vh;
+}
+
+h1 {
+    color: rgb(156, 39, 176);
+    font-size: 4.0em;
+    font-family: 'Perpetua', 'sans-serif';
+}
+h2 {
+    color: darkred;
+    font-size: 4.0em;
+    font-family: 'Perpetua', 'sans-serif';
+}
+h3 {
+    text-align: center;
+}
+h4 {
+    color: deeppink;
+    font-size: 2.0em;
+    font-family: 'Roboto', 'Perpetua', 'sans-serif';
+    text-align: center;
+}
+
+
+.homePage, .loginPage {
+    height: 100vh;
+}
+
+.bg-image {
+
+    background-size: 100%;
+}
+
+.formDiv {
+    height: 70%;
+    background: rgba(230, 161, 161, .5);
+    width: 100%;
+}
+
+label {
+    font-size: 2em;
+}
+
+.profileInfo {
+    width: 50vw;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.questionImages {
+    padding-bottom: 30px;
+}
+.questionImages:hover img{
+    transform:scale(1.1);
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.67);
+    -moz-box-shadow:    0px 0px 20px 0px rgba(0, 0, 0, 0.67);
+    box-shadow:         0px 0px 20px 0px rgba(0, 0, 0, 0.67);
+}
+
+.spanText {
+    text-align: right;
+}
+
+.footer{
+    font-size: 2vmin;
+    background-color: rgba(255, 255, 255, .3);
+    width: 115.5%;
+    margin-left: -7vw;
+    position: absolute;
+    bottom: 0;
+}
+
+.footer p {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.header {
+    opacity: 0.5;
+    width: 100%;
+}
+
+#client-name {
+    color: #336699;
+    margin: auto;
+}
+
+.client-about {
+    color: darkred;
+    text-align: center;
+    font-family: "Clicker Script";
+    text-decoration: underline;
+}
+
+.user-labels {
+    text-decoration: underline;
+    font-size: 3em;
+}
+
+.client-hide {
+    visibility: hidden;
+}
+
+
+#edit_client_info {
+    text-decoration: underline;
+}
+
+.home {
+    background: url('../assets/images/home/bg.jpg') no-repeat;
+    background-position: center top;
+    height: 100%;
+    width: 100vw;
+}
+
+.loginBackground {
+    background: url('../assets/images/home/bg.jpg') no-repeat;
+    height: 100%;
+    width: 100vw;
+}
+
+.pink {
+    background: url('../assets/images/home/pink3.jpg') no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+
+.label-form {
+    display: list-item;
+    list-style-type: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.cost-div {
+    margin-top: 40px;
+    background-color:rgba(61, 61, 51, 0.2);
+    padding: 20px;
+}
+
+.imagesDiv {
+    background-color:rgba(61, 61, 51, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.budget-text {
+    color: #9C27B0
+}
+
+.form-control {
+    width: 90%;
+}
+
+.radio-button{
+    margin-left: 3%;
+}
+
+.col-form-label {
+    text-align: center;
+    width: 100%;
+}
+input {
+    margin: auto;
+}
+
+boldh1 {
+    font-weight: 800;
+}
+
+.boldh1 {
+    text-align: center;
+}
+
+.client-pref-links {
+    text-align: center;
+    font-family: 'Roboto', 'Perpetua', 'sans-serif';
+    text-decoration: underline;
+}
+
+.planner-pref-links{
+    text-align: center;
+    font-family: 'Roboto', 'Perpetua', 'sans-serif';
+    text-decoration: underline;
+}
+
+.client-pref-summ {
+    text-align: center;
+}
+
+#prefsLeft {
+    float: left;
+    width: 50%;
+}
+
+#prefsRight {
+    float: right;
+    width: 50%;
+}
+
+.plannerLinks{
+    font-size: 1.6em;
+}
+.pinkLink {
+    color: deeppink;
+}
+.whiteCenter {
+    height: 100%;
+    background-color: rgba(255,255,255, 0.6);
+    width: 900px;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+    border-radius: 2px;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    box-sizing: border-box;
+}
+
+.planner-preferences {
+    display: inline;
+}
+
+.preference-header{
+    color: #9C27B0;
+    font-size: 5vmin;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.form-check-label{
+    font-size: 2vmin;
+}
+
+@media only screen and (max-width: 760px) {
+    h4 {
+        font-size: 1em;
+    }
+}
+
+@media only screen and (max-width: 590px) {
+    .home {
+        background: none;
+    }
+    .loginBackground {
+        background: none;
+    }
+    .pink {
+        background: none;
+    }
+    .whiteCenter {
+        width: inherit;
+        height: inherit;
+        margin-top: 2%;
+    }
+    h4 {
+        font-size: 1.5em;
+    }
+}
+
+#blownUp {
+    height: 4px;
+    width: 4px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: 2px solid blue;
+}
+a{
+    color: rgb(156, 39, 176);
+}
