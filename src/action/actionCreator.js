@@ -3,7 +3,7 @@ import axios from 'axios';
 import {history} from '../store';
 
 
-const BASE_URL = 'http://localhost:3000/api';
+const BASE_URL = '/api';
 
 export function updatePrefs(category, imageValue) {
     // 
@@ -27,11 +27,15 @@ export function sendPrefsToServer(prefs) {
 
 export function getPlannersFromServer() {
     return function (dispatch) {
-        axios.get('http://planningthedate.com/api/wedding_planner/predetermined').then((resp) => {
-            dispatch({
+        axios.get(`${BASE_URL}/wedding_planner/predetermined`).then((resp) => {
+	console.log(resp);
+	dispatch({
                 type: GET_PLANNERS_FROM_SERVER,
                 payload: resp
             })
         })
+	.catch((err) => {
+		console.log("error", err);
+	})
     }
 }

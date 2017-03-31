@@ -50,13 +50,17 @@ function user(req, res) {
 }
 
 function getUserPlanner(req, res) {
+  console.log('in get user planner');
   _wedding_planner2.default.findById({
     '_id': req.params.id
   }).select('-password').exec(function (err, planner) {
     if (err) {
       console.log(err);
       res.status(404).json(err);
+    } else if (!planner) {
+      res.status(200).json('no planner matches that id');
     } else {
+      console.log(planner);
       res.status(200).json(planner);
     }
   });
@@ -116,6 +120,7 @@ function isLoggedIn(req, res, next) {
     console.log('is logged in');
     return next();
   }
+  console.log('not logged in');
   res.redirect('/');
 }
 

@@ -3,6 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var SECRET = 'adsfsadfasdfasfas';
+var SECRET = 'ghjoiasakljfdsa';
 
 exports.default = SECRET;
